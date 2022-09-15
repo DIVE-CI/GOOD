@@ -4,7 +4,7 @@ model:
   model_name: PL_vGIN
 ood:
   ood_alg: PairL
-  ood_param: 0.3  # ratio
+  ood_param: 0.5  # ratio
   extra_param:
     - 100         # max_k
 train:

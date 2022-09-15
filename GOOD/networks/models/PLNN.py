@@ -33,12 +33,14 @@ class classifier(nn.Module):
         # The temperature may be calibrated after training to improve uncertainty estimation.
         return logits / self.temperature
 
+
 @register.model_register
 class PL_GIN(GNNBasic):
 
     def __init__(self, config: Union[CommonArgs, Munch]):
         super().__init__(config)
         self.feature_extractor = GINFeatExtractor(config)
+        self.project_head = nn.Linear(config.model.dim_hidden, config.model.dim_hidden)
 
         # self.classifier = nn.Sequential(*(
         #     [nn.Linear(config.model.dim_hidden, config.dataset.num_classes)]
@@ -49,6 +51,7 @@ class PL_GIN(GNNBasic):
         self.threshold = 0.6
         self.ratio = config.ood.ood_param
         self.max_k = config.ood.extra_param[0]
+        self.scale = config.ood.extra_param[1]
 
         # --- special control
         self.eps = 1e-8
@@ -62,7 +65,7 @@ class PL_GIN(GNNBasic):
             paired_data = kwargs.get('data')
             batch = paired_data.batch
             num_pair = torch.div((batch.max() + 1), 2, rounding_mode='floor')
-            out_readout = self.feature_extractor(*args, **kwargs)
+            out_readout = self.project_head(self.feature_extractor(*args, **kwargs))
 
             matched_out = []
             matching_rate = []
@@ -97,9 +100,12 @@ class PL_GIN(GNNBasic):
                         else:
                             matched_out.append((out_a[pick_a] + out_b[pick_b]).max(0)[0])
                     else:
-                        sim_a = gumbel_softmax(cos_sim, dim=1)
+                        norm_a = (cos_sim - cos_sim.mean(1, keepdim=True)) / (cos_sim.std(1, keepdim=True) + self.eps)
+                        logits_a = self.scale * norm_a
+                        sim_a = gumbel_softmax(logits_a, dim=1)
                         max_a = cos_sim.max(1)[0]
-                        noise_max_a = gumbel_softmax(max_a, dim=0)
+                        norm_max_a = (max_a - max_a.mean(0, keepdim=True)) / (max_a.std(0, keepdim=True) + self.eps)
+                        noise_max_a = gumbel_softmax(self.scale * norm_max_a, dim=0)
                         k = min(math.ceil(cos_sim.shape[0] * self.ratio), self.max_k)
                         pick_a = torch.topk(noise_max_a, k, dim=0).indices
                         prob_pick_b = sim_a[pick_a]
@@ -148,7 +154,7 @@ class PL_GIN(GNNBasic):
         else:
             data = kwargs.get('data')
             batch = data.batch
-            out_readout = self.feature_extractor(*args, **kwargs)
+            out_readout = self.project_head(self.feature_extractor(*args, **kwargs))
             matched_out = []
             for i in range(batch[-1] + 1):
                 out_a = out_readout[batch == i]
