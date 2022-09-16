@@ -101,11 +101,10 @@ class PL_GIN(GNNBasic):
                             matched_out.append((out_a[pick_a] + out_b[pick_b]).max(0)[0])
                     else:
                         norm_a = (cos_sim - cos_sim.mean(1, keepdim=True)) / (cos_sim.std(1, keepdim=True) + self.eps)
-                        logits_a = self.scale * norm_a
-                        sim_a = gumbel_softmax(logits_a, dim=1)
+                        sim_a = gumbel_softmax(norm_a / self.scale, dim=1)
                         max_a = cos_sim.max(1)[0]
                         norm_max_a = (max_a - max_a.mean(0, keepdim=True)) / (max_a.std(0, keepdim=True) + self.eps)
-                        noise_max_a = gumbel_softmax(self.scale * norm_max_a, dim=0)
+                        noise_max_a = gumbel_softmax(norm_max_a / self.scale, dim=0)
                         k = min(math.ceil(cos_sim.shape[0] * self.ratio), self.max_k)
                         pick_a = torch.topk(noise_max_a, k, dim=0).indices
                         prob_pick_b = sim_a[pick_a]
