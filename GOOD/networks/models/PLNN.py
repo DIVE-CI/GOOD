@@ -1,6 +1,7 @@
 import itertools
 import math
 
+import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -21,8 +22,9 @@ class classifier(nn.Module):
     def __init__(self, config: Union[CommonArgs, Munch], temperature=1.0):
         super(classifier, self).__init__()
         num_classes = config.dataset.num_classes if config.dataset.num_classes != 1 else 2
+        num_env = config.dataset.num_envs
         self.temperature = temperature
-        self.prototypes = nn.Parameter(torch.Tensor(num_classes, config.model.dim_hidden))
+        self.prototypes = nn.Parameter(torch.Tensor(num_classes + num_env, config.model.dim_hidden))
         self.distance_scale = nn.Parameter(torch.Tensor(1))
         nn.init.normal_(self.prototypes, mean=0.0, std=1.0)
         nn.init.constant_(self.distance_scale, 1.0)
@@ -43,6 +45,7 @@ class PL_GIN(GNNBasic):
         # self.classifier = nn.Sequential(*(
         #     [nn.Linear(config.model.dim_hidden, config.dataset.num_classes)]
         # ))
+        self.num_classes = config.dataset.num_classes if config.dataset.num_classes != 1 else 2
         self.classifier = classifier(config)
 
         self.config = config
@@ -61,46 +64,55 @@ class PL_GIN(GNNBasic):
         if self.training:
             paired_data = kwargs.get('data')
             batch = paired_data.batch
-            num_pair = torch.div((batch.max() + 1), 2, rounding_mode='floor')
+            num_pair = torch.div((batch.max() + 1), 3, rounding_mode='floor')
             out_readout = self.feature_extractor(*args, **kwargs)
 
-            matched_out = []
+            ab_matched_out = []
+            ac_matched_out = []
             matching_rate = []
             for pair_id in range(num_pair):
                 out_a = out_readout[batch == pair_id]
                 out_b = out_readout[batch == (pair_id + num_pair)]
-                if out_a.shape[0] > out_b.shape[0]:
+                out_c = out_readout[batch == (pair_id + 2 * num_pair)]
+
+                min_shape = np.argmin([out_a.shape[0], out_b.shape[0], out_c.shape[0]])
+                if min_shape == 1:
                     out_a, out_b = out_b, out_a
+                elif min_shape == 2:
+                    out_a, out_c = out_c, out_a
+
 
                 # --- calculate distance ---
                 if self.filter_non_matched:
-                    cos_sim, match_map = self.sim(out_a, out_b)
+                    ab_sim_score, ab_match_map = self.sim(out_a, out_b)
+                    ac_sim_score, ac_match_map = self.sim(out_a, out_c)
                 else:
-                    cos_sim = self.sim(out_a, out_b)
+                    ab_sim_score = self.sim(out_a, out_b)
+                    ac_sim_score = self.sim(out_a, out_c)
 
                 # --- choose the best matched features' indices ---
                 if self.stochastic:
                     if self.soft_pick:
-                        sim_a = gumbel_softmax(cos_sim, dim=1)
-                        max_a = cos_sim.max(1)[0]
+                        sim_a = gumbel_softmax(ab_sim_score, dim=1)
+                        max_a = ab_sim_score.max(1)[0]
                         noise_max_a = gumbel_softmax(max_a, dim=0)
                         soft_pick = sim_a * noise_max_a[:, None]
                         # --- Matched pooling ---
                         if self.config.model.global_pool == 'mean':
                             if self.filter_non_matched:
-                                matched_out.append(
-                                    ((out_a[pick_a] + out_b[pick_b]) * match_map[pick_a, pick_b]).sum(0) / (
-                                            match_map[pick_a, pick_b].sum(0) + self.eps))
+                                ab_matched_out.append(
+                                    ((out_a[pick_a] + out_b[pick_b]) * ab_match_map[pick_a, pick_b]).sum(0) / (
+                                            ab_match_map[pick_a, pick_b].sum(0) + self.eps))
                             else:
-                                matched_out.append(((out_a[:, None, :] + out_b[None, :, :]) / 2 * soft_pick[..., None]).sum(0).sum(0))
+                                ab_matched_out.append(((out_a[:, None, :] + out_b[None, :, :]) / 2 * soft_pick[..., None]).sum(0).sum(0))
                                 # matched_out.append((out_a[pick_a] + out_b[pick_b]).mean(0))
                         else:
-                            matched_out.append((out_a[pick_a] + out_b[pick_b]).max(0)[0])
+                            ab_matched_out.append((out_a[pick_a] + out_b[pick_b]).max(0)[0])
                     else:
-                        sim_a = gumbel_softmax(cos_sim, dim=1)
-                        max_a = cos_sim.max(1)[0]
+                        sim_a = gumbel_softmax(ab_sim_score, dim=1)
+                        max_a = ab_sim_score.max(1)[0]
                         noise_max_a = gumbel_softmax(max_a, dim=0)
-                        k = min(math.ceil(cos_sim.shape[0] * self.ratio), self.max_k)
+                        k = min(math.ceil(ab_sim_score.shape[0] * self.ratio), self.max_k)
                         pick_a = torch.topk(noise_max_a, k, dim=0).indices
                         prob_pick_b = sim_a[pick_a]
                         pick_b = prob_pick_b.argmax(1)
@@ -115,78 +127,93 @@ class PL_GIN(GNNBasic):
                         # --- Matched pooling ---
                         if self.config.model.global_pool == 'mean':
                             if self.filter_non_matched:
-                                matched_out.append(((out_a[pick_a] + out_b[pick_b]) * match_map[pick_a, pick_b]).sum(0) / (
-                                            match_map[pick_a, pick_b].sum(0) + self.eps))
+                                ab_matched_out.append(((out_a[pick_a] + out_b[pick_b]) * ab_match_map[pick_a, pick_b]).sum(0) / (
+                                            ab_match_map[pick_a, pick_b].sum(0) + self.eps))
                             else:
-                                matched_out.append((out_a[pick_a] + out_b[pick_b]).mean(0))
+                                ab_matched_out.append((out_a[pick_a] + out_b[pick_b]).mean(0))
                         else:
-                            matched_out.append((out_a[pick_a] + out_b[pick_b]).max(0)[0])
+                            ab_matched_out.append((out_a[pick_a] + out_b[pick_b]).max(0)[0])
 
                 else:
 
-                    max_a, pick_b = cos_sim.max(1)
-                    k = min(math.ceil(cos_sim.shape[0] * self.ratio), self.max_k)
+                    k = min(math.ceil(ab_sim_score.shape[0] * self.ratio), self.max_k)
+
+                    # --- AB pairing ---
+                    max_a, pick_b = ab_sim_score.max(1)
                     pick_a = torch.topk(max_a, k, dim=0).indices
-                    # if pick_a.sum() == 0:
-                    #     pick_a = max_a.argmax().unsqueeze(0)
                     pick_b = pick_b[pick_a]
-                    matching_rate.append(max_a[pick_a].mean())
 
                     # --- Matched pooling ---
                     if self.config.model.global_pool == 'mean':
                         if self.filter_non_matched:
-                            matched_out.append(((out_a[pick_a] + out_b[pick_b]) * match_map[pick_a, pick_b]).sum(0) / (match_map[pick_a, pick_b].sum(0) + self.eps))
+                            ab_matched_out.append(((out_a[pick_a] + out_b[pick_b]) * ab_match_map[pick_a, pick_b]).sum(0) / (ab_match_map[pick_a, pick_b].sum(0) + self.eps))
                         else:
-                            matched_out.append((out_a[pick_a] + out_b[pick_b]).mean(0))
+                            ab_matched_out.append((out_a[pick_a] + out_b[pick_b]).mean(0))
                     else:
-                        matched_out.append((out_a[pick_a] + out_b[pick_b]).max(0)[0])
+                        ab_matched_out.append((out_a[pick_a] + out_b[pick_b]).max(0)[0])
+
+                    # --- AC pairing ---
+                    max_a, pick_c = ac_sim_score.max(1)
+                    pick_a = torch.topk(max_a, k, dim=0).indices
+                    pick_c = pick_c[pick_a]
+
+                    # --- Matched pooling ---
+                    if self.config.model.global_pool == 'mean':
+                        if self.filter_non_matched:
+                            ac_matched_out.append(
+                                ((out_a[pick_a] + out_c[pick_c]) * ac_match_map[pick_a, pick_c]).sum(0) / (
+                                            ac_match_map[pick_a, pick_c].sum(0) + self.eps))
+                        else:
+                            ac_matched_out.append((out_a[pick_a] + out_c[pick_c]).mean(0))
+                    else:
+                        ac_matched_out.append((out_a[pick_a] + out_c[pick_c]).max(0)[0])
 
             # print(f'Max cosine similarity: {max_a.max()}')
 
-            matched_out = torch.stack(matched_out, 0)
+            matched_out = torch.stack(ab_matched_out + ac_matched_out, 0)
             out = self.classifier(matched_out)
         else:
             data = kwargs.get('data')
             batch = data.batch
             out_readout = self.feature_extractor(*args, **kwargs)
-            matched_out = []
+            ab_matched_out = []
             for i in range(batch[-1] + 1):
                 out_a = out_readout[batch == i]
 
                 # --- calculate distance ---
 
                 if self.filter_non_matched:
-                    cos_sim, match_map = self.sim(out_a, self.classifier.prototypes.data)
+                    ab_sim_score, ab_match_map = self.sim(out_a, self.classifier.prototypes.data[:self.num_classes])
                 else:
-                    cos_sim = self.sim(out_a, self.classifier.prototypes.data)
+                    ab_sim_score = self.sim(out_a, self.classifier.prototypes.data[:self.num_classes])
 
                 if self.stochastic and False:
-                    sim_a = cos_sim.max(1)[0]
-                    sim_max = cos_sim.max()
-                    sim_min = cos_sim.min()
+                    sim_a = ab_sim_score.max(1)[0]
+                    sim_max = ab_sim_score.max()
+                    sim_min = ab_sim_score.min()
                     norm_sim_a = (sim_a - sim_min) / (sim_max - sim_min)
                     sampled_a = gumbel_sigmoid(norm_sim_a)
 
                     # --- Matched pooling ---
                     if self.config.model.global_pool == 'mean':
-                        matched_out.append((out_a * sampled_a[:, None]).sum(0) / (sampled_a.sum() + self.eps))
+                        ab_matched_out.append((out_a * sampled_a[:, None]).sum(0) / (sampled_a.sum() + self.eps))
                     else:
                         raise ValueError('Not support pooling except mean.')
                 else:
 
-                    k = min(math.ceil(cos_sim.shape[0] * self.ratio), self.max_k)
-                    top_cs, pick = torch.topk(cos_sim, k, dim=0)
+                    k = min(math.ceil(ab_sim_score.shape[0] * self.ratio), self.max_k)
+                    top_cs, pick = torch.topk(ab_sim_score, k, dim=0)
                     selected_class = top_cs.sum(0).argmax()
                     pick_a = pick[:, selected_class]
                     assert not torch.isnan(out_a[pick_a].mean(0)).sum()
                     if self.config.model.global_pool == 'mean':
                         if self.filter_non_matched:
-                            matched_out.append((out_a[pick_a] * match_map[pick_a, selected_class]).sum(0) / (match_map[pick_a, selected_class].sum(0) + self.eps))
+                            ab_matched_out.append((out_a[pick_a] * ab_match_map[pick_a, selected_class]).sum(0) / (ab_match_map[pick_a, selected_class].sum(0) + self.eps))
                         else:
-                            matched_out.append(out_a[pick_a].mean(0))
+                            ab_matched_out.append(out_a[pick_a].mean(0))
                     else:
-                        matched_out.append(out_a[pick_a].max(0)[0])
-            matched_out = torch.stack(matched_out, 0)
+                        ab_matched_out.append(out_a[pick_a].max(0)[0])
+            ab_matched_out = torch.stack(ab_matched_out, 0)
             # matching_rate = torch.stack(matching_rate, 0)
             # num_classes = self.config.dataset.num_classes if self.config.dataset.num_classes != 1 else 2
             # matching_rate = matching_rate.reshape(num_classes, -1)
@@ -195,7 +222,7 @@ class PL_GIN(GNNBasic):
             # idx = eye[:, matching_label].bool()
             # matched_out = matched_out.reshape(num_classes, -1, self.config.model.dim_hidden).transpose(0, 1)[idx.T]
 
-            out = self.classifier(matched_out)
+            out = self.classifier(ab_matched_out)
         assert not torch.isnan(out).sum()
         return out
 

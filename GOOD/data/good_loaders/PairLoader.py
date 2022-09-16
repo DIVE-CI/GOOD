@@ -61,38 +61,46 @@ class PairBatchSampler(Sampler[List[int]]):
 
     def __iter__(self) -> Iterator[List[int]]:
         num_data = len(self.dataset)
-        random_y = torch.randint(self.num_label, (num_data, ))
+        random_y_a, random_y_b = self.find_diff_label_pair(num_data, self.num_label)
 
-        # --- Find different environment pair ---
-        random_env_a = torch.randint(self.num_env, (num_data * 2, ))
-        random_env_b = torch.randint(self.num_env, (num_data * 2, ))
-        diff_env_ids = random_env_a != random_env_b
-        random_env_a, random_env_b = random_env_a[diff_env_ids], random_env_b[diff_env_ids]
-        while random_env_a.shape[0] < num_data:
-            temp_env_a = torch.randint(self.num_env, (num_data, ))
-            temp_env_b = torch.randint(self.num_env, (num_data, ))
-            diff_env_ids = temp_env_a != temp_env_b
-            temp_env_a, temp_env_b = temp_env_a[diff_env_ids], temp_env_b[diff_env_ids]
-            random_env_a = torch.cat([random_env_a, temp_env_a], 0)
-            random_env_b = torch.cat([random_env_b, temp_env_b], 0)
-        random_env_a, random_env_b = random_env_a[:num_data], random_env_b[:num_data]
+        random_env_a, random_env_b = self.find_diff_label_pair(num_data, self.num_env)
 
         batch_a = []
         batch_b = []
+        batch_c = []
         for idx in range(num_data):
-            y = random_y[idx]
+            y_a = random_y_a[idx]
+            y_b = random_y_b[idx]
             env_a = random_env_a[idx]
             env_b = random_env_b[idx]
-            ids_a = self.y_env_ids[y][env_a]
-            ids_b = self.y_env_ids[y][env_b]
+            ids_a = self.y_env_ids[y_a][env_a]
+            ids_b = self.y_env_ids[y_a][env_b]
+            ids_c = self.y_env_ids[y_b][env_a]
             batch_a.append(ids_a[torch.randint(ids_a.shape[0], (1, ))].item())
             batch_b.append(ids_b[torch.randint(ids_b.shape[0], (1, ))].item())
+            batch_c.append(ids_c[torch.randint(ids_c.shape[0], (1, ))].item())
             if len(batch_a) == self.batch_size:
-                yield batch_a + batch_b
+                yield batch_a + batch_b + batch_c
                 batch_a = []
                 batch_b = []
+                batch_c = []
         if len(batch_a) > 0 and not self.drop_last:
-            yield batch_a + batch_b
+            yield batch_a + batch_b + batch_c
+
+    def find_diff_label_pair(self, num_data, num_label):
+        # --- Find different environment pair ---
+        random_label_a = torch.randint(num_label, (num_data * 2,))
+        random_label_b = torch.randint(num_label, (num_data * 2,))
+        diff_label_ids = random_label_a != random_label_b
+        random_label_a, random_label_b = random_label_a[diff_label_ids], random_label_b[diff_label_ids]
+        while random_label_a.shape[0] < num_data:
+            temp_label_a = torch.randint(num_label, (num_data,))
+            temp_label_b = torch.randint(num_label, (num_data,))
+            diff_label_ids = temp_label_a != temp_label_b
+            temp_label_a, temp_label_b = temp_label_a[diff_label_ids], temp_label_b[diff_label_ids]
+            random_label_a = torch.cat([random_label_a, temp_label_a], 0)
+            random_label_b = torch.cat([random_label_b, temp_label_b], 0)
+        return random_label_a[:num_data], random_label_b[:num_data]
 
     def __len__(self) -> int:
         # Can only be called if self.sampler has __len__ implemented

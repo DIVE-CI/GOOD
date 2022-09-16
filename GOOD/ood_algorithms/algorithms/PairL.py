@@ -170,11 +170,15 @@ class PairL(BaseOODAlg):
             #             is_paired[i] = False
 
             # data = Batch.from_data_list(orig_data + pair_data)
-            t1, t2 = targets.chunk(2)
+            t1, t2, t3 = targets.chunk(3)
             assert (t1 != t2).sum() == 0
 
-            targets = t1
-            mask = mask.chunk(2)[0]
+            env_base = num_classes = config.dataset.num_classes if config.dataset.num_classes != 1 else 2
+            env_target = env_base + data.env_id.chunk(3)[-1]
+
+            targets = torch.cat([t1, env_target])
+            mask1, mask2, mask3 = mask.chunk(3)
+            mask = torch.cat([mask1 & mask2, mask1 & mask3])
         else:
             # num_data = data.batch[-1] + 1
             # orig_data = []
