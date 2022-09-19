@@ -196,6 +196,33 @@ class PairL(BaseOODAlg):
 
         return data, targets, mask, node_norm
 
+    def loss_calculate(self, raw_pred: Tensor, targets: Tensor, mask: Tensor, node_norm: Tensor,
+                       config: Union[CommonArgs, Munch]) -> Tensor:
+        r"""
+        Calculate loss
+
+        Args:
+            raw_pred (Tensor): model predictions
+            targets (Tensor): input labels
+            mask (Tensor): NAN masks for data formats
+            node_norm (Tensor): node weights for normalization (for node prediction only)
+            config (Union[CommonArgs, Munch]): munchified dictionary of args (:obj:`config.metric.loss_func()`, :obj:`config.model.model_level`)
+
+        .. code-block:: python
+
+            config = munchify({model: {model_level: str('graph')},
+                                   metric: {loss_func: Accuracy}
+                                   })
+
+
+        Returns (Tensor):
+            cross entropy loss
+
+        """
+        loss = config.metric.loss_func(raw_pred, targets, reduction='none') * mask
+        loss = loss * node_norm * mask.sum() if config.model.model_level == 'node' else loss
+        return loss
+
     def loss_postprocess(self, loss: Tensor, data: Batch, mask: Tensor, config: Union[CommonArgs, Munch],
                          **kwargs) -> Tensor:
         r"""
@@ -218,7 +245,8 @@ class PairL(BaseOODAlg):
         #             if idx.sum() > 0 and loss[idx].min() < self.best_pair[target][env_id]['loss']:
         #                 self.best_pair[target][env_id]['loss'] = loss[idx].min()
         #                 self.best_pair[target][env_id]['data'] = data[idx][loss[idx].argmin()]
+        orig_loss, env_loss = loss.chunk(2)
 
-        self.mean_loss = loss.sum() / mask.sum()
+        self.mean_loss = (orig_loss.sum() + 1e-2 * env_loss.sum()) / mask.sum()
         return self.mean_loss
 
