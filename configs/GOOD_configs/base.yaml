@@ -14,14 +14,15 @@ train:
   tr_ctn: False
   epoch: 0
   ctn_epoch: 0
-  epoch: 0
   alpha: 0.2  # parameter for DANN
   stage_stones: []
 model:
   dim_hidden: 300
   dim_ffn: 300
   dropout_rate: 0.5
+  generative_model_name: null
 dataset:
+  dataloader_name: BaseDataLoader
   dataset_root: null
   generate: False
   dim_node: null
@@ -30,3 +31,4 @@ dataset:
   num_envs: null
 ood:
   extra_param: null
+  ood_alg_gen: null

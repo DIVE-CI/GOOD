@@ -205,7 +205,10 @@ def process_configs(config: Union[CommonArgs, Munch]):
 
     # --- Checkpoint setting ---
     if config.ckpt_root is None:
+        # if config.model.generative_model_name is None:
         config.ckpt_root = opj(STORAGE_DIR, 'checkpoints')
+        # else:
+        #     config.ckpt_root = opj(STORAGE_DIR, 'generative_checkpoints')
     if config.ckpt_dir is None:
         config.ckpt_dir = opj(config.ckpt_root, 'round' + str(config.exp_round),
                               config.dataset.dataset_name, config.dataset.domain,

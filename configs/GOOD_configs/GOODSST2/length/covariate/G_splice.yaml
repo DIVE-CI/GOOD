@@ -1,0 +1,15 @@
+includes:
+  - base.yaml
+model:
+  model_name: vGIN
+  generative_model_name: VGAE
+  dim_ffn: 600
+ood:
+  ood_alg: G_splice
+  ood_param: 1.
+  ood_alg_gen: G_splice_generative
+train:
+  max_epoch: 200
+  lr: 1e-4
+
+

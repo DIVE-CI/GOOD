@@ -83,6 +83,12 @@ def train(model: torch.nn.Module, loader: Union[DataLoader, Dict[str, DataLoader
 
         ood_algorithm.stage_control(config)
 
+        if config.dataset.dataset_name == 'GOODCora' and config.dataset.shift_type == 'concept':
+            config.dataset.env_range = (loader['train'].data.word.max() - loader['train'].data.word.min())/10.0
+            config.dataset.global_mean_pyx = loader['train'].data.word.min()
+        elif config.dataset.dataset_name == 'GOODArxiv' and config.dataset.shift_type == 'concept':
+            config.dataset.global_mean_pyx = loader['train'].data.time.mean()
+
         pbar = tqdm(enumerate(loader['train']), total=len(loader['train']), **pbar_setting)
         for index, data in pbar:
             if data.batch is not None and (data.batch[-1] < config.train.train_bs - 1):

@@ -10,6 +10,7 @@ from torch.utils.data import DataLoader
 from GOOD import config_summoner
 from GOOD.data import load_dataset, create_dataloader
 from GOOD.kernel.train import train
+from GOOD.kernel.train_generation import train_generation
 from GOOD.networks.model_manager import load_model, config_model
 from GOOD.ood_algorithms.algorithms.BaseOOD import BaseOODAlg
 from GOOD.ood_algorithms.ood_manager import load_ood_alg
@@ -52,7 +53,12 @@ def load_task(task: str, model: torch.nn.Module, loader: DataLoader, ood_algorit
     Launch a training or a test. (Project use only)
     """
     if task == 'train':
-        train(model, loader, ood_algorithm, config)
+        if config.model.generative_model_name is not None:
+            ood_algorithm_gen = load_ood_alg(config.ood.ood_alg_gen, config)
+            generation_model = load_model(config.model.generative_model_name, config)
+            train_generation(generation_model, model, loader, ood_algorithm_gen, ood_algorithm, config)
+        else:
+            train(model, loader, ood_algorithm, config)
 
     elif task == 'test':
 

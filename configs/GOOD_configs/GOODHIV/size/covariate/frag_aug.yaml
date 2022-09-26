@@ -3,11 +3,10 @@ includes:
 model:
   model_name: vGIN
 ood:
-  ood_alg: GraphMix
-  ood_param: 10.
+  ood_alg: frag_aug
+  ood_param: 1.
 train:
-  max_epoch: 300
-  train_bs: 32
+  max_epoch: 200
   lr: 1e-3
 
 

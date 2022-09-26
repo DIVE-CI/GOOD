@@ -38,6 +38,7 @@ class DatasetArgs(Tap):
     Correspond to ``dataset`` configs in config files.
     """
     dataset_name: str = None  #: Name of the chosen dataset.
+    dataloader_name: str = None  #: Name of the chosen dataloader. The default is BaseDataLoader.
     shift_type: Literal['no_shift', 'covariate', 'concept'] = None  #: The shift type of the chosen dataset.
     domain: str = None  #: Domain selection.
     generate: bool = None  #: The flag for generating GOOD datasets from scratch instead of downloading
@@ -48,6 +49,8 @@ class DatasetArgs(Tap):
     dim_edge: int = None  #: Dimension of edge
     num_classes: int = None  #: Number of labels for multi-label classifications.
     num_envs: int = None  #: Number of environments in training set.
+    global_mean_pyx: float = None  #: concept shift high/low label threshold
+    env_range: float = None
 
 
 class ModelArgs(Tap):
@@ -55,6 +58,7 @@ class ModelArgs(Tap):
     Correspond to ``model`` configs in config files.
     """
     model_name: str = None  #: Name of the chosen GNN.
+    generative_model_name: str = None  #: Name of the generative model
     model_layer: int = None  #: Number of the GNN layer.
     model_level: Literal['node', 'link', 'graph'] = 'graph'  #: What is the model use for? Node, link, or graph predictions.
 
@@ -71,6 +75,7 @@ class OODArgs(Tap):
     ood_alg: str = None  #: Name of the chosen OOD algorithm.
     ood_param: float = None  #: OOD algorithms' hyperparameter(s). Currently, most of algorithms use it as a float value.
     extra_param: List = None  #: OOD algorithms' extra hyperparameter(s).
+    ood_alg_gen: str = None  #: Name of the generative OOD algorithm.
 
 
 class AutoArgs(Tap):
