@@ -147,7 +147,12 @@ def evaluate(model: torch.nn.Module,
     target_all = []
     pbar = tqdm(loader[split], desc=f'Eval {split.capitalize()}', total=len(loader[split]), **pbar_setting)
     for data in pbar:
+        # if index % 3 == 0:
+        #     with torch.cuda.device(config.device):
+        #         torch.cuda.empty_cache()
         data: Batch = data.to(config.device)
+        if config.model.model_level == 'graph':
+            data.x = data.x.to(loader[split].dataset.data.x.dtype)
 
         mask, targets = nan2zero_get_mask(data, split, config)
         if mask is None:

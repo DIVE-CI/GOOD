@@ -77,15 +77,17 @@ class G_splice(BaseOODAlg):
                 y = 0
 
                 if config.dataset.dataset_type == 'mol':
-                    new_batch.append(Data(x=x, edge_index=edge_idx, edge_attr=edge_attr, bridge=y, frag_1=data_a.x.shape[0], frag_2=data_b.x.shape[0], y=data_a.y))
+                    new_batch.append(Data(x=x, edge_index=edge_idx, edge_attr=edge_attr, bridge=y, bridge_num=torch.tensor(0).to(config.device), frag_1=data_a.x.shape[0], frag_2=data_b.x.shape[0], y=data_a.y))
                     org_batch.append(Data(x=data_a.x, edge_index=data_a.edge_index, edge_attr=data_a.edge_attr, y=data_a.y, env_id=data_a.env_id))
                 else:
-                    new_batch.append(Data(x=x, edge_index=edge_idx, bridge=y, frag_1=data_a.x.shape[0], frag_2=data_b.x.shape[0], y=data_a.y))
+                    new_batch.append(Data(x=x, edge_index=edge_idx, bridge=y, bridge_num=torch.tensor(0).to(config.device), frag_1=data_a.x.shape[0], frag_2=data_b.x.shape[0], y=data_a.y))
                     org_batch.append(Data(x=data_a.x, edge_index=data_a.edge_index, y=data_a.y, env_id=data_a.env_id))
 
             new_data = Batch.from_data_list(new_batch)
+            gen_model.eval()
             model_output = gen_model(data=new_data, edge_weight=None, ood_algorithm=config.ood.ood_alg)
             bridge_score = model_output[0].detach()
+            num_bridge_all = torch.round(model_output[6]).long()
 
 
             batch_size = new_data.batch[-1] + 1
@@ -95,23 +97,37 @@ class G_splice(BaseOODAlg):
             s = 0
             for idx_ in range(batch_size):
                 data_a = new_data[idx_]
-                score = bridge_score[s:s+data_a.frag_1 * data_a.frag_2]
-                v, indices = torch.topk(score.squeeze(), num_bridge)
-                indices = indices.cpu()
-                bridge_a = (indices/data_a.frag_2).long().to(config.device)
-                bridge_b = (indices % data_a.frag_2 + data_a.frag_1).to(config.device)
-                bridge = torch.cat((bridge_a.unsqueeze(0), bridge_b.unsqueeze(0)), dim=0)
-                undirected_bridge = torch.cat((bridge_b.unsqueeze(0), bridge_a.unsqueeze(0)), dim=0)
-                edge_idx = torch.cat((data_a.edge_index, bridge, undirected_bridge), dim=1)
+                num_bridge = num_bridge_all[idx_].item()
+                if num_bridge>0:
+                    score = bridge_score[s:s + data_a.frag_1 * data_a.frag_2]
+                    v, indices = torch.topk(score.squeeze(), num_bridge)
+                    indices = indices.cpu()
+                    bridge_a = (indices / data_a.frag_2).long().to(config.device)
+                    bridge_b = (indices % data_a.frag_2 + data_a.frag_1).to(config.device)
+                    bridge = torch.cat((bridge_a.unsqueeze(0), bridge_b.unsqueeze(0)), dim=0)
+                    undirected_bridge = torch.cat((bridge_b.unsqueeze(0), bridge_a.unsqueeze(0)), dim=0)
+                    edge_idx = torch.cat((data_a.edge_index, bridge, undirected_bridge), dim=1)
+                else:
+                    edge_idx = data_a.edge_index
 
                 if config.dataset.dataset_type == 'mol':
-                    bridge_attr_pred = model_output[4].detach()
-                    # bridge_attr_idx = torch.randint(0, data_a.edge_attr.shape[0], (1, num_bridge), device=config.device)
-                    # bridge_attr = torch.squeeze(copy.deepcopy(data_a.edge_attr[bridge_attr_idx]), dim=0)
-                    bridge_attr = bridge_attr_pred[s:s+data_a.frag_1 * data_a.frag_2][indices]
-                    bridge_attr_idx = torch.cat((torch.norm(data.edge_attr - bridge_attr[0], dim=1).argmin().unsqueeze(0), torch.norm(data.edge_attr - bridge_attr[1], dim=1).argmin().unsqueeze(0)))
-                    bridge_attr = data.edge_attr[bridge_attr_idx]
-                    edge_attr = torch.cat((data_a.edge_attr, bridge_attr.type(data_a.edge_attr.dtype), bridge_attr.type(data_a.edge_attr.dtype)), dim=0)
+                    if num_bridge > 0:
+                        bridge_attr_pred = model_output[4].detach()
+                        # bridge_attr_idx = torch.randint(0, data_a.edge_attr.shape[0], (1, num_bridge), device=config.device)
+                        # bridge_attr = torch.squeeze(copy.deepcopy(data_a.edge_attr[bridge_attr_idx]), dim=0)
+                        bridge_attr = bridge_attr_pred[s:s + data_a.frag_1 * data_a.frag_2][indices]
+                        # bridge_attr_idx = torch.cat((torch.norm(data.edge_attr - bridge_attr[0], dim=1).argmin().unsqueeze(0), torch.norm(data.edge_attr - bridge_attr[1], dim=1).argmin().unsqueeze(0)))
+                        for co in range(bridge_attr.shape[0]):
+                            temp = torch.norm(data.edge_attr - bridge_attr[co], dim=1).argmin().unsqueeze(0)
+                            if co == 0:
+                                bridge_attr_idx = temp
+                            else:
+                                bridge_attr_idx = torch.cat((bridge_attr_idx, temp))
+                        bridge_attr = data.edge_attr[bridge_attr_idx]
+                        edge_attr = torch.cat((data_a.edge_attr, bridge_attr.type(data_a.edge_attr.dtype),
+                                               bridge_attr.type(data_a.edge_attr.dtype)), dim=0)
+                    else:
+                        edge_attr = data_a.edge_attr
 
                 s = s + data_a.frag_1 * data_a.frag_2
 

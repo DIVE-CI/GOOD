@@ -1,0 +1,13 @@
+includes:
+  - base.yaml
+model:
+  model_name: Mixup_vGIN
+ood:
+  ood_alg: LISA
+  ood_param: 0.4
+train:
+  max_epoch: 200
+  lr: 1e-3
+dataset:
+  dataloader_name: PairDataLoader
+

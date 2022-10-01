@@ -1,0 +1,20 @@
+includes:
+  - base.yaml
+model:
+  model_name: vGIN
+  generative_model_name: DDPM_vGIN
+  dim_ffn: 300
+ood:
+  ood_alg: G_splice_diff
+  ood_param: 1.
+  ood_alg_gen: G_splice_gen_diff
+train:
+  max_epoch: 200
+  lr: 1e-4
+#  train_bs: 32
+#  val_bs: 256
+#  test_bs: 256
+#dataset:
+#  dataloader_name: PairDataLoader
+
+

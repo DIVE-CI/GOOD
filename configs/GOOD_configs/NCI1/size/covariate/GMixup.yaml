@@ -1,0 +1,17 @@
+includes:
+  - base.yaml
+dataset:
+  dataloader_name: GMixupDataLoader
+model:
+  model_name: vGIN
+ood:
+  ood_alg: GMixup
+  ood_param: 0.3     # aug ratio
+  extra_param:
+    - 10   # aug num
+    - [0.1, 0.2]     #  lambda range
+train:
+  max_epoch: 200
+  lr: 1e-3
+  mile_stones: [150]
+

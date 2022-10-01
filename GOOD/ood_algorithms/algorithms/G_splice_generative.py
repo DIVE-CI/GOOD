@@ -65,10 +65,10 @@ class G_splice_generative(BaseOODAlg):
 
             if config.dataset.dataset_type == 'mol':
                 new_batch.append(
-                    Data(x=data_a.x, edge_index=edge_idx, edge_attr=edge_attr, bridge=y.view(-1), frag_1=frag_1, frag_2=frag_2, y=data_a.y))
+                    Data(x=data_a.x, edge_index=edge_idx, edge_attr=edge_attr, bridge=y.view(-1), bridge_num=torch.tensor(m.shape[1]).to(config.device), frag_1=frag_1, frag_2=frag_2, y=data_a.y))
                 # org_batch.append(Data(x=data_a.x, edge_index=data_a.edge_index, edge_attr=data_a.edge_attr, y=data_a.y))
             else:
-                new_batch.append(Data(x=data_a.x, edge_index=edge_idx, bridge=y.view(-1), frag_1=frag_1, frag_2=frag_2, y=data_a.y))
+                new_batch.append(Data(x=data_a.x, edge_index=edge_idx, bridge=y.view(-1), bridge_num=torch.tensor(m.shape[1]).to(config.device), frag_1=frag_1, frag_2=frag_2, y=data_a.y))
                 # new_batch_2.append(Data(x=x_2, edge_index=edge_idx_2, y=data_a.y))
                 # org_batch.append(Data(x=data_a.x, edge_index=data_a.edge_index, y=data_a.y))
 
@@ -100,6 +100,7 @@ class G_splice_generative(BaseOODAlg):
         self.bridge = model_output[1]
         self.kl_divergence = model_output[2]
         self.edge_attr_loss = model_output[3]
+        self.num_loss = model_output[5]
 
         return model_output[0]
 
@@ -152,8 +153,8 @@ class G_splice_generative(BaseOODAlg):
 
         loss = loss.sum()/loss.shape[0]
         self.mean_loss = loss
-        self.spec_loss = 0 - 0.8 * self.kl_divergence
+        self.spec_loss = 0 - config.ood.extra_param[0] * self.kl_divergence + config.ood.extra_param[1]*self.num_loss
         if config.dataset.dataset_type == 'mol':
-            self.spec_loss = self.spec_loss + self.edge_attr_loss/50
+            self.spec_loss = self.spec_loss + config.ood.extra_param[2]*self.edge_attr_loss
         loss = self.mean_loss + self.spec_loss
         return loss

@@ -69,7 +69,7 @@ class GNNBasic(torch.nn.Module):
         if self.config.model.model_level == 'node':
             edge_weight = kwargs.get('edge_weight')
             return x, edge_index, edge_weight, batch
-        elif self.config.dataset.dim_edge:
+        elif (self.config.dataset.dim_edge or kwargs.get('edge_feat')) and self.config.ood.ood_alg != 'GMixup':
             edge_attr = data.edge_attr
             return x, edge_index, edge_attr, batch, batch_size
 
@@ -136,3 +136,6 @@ class BasicEncoder(torch.nn.Module):
             self.readout = GlobalMeanPool()
         else:
             self.readout = GlobalMaxPool()
+
+        self.config = config
+        self.ood_algorithm = None

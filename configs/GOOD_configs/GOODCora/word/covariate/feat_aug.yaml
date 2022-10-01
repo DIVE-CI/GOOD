@@ -4,7 +4,9 @@ model:
   model_name: GCN
 ood:
   ood_alg: feat_aug
-  ood_param: 10.
+  ood_param: 50
+  extra_param:
+    - 0.1 #edge
 train:
   max_epoch: 100
   train_bs: 4096

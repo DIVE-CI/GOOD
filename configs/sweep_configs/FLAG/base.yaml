@@ -1,0 +1,10 @@
+includes:
+  - ../base.yaml
+ood_param: # causal ratio
+  - 3
+#extra_param:
+#  -         # additional loss control
+#    - 1e-2
+#    - 5e-3
+#    - 1e-3
+#    - 1e-4

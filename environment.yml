@@ -17,7 +17,7 @@ dependencies:
     - torch-sparse==0.6.13
     - torch-geometric~=2.0
     - cilog==1.2.3
-    - gdown==4.4.0
+    - gdown==4.6.0
     - matplotlib==3.5.2
     - munch==2.5.0
     - networkx==2.8

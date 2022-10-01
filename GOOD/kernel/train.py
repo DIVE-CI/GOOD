@@ -46,7 +46,7 @@ def train_batch(model: torch.nn.Module, data: Batch, ood_algorithm: BaseOODAlg, 
 
     loss = ood_algorithm.loss_calculate(raw_pred, targets, mask, node_norm, config)
     loss = ood_algorithm.loss_postprocess(loss, data, mask, config)
-    loss.backward()
+    ood_algorithm.backward(loss, data, targets, mask)
 
     config.train_helper.optimizer.step()
 

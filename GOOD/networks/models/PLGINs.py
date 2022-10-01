@@ -16,6 +16,7 @@ from torch_sparse import SparseTensor
 from GOOD import register
 from GOOD.utils.config_reader import Union, CommonArgs, Munch
 from .ICBaseGNN import GNNBasic, BasicEncoder
+# from .BaseGNN import GNNBasic, BasicEncoder
 from .Classifiers import Classifier
 from .MolEncoders import AtomEncoder, BondEncoder
 from .Pooling import GlobalMeanPool, GlobalMaxPool, GlobalAddPool
@@ -50,11 +51,12 @@ class GINFeatExtractor(GNNBasic):
             node feature representations
         """
         if self.edge_feat:
-            x, edge_index, edge_attr, batch = self.arguments_read(*args, **kwargs)
-            return self.encoder(x, edge_index, edge_attr, batch)
+            x, edge_index, edge_attr, batch, batch_size = self.arguments_read(*args, edge_feat=self.edge_feat, **kwargs)
+            out_readout = self.encoder(x, edge_index, edge_attr, batch, batch_size)
         else:
-            x, edge_index, batch = self.arguments_read(*args, **kwargs)
-            return self.encoder(x, edge_index, batch)
+            x, edge_index, batch, batch_size = self.arguments_read(*args, **kwargs)
+            out_readout = self.encoder(x, edge_index, batch, batch_size)
+        return out_readout
 
 
 class GINEncoder(BasicEncoder):
@@ -88,7 +90,7 @@ class GINEncoder(BasicEncoder):
             ]
         )
 
-    def forward(self, x, edge_index, batch):
+    def forward(self, x, edge_index, batch, batch_size):
         r"""
         The GIN encoder for non-molecule data.
 
@@ -124,23 +126,23 @@ class GINMolEncoder(BasicEncoder):
     def __init__(self, config: Union[CommonArgs, Munch]):
         super(GINMolEncoder, self).__init__(config)
         num_layer = config.model.model_layer
-        self.atom_encoder = AtomEncoder(config.model.dim_hidden)
+        self.atom_encoder = AtomEncoder(config.model.dim_hidden, config)
 
         self.convs = nn.ModuleList(
             [
                 GINEConv(nn.Sequential(nn.Linear(config.model.dim_hidden, 2 * config.model.dim_hidden),
                                             nn.BatchNorm1d(2 * config.model.dim_hidden), nn.ReLU(),
-                                            nn.Linear(2 * config.model.dim_hidden, config.model.dim_hidden)))
+                                            nn.Linear(2 * config.model.dim_hidden, config.model.dim_hidden)), config)
             ] +
             [
                 GINEConv(nn.Sequential(nn.Linear(config.model.dim_hidden, 2 * config.model.dim_hidden),
                                        nn.BatchNorm1d(2 * config.model.dim_hidden), nn.ReLU(),
-                                       nn.Linear(2 * config.model.dim_hidden, config.model.dim_hidden)))
+                                       nn.Linear(2 * config.model.dim_hidden, config.model.dim_hidden)), config)
                 for _ in range(num_layer - 1)
             ]
         )
 
-    def forward(self, x, edge_index, edge_attr, batch):
+    def forward(self, x, edge_index, edge_attr, batch, batch_size):
         r"""
         The GIN encoder for molecule data.
 
@@ -206,8 +208,8 @@ class GINEConv(gnn.MessagePassing):
           :math:`(|\mathcal{V}_t|, F_{out})` if bipartite
     """
 
-    def __init__(self, nn: Callable, eps: float = 0., train_eps: bool = False,
-                 edge_dim: Optional[int] = None, **kwargs):
+    def __init__(self, nn: Callable, config, eps: float = 0., train_eps: bool = False, edge_dim: Optional[int] = None,
+                 **kwargs):
         kwargs.setdefault('aggr', 'add')
         super().__init__(**kwargs)
         self.nn = nn
@@ -221,7 +223,7 @@ class GINEConv(gnn.MessagePassing):
             in_channels = self.nn[0].in_features
         else:
             in_channels = self.nn[0].in_channels
-        self.bone_encoder = BondEncoder(in_channels)
+        self.bone_encoder = BondEncoder(in_channels, config)
         # if edge_dim is not None:
         #     self.lin = Linear(edge_dim, in_channels)
         #     # self.lin = Linear(edge_dim, config.model.dim_hidden)
@@ -239,7 +241,7 @@ class GINEConv(gnn.MessagePassing):
     def forward(self, x: Union[Tensor, OptPairTensor], edge_index: Adj,
                 edge_attr: OptTensor = None, size: Size = None) -> Tensor:
         """"""
-        if self.bone_encoder:
+        if self.bone_encoder and edge_attr is not None:
             edge_attr = self.bone_encoder(edge_attr)
         if isinstance(x, Tensor):
             x: OptPairTensor = (x, x)
@@ -254,15 +256,20 @@ class GINEConv(gnn.MessagePassing):
         return self.nn(out)
 
     def message(self, x_j: Tensor, edge_attr: Tensor) -> Tensor:
-        if self.lin is None and x_j.size(-1) != edge_attr.size(-1):
-            raise ValueError("Node and edge feature dimensionalities do not "
-                             "match. Consider setting the 'edge_dim' "
-                             "attribute of 'GINEConv'")
+        if edge_attr is not None:
+            if self.lin is None and x_j.size(-1) != edge_attr.size(-1):
+                raise ValueError("Node and edge feature dimensionalities do not "
+                                 "match. Consider setting the 'edge_dim' "
+                                 "attribute of 'GINEConv'")
 
-        if self.lin is not None:
-            edge_attr = self.lin(edge_attr)
+            if self.lin is not None:
+                edge_attr = self.lin(edge_attr)
 
-        return (x_j + edge_attr).relu()
+            m = x_j + edge_attr
+        else:
+            m = x_j
+
+        return m.relu()
 
     def __repr__(self) -> str:
         return f'{self.__class__.__name__}(nn={self.nn})'

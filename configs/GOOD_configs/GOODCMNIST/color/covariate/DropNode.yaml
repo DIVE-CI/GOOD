@@ -1,0 +1,13 @@
+includes:
+  - base.yaml
+model:
+  model_name: vGIN
+ood:
+  ood_alg: DropNode
+  ood_param: 0.05
+train:
+  max_epoch: 500
+  lr: 1e-3
+  mile_stones: [ 300 ]
+
+

@@ -141,6 +141,9 @@ class GCNEncoder(BasicEncoder):
             node feature representations
         """
         post_conv = self.dropout1(self.relu1(self.batch_norm1(self.conv1(x, edge_index, edge_weight))))
+        if self.config.ood.ood_alg == 'FLAG' and self.training:
+            perturb = self.ood_algorithm.reset_perturb(post_conv.shape)
+            post_conv = post_conv + perturb
         for i, (conv, batch_norm, relu, dropout) in enumerate(
                 zip(self.convs, self.batch_norms, self.relus, self.dropouts)):
             post_conv = batch_norm(conv(post_conv, edge_index, edge_weight))

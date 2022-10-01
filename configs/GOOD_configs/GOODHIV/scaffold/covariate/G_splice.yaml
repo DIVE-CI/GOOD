@@ -2,12 +2,16 @@ includes:
   - base.yaml
 model:
   model_name: vGIN
-  generative_model_name: MDVGAE
+  generative_model_name: VGAE
   dim_ffn: 600
 ood:
   ood_alg: G_splice
   ood_param: 1.
   ood_alg_gen: G_splice_generative
+  extra_param:
+    - 1.2     # kl
+    - 0.1     # br_num
+    - 0.2     # attr
 train:
   max_epoch: 200
   lr: 1e-4

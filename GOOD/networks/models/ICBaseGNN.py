@@ -61,14 +61,18 @@ class GNNBasic(torch.nn.Module):
         else:
             x, edge_index, batch = data.x, data.edge_index, data.batch
 
+        if self.config.model.model_level != 'node':
+            # --- Maybe batch size --- Reason: some method may filter graphs leading inconsistent of batch size
+            batch_size: int = kwargs.get('batch_size') or (batch[-1].item() + 1)
+
         if self.config.model.model_level == 'node':
             edge_weight = kwargs.get('edge_weight')
             return x, edge_index, edge_weight, batch
-        elif self.config.dataset.dim_edge:
+        elif (self.config.dataset.dim_edge or kwargs.get('edge_feat')) and self.config.ood.ood_alg != 'GMixup':
             edge_attr = data.edge_attr
-            return x, edge_index, edge_attr, batch
+            return x, edge_index, edge_attr, batch, batch_size
 
-        return x, edge_index, batch
+        return x, edge_index, batch, batch_size
 
     def probs(self, *args, **kwargs):
         # nodes x classes

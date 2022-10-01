@@ -18,71 +18,97 @@ import torch_geometric.nn as gnn
 from .MolEncoders import AtomEncoder, BondEncoder
 from torch.nn import Identity
 from torch import Tensor
+from .Pooling import GlobalMeanPool, GlobalMaxPool, IdenticalPool
+from torch_geometric.data import Batch, Data
+from .PLNN import PL_GIN
 
-# @register.model_register
-# class VGAE_vGIN(GNNBasic):
-#     r"""
-#
-#
-#         Args:
-#             config (Union[CommonArgs, Munch]): munchified dictionary of args (:obj:`config.model.dim_hidden`, :obj:`config.model.model_layer`, :obj:`config.dataset.dim_node`, :obj:`config.dataset.num_classes`, :obj:`config.dataset.dataset_type`, :obj:`config.model.dropout_rate`)
-#     """
-#
-#     def __init__(self, config: Union[CommonArgs, Munch]):
-#         super(VGAE_vGIN, self).__init__(config)
-#         self.encoder = vGINFeatExtractor(config)
-#         self.classifier = Classifier(config)
-#         self.graph_repr = None
-#
-#     def forward(self, *args, **kwargs) -> Tuple[torch.Tensor, torch.Tensor]:
-#         r"""
-#
-#
-#         Args:
-#             *args (list): argument list for the use of arguments_read. Refer to :func:`arguments_read <GOOD.networks.models.BaseGNN.GNNBasic.arguments_read>`
-#             **kwargs (dict): key word arguments for the use of arguments_read. Refer to :func:`arguments_read <GOOD.networks.models.BaseGNN.GNNBasic.arguments_read>`
-#
-#         Returns (Tensor):
-#             [label predictions, features]
-#
-#         """
-#         out_readout = self.encoder(*args, **kwargs)
-#
-#         out = self.classifier(out_readout)
-#         return out, out_readout
-#
-#
-# @register.model_register
-# class VGAE_GIN(GNNBasic):
-#     r"""
-#
-#
-#     Args:
-#         config (Union[CommonArgs, Munch]): munchified dictionary of args (:obj:`config.model.dim_hidden`, :obj:`config.model.model_layer`, :obj:`config.dataset.dim_node`, :obj:`config.dataset.num_classes`, :obj:`config.dataset.dataset_type`)
-#     """
-#
-#     def __init__(self, config: Union[CommonArgs, Munch]):
-#         super(VGAE_GIN, self).__init__(config)
-#         self.encoder = GINFeatExtractor(config)
-#         self.classifier = Classifier(config)
-#         self.graph_repr = None
-#
-#     def forward(self, *args, **kwargs) -> torch.Tensor:
-#         r"""
-#
-#
-#         Args:
-#             *args (list): argument list for the use of arguments_read. Refer to :func:`arguments_read <GOOD.networks.models.BaseGNN.GNNBasic.arguments_read>`
-#             **kwargs (dict): key word arguments for the use of arguments_read. Refer to :func:`arguments_read <GOOD.networks.models.BaseGNN.GNNBasic.arguments_read>`
-#
-#         Returns (Tensor):
-#             [label predictions, features]
-#
-#         """
-#         out_readout = self.encoder(*args, **kwargs)
-#
-#         out = self.classifier(out_readout)
-#         return out, out_readout
+@register.model_register
+class SODAugNN(nn.Module):
+    def __init__(self, config: Union[CommonArgs, Munch], **kwargs):
+        super(SODAugNN, self).__init__()
+        self.VGAE = VGAE(config)
+        self.PLNN = PL_GIN(config)
+        # self.hidden1_dim = config.model.dim_hidden
+        # self.hidden2_dim = config.model.dim_hidden
+        self.device = config.device
+        # self.classifier = Classifier(config)
+        # self.num_predictor = Num_predictor(config)
+        # self.Edge_attr_predictor = Edge_attr_predictor(config)
+        # self.attr = Classifier(config)
+        # self.feat_encoder = GCNFeatExtractor(config)
+
+
+        if config.dataset.dataset_type == 'mol':
+            self.edge_feat = True
+
+        else:
+            self.edge_feat = False
+
+        if config.dataset.dataset_type == 'mol' and config.dataset.dataset_name != 'DD' and config.dataset.dataset_name != 'NCI1':
+            self.edge_at = True
+
+        else:
+            self.edge_at = False
+
+
+    def forward(self, *args, **kwargs):
+
+        data = kwargs.get('data')
+        assert data is not None
+
+        batch_size = data.batch[-1] + 1
+        # if training:
+        new_batch = []
+        for i in range(int(batch_size/2)):
+
+            data_a = data[i]
+            frag_1 = int(data_a.x.shape[0] / 2)
+            frag_2 = data_a.x.shape[0] - frag_1
+            # bi_edge_index = to_undirected(data_a.edge_index)
+            edge_mask = ((data_a.edge_index[0] < frag_1) & (data_a.edge_index[1] >= frag_1)) | (
+                        (data_a.edge_index[0] >= frag_1) & (data_a.edge_index[1] < frag_1))
+
+            edge_idx = data_a.edge_index[:, ~edge_mask]
+            if self.edge_at:
+                edge_attr = data_a.edge_attr[~edge_mask]
+
+            edge_mask = (data_a.edge_index[0] < frag_1) & (data_a.edge_index[1] >= frag_1)
+            y = torch.zeros((frag_1, frag_2), device=self.device)
+            m = data_a.edge_index[:, edge_mask]
+            y[m[0], m[1] - frag_1] = 1
+
+            if self.edge_at:
+                new_batch.append(
+                    Data(x=data_a.x, edge_index=edge_idx, edge_attr=edge_attr, bridge=y.view(-1),
+                         bridge_num=torch.tensor(m.shape[1]).to(self.device), frag_1=frag_1, frag_2=frag_2,
+                         y=data_a.y))
+                # org_batch.append(Data(x=data_a.x, edge_index=data_a.edge_index, edge_attr=data_a.edge_attr, y=data_a.y))
+            else:
+                new_batch.append(Data(x=data_a.x, edge_index=edge_idx, bridge=y.view(-1),
+                                      bridge_num=torch.tensor(m.shape[1]).to(self.device), frag_1=frag_1,
+                                      frag_2=frag_2, y=data_a.y))
+                # new_batch_2.append(Data(x=x_2, edge_index=edge_idx_2, y=data_a.y))
+                # org_batch.append(Data(x=data_a.x, edge_index=data_a.edge_index, y=data_a.y))
+
+        frag_data = Batch.from_data_list(new_batch)
+
+        A_pred, bridge, kl_divergence, edge_attr_loss, bridge_attr, num_loss, num_pred = self.VGAE(data=frag_data)
+        PL_pred = self.PLNN(data=data)
+
+        return A_pred, bridge, kl_divergence, edge_attr_loss, bridge_attr, num_loss, num_pred, PL_pred
+
+    @torch.no_grad()
+    def bridge_sample(self, *args, **kwargs) -> Tuple[torch.Tensor, torch.Tensor]:
+        data = kwargs.get('data')
+        assert data is not None
+        A_pred, bridge, kl_divergence, edge_attr_loss, bridge_attr, num_loss, num_pred = self.VGAE(data=data)
+        return A_pred, bridge, kl_divergence, edge_attr_loss, bridge_attr, num_loss, num_pred
+
+    @torch.no_grad()
+    def frag_sample(self, *args, **kwargs) -> Tuple[torch.Tensor, torch.Tensor]:
+        out_readout = self.PLNN.frag_sample(*args, **kwargs)
+        return out_readout
+
 
 
 @register.model_register
@@ -94,29 +120,37 @@ class VGAE(nn.Module):
         self.hidden2_dim = config.model.dim_hidden
         self.device = config.device
         self.classifier = Classifier(config)
+        self.num_predictor = Num_predictor(config)
         self.Edge_attr_predictor = Edge_attr_predictor(config)
         # self.attr = Classifier(config)
         # self.feat_encoder = GCNFeatExtractor(config)
+        if config.model.model_level == 'node':
+            self.readout = IdenticalPool()
+        elif config.model.global_pool == 'mean':
+            self.readout = GlobalMeanPool()
+        else:
+            self.readout = GlobalMaxPool()
+
         if kwargs.get('without_embed'):
             self.atom_encoder = Identity()
         else:
-            self.atom_encoder = AtomEncoder(config.model.dim_hidden)
+            self.atom_encoder = AtomEncoder(config.model.dim_hidden, config)
 
-        if config.dataset.dataset_type == 'mol':
+        if config.dataset.dataset_type == 'mol':  #and config.dataset.dataset_name != 'DD' and config.dataset.dataset_name != 'NCI1'
             self.edge_feat = True
             self.base_gcn = GINEConv(nn.Sequential(nn.Linear(config.model.dim_hidden, 2 * config.model.dim_hidden),
                                             nn.BatchNorm1d(2 * config.model.dim_hidden), nn.ReLU(),
-                                            nn.Linear(2 * config.model.dim_hidden, config.model.dim_hidden)))
+                                            nn.Linear(2 * config.model.dim_hidden, config.model.dim_hidden)), config)
             # torch_geometric.nn.GraphConv
             self.base_gcn2 = GINEConv(nn.Sequential(nn.Linear(config.model.dim_hidden, 2 * config.model.dim_hidden),
                                                    nn.BatchNorm1d(2 * config.model.dim_hidden), nn.ReLU(),
-                                                   nn.Linear(2 * config.model.dim_hidden, config.model.dim_hidden)))
+                                                   nn.Linear(2 * config.model.dim_hidden, config.model.dim_hidden)), config)
             self.gcn_mean = GINEConv(nn.Sequential(nn.Linear(config.model.dim_hidden, 2 * config.model.dim_hidden),
                                             nn.BatchNorm1d(2 * config.model.dim_hidden),
-                                            nn.Linear(2 * config.model.dim_hidden, config.model.dim_hidden)))
+                                            nn.Linear(2 * config.model.dim_hidden, config.model.dim_hidden)), config)
             self.gcn_logstddev = GINEConv(nn.Sequential(nn.Linear(config.model.dim_hidden, 2 * config.model.dim_hidden),
                                             nn.BatchNorm1d(2 * config.model.dim_hidden),
-                                            nn.Linear(2 * config.model.dim_hidden, config.model.dim_hidden)))
+                                            nn.Linear(2 * config.model.dim_hidden, config.model.dim_hidden)), config)
         else:
             self.edge_feat = False
             self.base_gcn = gnn.GINConv(nn.Sequential(nn.Linear(config.dataset.dim_node, 2 * config.model.dim_hidden),
@@ -134,6 +168,10 @@ class VGAE(nn.Module):
                               nn.BatchNorm1d(2 * config.model.dim_hidden),
                               nn.Linear(2 * config.model.dim_hidden, config.model.dim_hidden)))
 
+        if config.dataset.dataset_name != 'DD' and config.dataset.dataset_name != 'NCI1':
+            self.no_edge_feat = True
+        else:
+            self.no_edge_feat = False
     # def encode(self, X):
     #     hidden = self.base_gcn(X)
     #     self.mean = self.gcn_mean(hidden)
@@ -156,6 +194,7 @@ class VGAE(nn.Module):
             x = data.x
             edge_index = data.edge_index
             edge_attr = data.edge_attr
+            bridge_num = data.bridge_num
             frag_1 = data.frag_1
             frag_2 = data.frag_2
             # x, edge_index, edge_attr, batch, batch_size = self.arguments_read(*args, **kwargs)
@@ -177,6 +216,7 @@ class VGAE(nn.Module):
                 bridge = None
             x = data.x
             edge_index = data.edge_index
+            bridge_num = data.bridge_num
             frag_1 = data.frag_1
             frag_2 = data.frag_2
 
@@ -186,6 +226,10 @@ class VGAE(nn.Module):
             self.logstd = self.gcn_logstddev(hidden, edge_index)
             gaussian_noise = torch.randn(hidden.shape[0], self.hidden2_dim, device=self.device)
             sampled_z = gaussian_noise * torch.exp(self.logstd) + self.mean
+
+        out_readout = self.readout(sampled_z, data.batch, data.batch[-1] + 1)
+        num_pred = self.num_predictor(out_readout)
+        num_loss = l1_loss(num_pred.squeeze(), bridge_num.squeeze())
 
         # bridge_feat = torch.zeros((torch.matmul(frag_1,frag_2).sum(),self.hidden2_dim * 2), device=self.device)
         bridge_idx = torch.zeros((2,torch.matmul(frag_1, frag_2).sum()), dtype=torch.long, device=self.device)
@@ -211,9 +255,11 @@ class VGAE(nn.Module):
         kl_divergence = 0.5 / sampled_z.shape[0] * (
                 1 + 2 * self.logstd - self.mean ** 2 - torch.exp(self.logstd) ** 2).sum(1).mean()
 
+        # if self.no_edge_feat:
+        #     self.edge_feat = False
         edge_attr_loss = None
         bridge_attr = None
-        if self.edge_feat:
+        if self.edge_feat and self.no_edge_feat:
             attr_pred = self.Edge_attr_predictor(torch.cat((sampled_z[edge_index[0]], sampled_z[edge_index[1]]), 1))
             edge_attr_loss = l1_loss(attr_pred, edge_attr)
             bridge_attr = self.Edge_attr_predictor(bridge_feat)
@@ -226,7 +272,7 @@ class VGAE(nn.Module):
         #     v, indices = torch.topk(score.squeeze(), num_bridge)
         #     indices
 
-        return A_pred, bridge, kl_divergence, edge_attr_loss, bridge_attr
+        return A_pred, bridge, kl_divergence, edge_attr_loss, bridge_attr, num_loss, num_pred
 
 
 @register.model_register
@@ -246,9 +292,9 @@ class MDVGAE(nn.Module):
         if kwargs.get('without_embed'):
             self.atom_encoder = Identity()
         else:
-            self.atom_encoder = AtomEncoder(config.model.dim_hidden)
+            self.atom_encoder = AtomEncoder(config.model.dim_hidden, config)
 
-        if config.dataset.dataset_type == 'mol':
+        if config.dataset.dataset_type == 'mol' and config.dataset.dataset_name != 'DD' and config.dataset.dataset_name != 'NCI1':
             self.edge_feat = True
             self.base_gcn = GINEConv(nn.Sequential(nn.Linear(config.model.dim_hidden, 2 * config.model.dim_hidden),
                                             nn.BatchNorm1d(2 * config.model.dim_hidden), nn.ReLU(),
@@ -406,6 +452,38 @@ class Classifier(torch.nn.Module):
         # ))
         self.classifier = nn.Sequential(*(
             [nn.Linear(config.model.dim_hidden * 2, 1)]
+        ))
+
+    def forward(self, feat: Tensor) -> Tensor:
+        r"""
+        Applies a linear transformation to feature representations.
+
+        Args:
+            feat (Tensor): feature representations
+
+        Returns (Tensor):
+            label predictions
+
+        """
+        return self.classifier(feat)
+
+
+class Num_predictor(torch.nn.Module):
+    r"""
+    Applies a linear transformation to complete classification from representations.
+
+        Args:
+            config (Union[CommonArgs, Munch]): munchified dictionary of args (:obj:`config.model.dim_hidden`, :obj:`config.dataset.num_classes`)
+    """
+    def __init__(self, config: Union[CommonArgs, Munch]):
+
+        super(Num_predictor, self).__init__()
+        # self.classifier = nn.Sequential(*(
+        #         [nn.Linear(config.model.dim_hidden, 2 * config.model.dim_ffn), nn.BatchNorm1d(2 * config.model.dim_ffn)] +
+        #         [nn.ReLU(), nn.Linear(2 * config.model.dim_ffn, config.dataset.num_classes)]
+        # ))
+        self.classifier = nn.Sequential(*(
+            [nn.Linear(config.model.dim_hidden, 1)]
         ))
 
     def forward(self, feat: Tensor) -> Tensor:

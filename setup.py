@@ -5,11 +5,11 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 install_requires = [
     'cilog==1.2.3',
-    'gdown==4.4.0',
+    'gdown==4.6.0',
     'matplotlib==3.5.2',
     'munch==2.5.0',
     'networkx==2.8',
-    'ogb==1.3.4',
+    'ogb>=1.3.4',
     'pytest==7.1.2',
     'pytest-cov~=3.0',
     'pytest-xdist~=2.5',
@@ -20,12 +20,15 @@ install_requires = [
     'tensorboard==2.8.0',
     'tqdm==4.64.0',
     'typed-argument-parser==1.7.2',
-    'dive-into-graphs'
+    'dive-into-graphs',
+    'cvxopt>=1.3.0',
+    'pynvml>=11.4.1',
+    'psutil>=5.9.1'
 ]
 
 setuptools.setup(
     name="graph-ood",
-    version="0.1.0",
+    version="1.0.1",
     author="Shurui Gui, Xiner Li",
     author_email="shurui.gui@tamu.edu",
     description="GOOD: A Graph Out-of-Distribution Benchmark",
@@ -46,7 +49,8 @@ setuptools.setup(
     install_requires=install_requires,
     entry_points = {
         'console_scripts': [
-            'goodtg = GOOD.kernel.pipeline:main'
+            'goodtg = GOOD.kernel.main:goodtg',
+            'goodtl = GOOD.kernel.launch:launch'
         ]
     },
     python_requires=">=3.8",

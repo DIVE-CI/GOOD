@@ -58,7 +58,7 @@ class vGINFeatExtractor(GNNBasic):
     def __init__(self, config: Union[CommonArgs, Munch], **kwargs):
         super(vGINFeatExtractor, self).__init__(config)
         num_layer = config.model.model_layer
-        if config.dataset.dataset_type == 'mol':
+        if config.dataset.dataset_type == 'mol' and config.ood.ood_alg != 'GMixup':
             self.encoder = vGINMolEncoder(config, **kwargs)
             self.edge_feat = True
         else:
@@ -77,7 +77,7 @@ class vGINFeatExtractor(GNNBasic):
             node feature representations
         """
         if self.edge_feat:
-            x, edge_index, edge_attr, batch, batch_size = self.arguments_read(*args, **kwargs)
+            x, edge_index, edge_attr, batch, batch_size = self.arguments_read(*args, edge_feat=self.edge_feat, **kwargs)
             out_readout = self.encoder(x, edge_index, edge_attr, batch, batch_size)
         else:
             x, edge_index, batch, batch_size = self.arguments_read(*args, **kwargs)
@@ -135,6 +135,9 @@ class vGINEncoder(GINEncoder, VirtualNodeEncoder):
             torch.zeros(batch_size, device=self.config.device, dtype=torch.long))
 
         post_conv = self.dropout1(self.relu1(self.batch_norm1(self.conv1(x, edge_index))))
+        if self.config.ood.ood_alg == 'FLAG' and self.training:
+            perturb = self.ood_algorithm.reset_perturb(post_conv.shape)
+            post_conv = post_conv + perturb
         for i, (conv, batch_norm, relu, dropout) in enumerate(
                 zip(self.convs, self.batch_norms, self.relus, self.dropouts)):
             # --- Add global info ---
@@ -183,6 +186,9 @@ class vGINMolEncoder(GINMolEncoder, VirtualNodeEncoder):
             torch.zeros(batch_size, device=self.config.device, dtype=torch.long))
 
         x = self.atom_encoder(x)
+        if self.config.ood.ood_alg == 'FLAG' and self.training:
+            perturb = self.ood_algorithm.reset_perturb(x.shape)
+            x = x + perturb
         post_conv = self.dropout1(self.relu1(self.batch_norm1(self.conv1(x, edge_index, edge_attr))))
         for i, (conv, batch_norm, relu, dropout) in enumerate(
                 zip(self.convs, self.batch_norms, self.relus, self.dropouts)):

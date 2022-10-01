@@ -5,6 +5,8 @@ model:
 ood:
   ood_alg: feat_aug
   ood_param: 0.1
+  extra_param:
+    - 0 #edge
 train:
   max_epoch: 300
   train_bs: 64

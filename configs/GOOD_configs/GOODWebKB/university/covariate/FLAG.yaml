@@ -1,0 +1,13 @@
+includes:
+  - base.yaml
+model:
+  model_name: GCN
+ood:
+  ood_alg: FLAG
+  ood_param: 3
+  extra_param:
+    - 1e-2
+train:
+  max_epoch: 100
+  lr: 1e-3
+

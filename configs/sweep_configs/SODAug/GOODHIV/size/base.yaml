@@ -1,0 +1,30 @@
+includes:
+  - ../base.yaml
+extra_param:
+  -
+    - 1.2     # kl
+  -
+    - 0.1     # br_num
+  -
+    - 0.2     # attr
+  -
+    - 20     # max_k
+  -
+    - 0.8     # pl_loss
+  -
+    - 1     # Vrex
+    - 0
+  -
+    - 1e-3     # main lr
+  -
+    - 60     # pre epoch
+  -
+    - 0      # no frag
+    - 1
+  -
+    - 0      # scaffold/basis reorg
+    - 1
+  -
+#    - 0.8    # percentage of data aug
+    - 1.
+#    - 0.6

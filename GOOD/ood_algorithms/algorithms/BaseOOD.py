@@ -26,6 +26,14 @@ class BaseOODAlg(ABC):
         self.stage = 0
 
     def stage_control(self, config):
+        r"""
+        Set valuables before each epoch. Largely used for controlling multi-stage training and epoch related parameter
+        settings.
+
+        Args:
+            config: munchified dictionary of args.
+
+        """
         if self.stage == 0 and at_stage(1, config):
             reset_random_seed(config)
             self.stage = 1
@@ -146,3 +154,6 @@ class BaseOODAlg(ABC):
         """
         self.mean_loss = loss.sum() / mask.sum()
         return self.mean_loss
+
+    def backward(self, loss: Tensor, data, targets, mask):
+        loss.backward()

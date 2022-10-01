@@ -2,7 +2,7 @@ includes:
   - base.yaml
 model:
   model_name: vGIN
-  generative_model_name: MDVGAE
+  generative_model_name: VGAE
   dim_ffn: 600
 ood:
   ood_alg: G_splice

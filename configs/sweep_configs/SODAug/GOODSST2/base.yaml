@@ -1,0 +1,32 @@
+includes:
+  - ../base.yaml
+  - ../../GOODSST2.yaml
+extra_param:
+  -
+    - 0.1     # kl
+  -
+    - 0.2     # br_num
+  -
+    - 0.2     # attr
+  -
+    - 20     # max_k
+  -
+    - 0.6     # pl_loss
+  -
+    - 0     # Vrex
+    - 5
+    - 10
+  -
+    - 1e-3     # main lr
+  -
+    - 60     # pre epoch
+  -
+    - 0      # no frag
+    - 1
+  -
+    - 0      # scaffold/basis reorg
+    - 1
+  -
+    - 0.8    # percentage of data aug
+    - 1.
+    - 0.6

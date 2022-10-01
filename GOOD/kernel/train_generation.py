@@ -16,6 +16,7 @@ from GOOD.ood_algorithms.algorithms.BaseOOD import BaseOODAlg
 from GOOD.utils.config_reader import Union, CommonArgs, Munch
 from GOOD.utils.logger import pbar_setting
 from GOOD.utils.train import nan2zero_get_mask
+import os
 
 
 def train_batch_generation(model: torch.nn.Module, data: Batch, ood_algorithm: BaseOODAlg, pbar,
@@ -75,7 +76,7 @@ def train_generation(model: torch.nn.Module, model_main: torch.nn.Module, loader
     config.train_helper.set_up(model, config)
 
     # train the model
-    for epoch in range(config.train.ctn_epoch, 49):
+    for epoch in range(config.train.ctn_epoch, int(config.ood.extra_param[7])):  #
         config.train.epoch = epoch
         print(f'#IN#Epoch {epoch}:')
 
@@ -101,6 +102,9 @@ def train_generation(model: torch.nn.Module, model_main: torch.nn.Module, loader
 
             # train a batch
             train_stat = train_batch_generation(model, data, ood_algorithm_gen, pbar, config)
+            # if index % 100 == 0 and config.dataset.dataset_name != 'GOODSST2':
+            #     with torch.cuda.device(config.device):
+            #         torch.cuda.empty_cache()
             mean_loss = (mean_loss * index + ood_algorithm_gen.mean_loss) / (index + 1)
 
             # if config.ood.ood_alg not in ['ERM', 'GroupDRO', 'Mixup', 'GraphMix', 'feat_aug']:
@@ -121,10 +125,20 @@ def train_generation(model: torch.nn.Module, model_main: torch.nn.Module, loader
             print(f'#IN#Approximated average training loss {mean_loss.cpu().item():.4f}')
 
         epoch_train_stat = evaluate_gen(model, loader, ood_algorithm_gen, 'eval_train', config)
+        # with torch.cuda.device(config.device):
+        #     torch.cuda.empty_cache()
         id_val_stat = evaluate_gen(model, loader, ood_algorithm_gen, 'id_val', config)
+        # with torch.cuda.device(config.device):
+        #     torch.cuda.empty_cache()
         id_test_stat = evaluate_gen(model, loader, ood_algorithm_gen, 'id_test', config)
+        # with torch.cuda.device(config.device):
+        #     torch.cuda.empty_cache()
         val_stat = evaluate_gen(model, loader, ood_algorithm_gen, 'val', config)
+        # with torch.cuda.device(config.device):
+        #     torch.cuda.empty_cache()
         test_stat = evaluate_gen(model, loader, ood_algorithm_gen, 'test', config)
+        # with torch.cuda.device(config.device):
+        #     torch.cuda.empty_cache()
 
         # checkpoints save
         config.train_helper.save_epoch_gen(epoch, epoch_train_stat, id_val_stat, id_test_stat, val_stat, test_stat, config)
@@ -132,8 +146,14 @@ def train_generation(model: torch.nn.Module, model_main: torch.nn.Module, loader
         # --- scheduler step ---
         config.train_helper.scheduler.step()
 
+    with torch.cuda.device(config.device):
+        torch.cuda.empty_cache()
     print('#IN#Generative model Training end.')
-    config.train.lr = 0.001
+    gen_ckpt = torch.load(os.path.join(config.ckpt_dir, f'best_gen.ckpt'), map_location=config.device)
+    model.load_state_dict(gen_ckpt['state_dict'])
+
+    config.train.lr = config.ood.extra_param[6]
+    # config.train.test_bs = 256
     train(model, model_main, loader, ood_algorithm, config)
 
 
@@ -225,6 +245,8 @@ def train(gen_model: torch.nn.Module, model: torch.nn.Module, loader: Union[Data
 
             # train a batch
             train_stat = train_batch(gen_model, model, data, ood_algorithm, pbar, config)
+            # with torch.cuda.device(config.device):
+            #     torch.cuda.empty_cache()
             mean_loss = (mean_loss * index + ood_algorithm.mean_loss) / (index + 1)
 
             # if config.ood.ood_alg not in ['ERM', 'GroupDRO', 'Mixup', 'GraphMix', 'feat_aug']:
@@ -235,6 +257,8 @@ def train(gen_model: torch.nn.Module, model: torch.nn.Module, loader: Union[Data
                 pbar.set_description(f'Loss: {mean_loss:.4f}')
 
         # Eval training score
+        # with torch.cuda.device(config.device):
+        #     torch.cuda.empty_cache()
 
         # Epoch val
         print('#IN#\nEvaluating...')
@@ -245,10 +269,16 @@ def train(gen_model: torch.nn.Module, model: torch.nn.Module, loader: Union[Data
             print(f'#IN#Approximated average training loss {mean_loss.cpu().item():.4f}')
 
         epoch_train_stat = evaluate(model, loader, ood_algorithm, 'eval_train', config)
+        # with torch.cuda.device(config.device):
+        #     torch.cuda.empty_cache()
         id_val_stat = evaluate(model, loader, ood_algorithm, 'id_val', config)
         id_test_stat = evaluate(model, loader, ood_algorithm, 'id_test', config)
         val_stat = evaluate(model, loader, ood_algorithm, 'val', config)
+        # with torch.cuda.device(config.device):
+        #     torch.cuda.empty_cache()
         test_stat = evaluate(model, loader, ood_algorithm, 'test', config)
+        # with torch.cuda.device(config.device):
+        #     torch.cuda.empty_cache()
 
         # checkpoints save
         config.train_helper.save_epoch(epoch, epoch_train_stat, id_val_stat, id_test_stat, val_stat, test_stat, config)
@@ -296,7 +326,10 @@ def evaluate_gen(model: torch.nn.Module,
     pred_all = []
     target_all = []
     pbar = tqdm(loader[split], desc=f'Eval {split.capitalize()}', total=len(loader[split]), **pbar_setting)
-    for data in pbar:
+    for index, data in enumerate(pbar):
+        # if index % 2 == 0:
+        # with torch.cuda.device(config.device):
+        #     torch.cuda.empty_cache()
         data: Batch = data.to(config.device)
 
         mask, targets = nan2zero_get_mask(data, split, config)

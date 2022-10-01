@@ -1,0 +1,15 @@
+includes:
+  - base.yaml
+model:
+  model_name: GCN
+ood:
+  ood_alg: feat_aug
+  ood_param: 0.1
+  extra_param:
+    - 0 #edge
+train:
+  max_epoch: 200
+#  train_bs: 4096
+  lr: 3e-3
+  mile_stones: [200]
+

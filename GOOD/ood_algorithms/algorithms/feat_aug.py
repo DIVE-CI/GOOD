@@ -56,7 +56,7 @@ class feat_aug(BaseOODAlg):
         self.xinv_var = None
         self.w_env = 1.0
         self.w_label = 1.0
-        self.thd = 0.0
+        self.thd = -50.
         self.lam = None
 
     def input_preprocess(self,
@@ -193,12 +193,12 @@ class feat_aug(BaseOODAlg):
 
 
             for i in range(config.dataset.num_envs):
-                env_idx = (data.env_id == i).clone().detach()
+                env_idx = (data.env_id == i).squeeze().clone().detach()
                 if data.x[env_idx].shape[0] > 1:
                     self.xinv_var = self.xinv_var + self.w_env * torch.var(data.x[env_idx], 0)
 
             for i in range(num_class):
-                label_idx = torch.logical_and(data.y == i, data.train_mask).clone().detach()
+                label_idx = torch.logical_and((data.y == i).squeeze(), data.train_mask).clone().detach()
                 if data.x[label_idx].shape[0] > 1:
                     self.xinv_var = self.xinv_var - self.w_label * torch.var(data.x[label_idx], 0)
                 for j in range(config.dataset.num_envs):
@@ -206,13 +206,19 @@ class feat_aug(BaseOODAlg):
                     if data.x[label_idx2].shape[0] > 1:
                         self.xinv_var = self.xinv_var - self.w_label * torch.var(data.x[label_idx2], 0)
 
-            self.xinv_mask = (torch.div(self.xinv_var, torch.mean(data.x, 0)) > self.thd).long()
-            self.xvar_mask = self.xvar_mask - self.xinv_mask
+            if config.dataset.dataset_name == 'GOODCora':
+                self.xinv_mask = (torch.div(self.xinv_var, torch.mean(data.x, 0))>(0-config.ood.ood_param)).squeeze().long()
+            else:
+                v, indices = torch.topk((torch.div(self.xinv_var, torch.mean(data.x, 0))).squeeze(),
+                                        int(data.x.shape[1] * config.ood.ood_param))  #
+                self.xinv_mask[indices] = 1
+                self.xinv_mask = self.xinv_mask.long()
+            self.xvar_mask = (self.xvar_mask - self.xinv_mask).long()
 
             # data_a = None
             # data_b = None
             for i in range(num_class):
-                label_idx = torch.logical_and(data.y == i, data.train_mask).clone().detach()
+                label_idx = torch.logical_and((data.y == i).squeeze(), data.train_mask).clone().detach()
                 if torch.unique(data.env_id[label_idx]).shape[0] < 2:
                     continue
                 else:
@@ -235,7 +241,7 @@ class feat_aug(BaseOODAlg):
                         elif stg == 2:
                             data.x[idx_a] = torch.mul(data.x[idx_a], self.xinv_mask) + torch.mul(2 * data.x[idx_b] - data.x[idx_a], self.xvar_mask)
                             data.env_id[idx_a] = data.env_id[idx_b]
-                            label_idx = torch.logical_and(data.y == i, data.train_mask).clone().detach()
+                            label_idx = torch.logical_and((data.y == i).squeeze(), data.train_mask).clone().detach()
                         else:
                             # if config.dataset.shift_type == 'concept':
                             #     self.lam = np.random.beta(2, 8)
@@ -244,8 +250,18 @@ class feat_aug(BaseOODAlg):
                             data.x[idx_a] = torch.mul(data.x[idx_a], self.xinv_mask) + torch.mul(self.lam * data.x[idx_a] + (1 - self.lam) * data.x[idx_b], self.xvar_mask)
                             if self.lam < 0.5:
                                 data.env_id[idx_a] = data.env_id[idx_b]
-                                label_idx = torch.logical_and(data.y == i, data.train_mask).clone().detach()
+                                label_idx = torch.logical_and((data.y == i).squeeze(), data.train_mask).clone().detach()
 
+            if config.ood.extra_param[0] > 0:
+                idx = torch.empty(data.edge_index.size(1), dtype=torch.float32).uniform_(0, 1)
+                edge_mask = ((idx) >= config.ood.extra_param[0])
+                if config.dataset.dataset_type == 'mol':
+                    data.edge_index = data.edge_index[:, edge_mask]
+                    data.edge_attr = data.edge_attr[edge_mask]
+                else:
+                    data.edge_index = data.edge_index[:, edge_mask]
+                if data.edge_norm != None:
+                    data.edge_norm = data.edge_norm[edge_mask]
 
 
 

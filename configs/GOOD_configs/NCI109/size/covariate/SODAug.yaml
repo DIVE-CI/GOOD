@@ -1,0 +1,29 @@
+includes:
+  - base.yaml
+model:
+  model_name: vGIN
+  generative_model_name: SODAugNN
+  dim_ffn: 600
+ood:
+  ood_alg: SODAug
+  ood_param: 0.5  # pairL_per
+  ood_alg_gen: SODAug_pre
+  extra_param:
+    - 0.05     # kl
+    - 0.08     # br_num
+    - 0.2     # attr
+    - 13     # max_k
+    - 0.8     # pl_loss
+    - 10     # Vrex
+    - 1e-3     # main lr
+    - 2     # pre epoch
+    - 0      # no frag
+    - 0      # scaffold/basis
+    - 1.    # percentage of data aug
+train:
+  max_epoch: 200
+  lr: 1e-4  # pre lr
+dataset:
+  dataloader_name: PairDataLoader
+
+
