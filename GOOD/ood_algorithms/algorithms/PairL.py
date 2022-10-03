@@ -100,14 +100,14 @@ class PairL(BaseOODAlg):
 
     def __init__(self, config: Union[CommonArgs, Munch]):
         super(PairL, self).__init__(config)
-        self.best_pair = [[{'loss': float('inf'), 'data': None} for env_id in range(config.dataset.num_envs)] for target in range(config.dataset.num_classes + 1)]
+        # self.best_pair = [[{'loss': float('inf'), 'data': None} for env_id in range(config.dataset.num_envs)] for target in range(config.dataset.num_classes + 1)]
         # assert config.model.global_pool == 'id'
 
-    def stage_control(self, config: Union[CommonArgs, Munch]):
-        if self.stage == 0 and at_stage(1, config):
-            config.metric.set_loss_func('Multi-label classification')
-            reset_random_seed(config)
-            self.stage = 1
+    # def stage_control(self, config: Union[CommonArgs, Munch]):
+    #     if self.stage == 0 and at_stage(1, config):
+    #         config.metric.set_loss_func('Multi-label classification')
+    #         reset_random_seed(config)
+    #         self.stage = 1
 
     def input_preprocess(self,
                          data: Batch,
@@ -143,36 +143,45 @@ class PairL(BaseOODAlg):
             - node_norm (Tensor) - Processed node weights for normalization.
 
         """
-        targets = targets.long().reshape(-1)
-        mask = mask.reshape(-1)
+        # targets = targets.reshape(-1)
+        # mask = mask.reshape(-1)
         if training:
             num_data = data.batch[-1] + 1
-            env_ids = torch.zeros((config.dataset.num_envs, num_data), dtype=torch.bool, device=config.device)
-            target_ids = torch.zeros((targets.max() + 1, num_data), dtype=torch.bool, device=config.device)
-            for env_id in data.env_id.unique():
-                env_ids[env_id] = data.env_id == env_id
-            for target in targets.unique():
-                target_ids[target] = targets == target
+            # env_ids = torch.zeros((config.dataset.num_envs, num_data), dtype=torch.bool, device=config.device)
+            # target_ids = torch.zeros((targets.max() + 1, num_data), dtype=torch.bool, device=config.device)
+            # for env_id in data.env_id.unique():
+            #     env_ids[env_id] = data.env_id == env_id
+            # for target in targets.unique():
+            #     target_ids[target] = targets == target
 
             orig_data = []
             pair_data = []
-            is_paired = torch.ones((num_data,), dtype=torch.bool, device=config.device)
-            for i in range(num_data):
-                graph = data[i]
-                if training:
-                    select_idx = torch.where(~env_ids[graph.env_id].squeeze() & target_ids[targets[i]])[0]
-                    select_idx = select_idx[0] if select_idx.shape[0] > 0 else None
-                    if select_idx is not None:
-                        mask[i] = mask[i] & mask[select_idx]
-                        orig_data.append(graph)
-                        pair_data.append(data[select_idx])
-                    else:
-                        is_paired[i] = False
+            # is_paired = torch.ones((num_data,), dtype=torch.bool, device=config.device)
+            for i in range(int(num_data/2)):
+                orig_data.append(data[i])
+                pair_data.append(data[i*2])
+                pair_data.append(data[i * 2 + 1])
+                # graph = data[i]
+                # if training:
+                #     select_idx = torch.where(~env_ids[graph.env_id].squeeze() & target_ids[targets[i]])[0]
+                #     select_idx = select_idx[0] if select_idx.shape[0] > 0 else None
+                #     if select_idx is not None:
+                #         mask[i] = mask[i] & mask[select_idx]
+                #         orig_data.append(graph)
+                #         pair_data.append(data[select_idx])
+                #     else:
+                #         is_paired[i] = False
 
             data = Batch.from_data_list(orig_data + pair_data)
+            # t1, t2 = targets.chunk(2)
+            # assert (t1 != t2).sum() == 0
+            #
+            # targets = t1
+            # mask = mask.chunk(2)[0]
+            mask_mix = mask.chunk(2)[0] & mask.chunk(2)[1]
 
-            targets = targets[is_paired]
-            mask = mask[is_paired]
+            # mask = mask_mix
+            mask = torch.cat((mask.chunk(2)[0], mask_mix))
         else:
             # num_data = data.batch[-1] + 1
             # orig_data = []
@@ -215,4 +224,3 @@ class PairL(BaseOODAlg):
 
         self.mean_loss = loss.sum() / mask.sum()
         return self.mean_loss
-

@@ -75,7 +75,7 @@ def train_generation(model: torch.nn.Module, model_main: torch.nn.Module, loader
     config.train_helper.set_up(model, config)
 
     # train the model
-    for epoch in range(config.train.ctn_epoch, 31):
+    for epoch in range(config.train.ctn_epoch, 49):
         config.train.epoch = epoch
         print(f'#IN#Epoch {epoch}:')
 

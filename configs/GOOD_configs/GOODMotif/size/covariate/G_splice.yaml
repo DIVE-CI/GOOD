@@ -3,7 +3,7 @@ includes:
 model:
   model_name: GIN
   global_pool: max
-  generative_model_name: VGAE
+  generative_model_name: MDVGAE
   dim_ffn: 600
 ood:
   ood_alg: G_splice

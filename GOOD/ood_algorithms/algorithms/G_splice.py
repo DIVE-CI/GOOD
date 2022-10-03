@@ -47,7 +47,7 @@ class G_splice(BaseOODAlg):
         if config.dataset.dataset_name == 'GOODSST2':
             num_bridge = 1
         batch_size = data.batch[-1] + 1
-        if training and config.train.epoch > 20:
+        if training:  # and config.train.epoch > 20:
             new_batch = []
             # new_batch_2 = []
             org_batch = []
