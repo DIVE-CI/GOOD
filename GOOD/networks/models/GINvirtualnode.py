@@ -136,23 +136,23 @@ class vGINEncoder(GINEncoder, VirtualNodeEncoder):
         virtual_node_feat = [self.virtual_node_embedding(
             torch.zeros(batch[-1].item() + 1, device=self.config.device, dtype=torch.long))]
 
-        layer_feat = [x]
+        self.layer_feat = [x]
         for i, (conv, batch_norm, relu, dropout) in enumerate(
                 zip(self.convs, self.batch_norms, self.relus, self.dropouts)):
             # --- Add global info ---
             if i > 0:
-                post_conv = layer_feat[-1] + virtual_node_feat[-1][batch]
+                post_conv = self.layer_feat[-1] + virtual_node_feat[-1][batch]
             else:
-                post_conv = layer_feat[-1]
+                post_conv = self.layer_feat[-1]
             post_conv = batch_norm(conv(post_conv, edge_index))
             if i < len(self.convs) - 1:
                 post_conv = relu(post_conv)
-            layer_feat.append(dropout(post_conv))
+            self.layer_feat.append(dropout(post_conv))
             # --- update global info ---
             if 0 < i < len(self.convs) - 1:
                 virtual_node_feat.append(
-                    self.virtual_mlp(self.virtual_pool(layer_feat[-1], batch, batch_size) + virtual_node_feat[-1]))
-        return layer_feat[-1]
+                    self.virtual_mlp(self.virtual_pool(self.layer_feat[-1], batch, batch_size) + virtual_node_feat[-1]))
+        return self.layer_feat[-1]
 
 
 
@@ -206,17 +206,17 @@ class vGINMolEncoder(GINMolEncoder, VirtualNodeEncoder):
         virtual_node_feat = [self.virtual_node_embedding(
             torch.zeros(batch[-1].item() + 1, device=self.config.device, dtype=torch.long))]
 
-        layer_feat = [self.atom_encoder(x)]
+        self.layer_feat = [self.atom_encoder(x)]
         for i, (conv, batch_norm, relu, dropout) in enumerate(
                 zip(self.convs, self.batch_norms, self.relus, self.dropouts)):
             # --- Add global info ---
-            post_conv = layer_feat[-1] + virtual_node_feat[-1][batch]
+            post_conv = self.layer_feat[-1] + virtual_node_feat[-1][batch]
             post_conv = batch_norm(conv(post_conv, edge_index, edge_attr))
             if i < len(self.convs) - 1:
                 post_conv = relu(post_conv)
-            layer_feat.append(dropout(post_conv))
+            self.layer_feat.append(dropout(post_conv))
             # --- update global info ---
             if i < len(self.convs) - 1:
                 virtual_node_feat.append(
-                    self.virtual_mlp(self.virtual_pool(layer_feat[-1], batch, batch_size) + virtual_node_feat[-1]))
-        return layer_feat[-1]
+                    self.virtual_mlp(self.virtual_pool(self.layer_feat[-1], batch, batch_size) + virtual_node_feat[-1]))
+        return self.layer_feat[-1]

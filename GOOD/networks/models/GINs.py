@@ -176,14 +176,14 @@ class GINEncoder(BasicEncoder):
             node feature representations
         """
 
-        layer_feat = [x]
+        self.layer_feat = [x]
         for i, (conv, batch_norm, relu, dropout) in enumerate(
                 zip(self.convs, self.batch_norms, self.relus, self.dropouts)):
-            post_conv = batch_norm(conv(layer_feat[-1], edge_index))
+            post_conv = batch_norm(conv(self.layer_feat[-1], edge_index))
             if i != len(self.convs) - 1:
                 post_conv = relu(post_conv)
-            layer_feat.append(dropout(post_conv))
-        return layer_feat[-1]
+            self.layer_feat.append(dropout(post_conv))
+        return self.layer_feat[-1]
 
 
 class GINMolEncoder(BasicEncoder):
@@ -252,14 +252,14 @@ class GINMolEncoder(BasicEncoder):
             node feature representations
         """
 
-        layer_feat = [self.atom_encoder(x)]
+        self.layer_feat = [self.atom_encoder(x)]
         for i, (conv, batch_norm, relu, dropout) in enumerate(
                 zip(self.convs, self.batch_norms, self.relus, self.dropouts)):
-            post_conv = batch_norm(conv(layer_feat[-1], edge_index, edge_attr))
+            post_conv = batch_norm(conv(self.layer_feat[-1], edge_index, edge_attr))
             if i < len(self.convs) - 1:
                 post_conv = relu(post_conv)
-            layer_feat.append(dropout(post_conv))
-        return layer_feat[-1]
+            self.layer_feat.append(dropout(post_conv))
+        return self.layer_feat[-1]
 
 
 class GINEConv(gnn.MessagePassing):

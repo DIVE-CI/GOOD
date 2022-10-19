@@ -1,7 +1,7 @@
 includes:
   - base.yaml
 model:
-  model_name: GEIGIN
+  model_name: GEIvGIN
 ood:
   ood_alg: GEI
   ood_param: 1e-2  # sub gnn learning rate
@@ -13,7 +13,10 @@ ood:
 train:
   max_epoch: 200
   lr: 1e-3
+  pre_train: 50
   mile_stones: [150]
-  pre_train: 100
+  train_bs: 64
+  val_bs: 128
+  test_bs: 128
 
 

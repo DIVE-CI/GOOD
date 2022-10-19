@@ -1,6 +1,8 @@
 r"""
 Interpretable and Generalizable Graph Learning via Stochastic Attention Mechanism <https://arxiv.org/abs/2201.12987>`_.
 """
+import copy
+
 import munch
 import torch
 import torch.nn as nn
@@ -9,6 +11,7 @@ from torch.autograd import Function
 from torch_geometric.nn import InstanceNorm
 from torch_geometric.nn.conv import MessagePassing
 from torch_geometric.utils import is_undirected
+from torch_geometric.data import Data
 from torch_sparse import transpose
 
 from GOOD import register
@@ -25,20 +28,36 @@ class GEIGIN(GNNBasic):
 
     def __init__(self, config: Union[CommonArgs, Munch]):
         super(GEIGIN, self).__init__(config)
+        '''
+        Don't forget to modify vGIN part if modifying these definitions.
+        '''
         self.sub_gnn = GINFeatExtractor(config)
         self.extractor = ExtractorMLP(config)
 
+        self.sp_config = copy.deepcopy(config)
+        self.sp_config.model.model_layer = config.model.model_layer - 1
         self.lc_gnn = GINFeatExtractor(config)
         self.la_gnn = GINFeatExtractor(config)
         self.ec_gnn = GINFeatExtractor(config)
-        self.ea_gnn = GINFeatExtractor(config)
+        # self.ea_gnn = GINFeatExtractor(self.sp_config, without_embed=True)
 
         self.lc_classifier = Classifier(config)
         self.la_classifier = Classifier(config)
         self.ec_classifier = Classifier(munchify({'model': {'dim_hidden': config.model.dim_hidden},
                                                    'dataset': {'num_classes': config.dataset.num_envs}}))
-        self.ea_classifier = Classifier(munchify({'model': {'dim_hidden': config.model.dim_hidden},
-                                                  'dataset': {'num_classes': config.dataset.num_envs}}))
+        self.ea_classifier = nn.Sequential(*(
+            [nn.Linear(config.model.dim_hidden, 2 * config.model.dim_ffn),
+             nn.BatchNorm1d(2 * config.model.dim_ffn),
+             nn.ReLU(),
+             nn.Dropout(config.model.dropout_rate),
+             nn.Linear(2 * config.model.dim_ffn, 2 * config.model.dim_ffn),
+             nn.BatchNorm1d(2 * config.model.dim_ffn),
+             nn.ReLU(),
+             nn.Dropout(config.model.dropout_rate),
+             nn.Linear(2 * config.model.dim_ffn, config.dataset.num_envs)]
+        ))
+        # Classifier(munchify({'model': {'dim_hidden': config.model.dim_hidden},
+        #                                           'dataset': {'num_classes': config.dataset.num_envs}}))
         self.config = config
 
         self.learn_edge_att = True
@@ -75,11 +94,13 @@ class GEIGIN(GNNBasic):
 
 
         set_masks(edge_att, self.lc_gnn)
-        lc_logits = self.lc_classifier(self.lc_gnn(*args, **kwargs))
+        lc_repr = self.lc_gnn(*args, **kwargs)
+        lc_logits = self.lc_classifier(lc_repr)
         clear_masks(self)
 
         if self.LA:
-            set_masks(1 - GradientReverseLayerF.apply(edge_att, self.config.train.alpha), self.la_gnn)
+            # --- !!! this LA is a relative value according to EA. ---: * LA * EA
+            set_masks(1 - GradientReverseLayerF.apply(edge_att, self.LA * self.EA * self.config.train.alpha), self.la_gnn)
             la_logits = self.la_classifier(self.la_gnn(*args, **kwargs))
             clear_masks(self)
         else:
@@ -93,9 +114,10 @@ class GEIGIN(GNNBasic):
             ec_logits = None
 
         if self.EA:
-            set_masks(GradientReverseLayerF.apply(edge_att, self.config.train.alpha), self.ea_gnn)
-            ea_logits = self.ea_classifier(self.ea_gnn(*args, **kwargs))
-            clear_masks(self)
+            EA_alpha = self.EA * self.config.train.alpha
+            # set_masks(GradientReverseLayerF.apply(edge_att, EA_alpha), self.ea_gnn)
+            ea_logits = self.ea_classifier(GradientReverseLayerF.apply(lc_repr, EA_alpha))
+            # clear_masks(self)
         else:
             ea_logits = None
 
@@ -134,10 +156,11 @@ class GEIvGIN(GEIGIN):
 
     def __init__(self, config: Union[CommonArgs, Munch]):
         super(GEIvGIN, self).__init__(config)
+        self.sub_gnn = vGINFeatExtractor(config)
         self.lc_gnn = vGINFeatExtractor(config)
         self.la_gnn = vGINFeatExtractor(config)
         self.ec_gnn = vGINFeatExtractor(config)
-        self.ea_gnn = vGINFeatExtractor(config)
+        # self.ea_gnn = vGINFeatExtractor(self.sp_config, without_embed=True)
 
 
 class ExtractorMLP(nn.Module):
@@ -181,8 +204,8 @@ class MLP(BatchSequential):
             m.append(nn.Linear(channels[i - 1], channels[i], bias))
 
             if i < len(channels) - 1:
-                # m.append(InstanceNorm(channels[i]))
-                m.append(nn.BatchNorm1d(channels[i], track_running_stats=True))
+                m.append(InstanceNorm(channels[i]))
+                # m.append(nn.BatchNorm1d(channels[i], track_running_stats=True))
                 m.append(nn.ReLU())
                 m.append(nn.Dropout(dropout))
 

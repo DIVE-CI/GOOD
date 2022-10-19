@@ -32,7 +32,7 @@ class GEI(BaseOODAlg):
         self.edge_att = None
         self.targets = None
 
-        self.IF = config.ood.ood_param
+        # self.IF = config.ood.ood_param
         self.LA = config.ood.extra_param[0]
         self.EC = config.ood.extra_param[1]
         self.EA = config.ood.extra_param[2]
@@ -108,21 +108,21 @@ class GEI(BaseOODAlg):
 
         self.spec_loss = OrderedDict()
         if self.LA:
-            self.spec_loss['LA'] = self.LA * (config.metric.loss_func(self.la_out, self.targets,
+            self.spec_loss['LA'] = 1 * (config.metric.loss_func(self.la_out, self.targets,
                                                             reduction='none') * mask).sum() / mask.sum()
         if self.EC:
-            self.spec_loss['EC'] = self.EC * config.metric.cross_entropy_with_logit(self.ec_out, data.env_id, reduction='mean')
+            self.spec_loss['EC'] = 1 * config.metric.cross_entropy_with_logit(self.ec_out, data.env_id, reduction='mean')
 
         if self.EA:
-            self.spec_loss['EA'] = self.EA * config.metric.cross_entropy_with_logit(self.ea_out, data.env_id, reduction='mean')
+            self.spec_loss['EA'] = 1 * config.metric.cross_entropy_with_logit(self.ea_out, data.env_id, reduction='mean')
 
-        if self.IF:
-            att = self.att
-            eps = 1e-6
-            r = self.get_r(self.decay_interval, self.decay_r, config.train.epoch)
-            info_loss = (att * torch.log(att / r + eps) +
-                         (1 - att) * torch.log((1 - att) / (1 - r + eps) + eps)).mean()
-            self.spec_loss['IF'] = self.IF * info_loss
+        # if self.IF:
+        #     att = self.att
+        #     eps = 1e-6
+        #     r = self.get_r(self.decay_interval, self.decay_r, config.train.epoch)
+        #     info_loss = (att * torch.log(att / r + eps) +
+        #                  (1 - att) * torch.log((1 - att) / (1 - r + eps) + eps)).mean()
+        #     self.spec_loss['IF'] = self.IF * info_loss
         self.mean_loss = loss.sum() / mask.sum()
         loss = self.mean_loss + sum(self.spec_loss.values())
         return loss
@@ -132,6 +132,28 @@ class GEI(BaseOODAlg):
         if r < final_r:
             r = final_r
         return r
+
+    def set_up(self, model: torch.nn.Module, config: Union[CommonArgs, Munch]):
+        r"""
+        Training setup of optimizer and scheduler
+
+        Args:
+            model (torch.nn.Module): model for setup
+            config (Union[CommonArgs, Munch]): munchified dictionary of args (:obj:`config.train.lr`, :obj:`config.metric`, :obj:`config.train.mile_stones`)
+
+        Returns:
+            None
+
+        """
+        self.model: torch.nn.Module = model
+        subgnn_ids = [id(p) for p in self.model.sub_gnn.parameters()]
+        self.optimizer = torch.optim.Adam([{'params': [p for p in self.model.parameters() if id(p) not in subgnn_ids],
+                                            'lr': config.train.lr},
+                                           {'params': self.model.sub_gnn.parameters(),
+                                            'lr': config.ood.ood_param}],
+                                          weight_decay=config.train.weight_decay)
+        self.scheduler = torch.optim.lr_scheduler.MultiStepLR(self.optimizer, milestones=config.train.mile_stones,
+                                                              gamma=0.1)
 
 
 

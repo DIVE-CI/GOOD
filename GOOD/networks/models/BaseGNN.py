@@ -105,6 +105,7 @@ class BasicEncoder(torch.nn.Module):
         else:
             super(BasicEncoder, self).__init__(config)
         num_layer = config.model.model_layer
+        self.layer_feat = None
 
         self.relus = nn.ModuleList(
             [
