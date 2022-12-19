@@ -504,10 +504,15 @@ def estimate_one_graphon(aligned_adj_list: List[np.ndarray], method="universal_s
 def split_class_graphs(dataset, has_node_features=False):
     if has_node_features:
         y_list = []
+        unique_y_list = []
         for data in dataset:
-            y_list.append(tuple(data.y.tolist()))
+            y = data.y
+            if y not in unique_y_list:
+                unique_y_list.append(y)
+            y_list.append(y)
+            # y_list.append(tuple(data.y.tolist()))
             # print(y_list)
-        num_classes = len(set(y_list))
+        # num_classes = len(set(y_list))
 
         all_graphs_list = []
         all_node_x_list = []
@@ -517,7 +522,7 @@ def split_class_graphs(dataset, has_node_features=False):
             all_node_x_list.append(graph.x.numpy())
 
         class_graphs = []
-        for class_label in set(y_list):
+        for class_label in unique_y_list:
             c_graph_list = [all_graphs_list[i] for i in range(len(y_list)) if y_list[i] == class_label]
             c_node_x_list = [all_node_x_list[i] for i in range(len(y_list)) if y_list[i] == class_label]
             class_graphs.append((np.array(class_label), c_graph_list, c_node_x_list))
@@ -525,8 +530,13 @@ def split_class_graphs(dataset, has_node_features=False):
         return class_graphs
     else:
         y_list = []
+        unique_y_list = []
         for data in dataset:
-            y_list.append(tuple(data.y.tolist()))
+            y = data.y
+            if y not in unique_y_list:
+                unique_y_list.append(y)
+            y_list.append(y)
+            # y_list.append(tuple(data.y.tolist()))
             # print(y_list)
         num_classes = len(set(y_list))
 
@@ -536,7 +546,7 @@ def split_class_graphs(dataset, has_node_features=False):
             all_graphs_list.append(adj)
 
         class_graphs = []
-        for class_label in set(y_list):
+        for class_label in unique_y_list:
             c_graph_list = [all_graphs_list[i] for i in range(len(y_list)) if y_list[i] == class_label]
             class_graphs.append((np.array(class_label), c_graph_list))
 
