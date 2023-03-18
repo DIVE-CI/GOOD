@@ -40,7 +40,7 @@ setuptools.setup(
         "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
         "Operating System :: OS Independent",
     ],
-    package_dir={"LECI": "LECI"},
+    package_dir={"GOOD": "GOOD"},
     install_requires=install_requires,
     entry_points = {
         'console_scripts': [
