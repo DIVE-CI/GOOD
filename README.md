@@ -20,8 +20,13 @@ For more information, please refer to the code.
 
 How to run the code:
 
-1. Install the prerequisite packages following the GOOD benchmark [1], but not the project itself.
-2. Install this project `pip install -e .`
+1. Install the prerequisite packages:
+```shell
+conda install pytorch==1.10.1 torchvision==0.11.2 torchaudio==0.10.1 cudatoolkit=11.3 -c pytorch -c conda-forge
+conda install pyg -c pyg
+conda install -c conda-forge rdkit==2020.09.5
+```
+2. Clone and install this project `pip install -e .`
 3. Run our method: 
 * `goodtg --config_path GOOD_configs/GOODMotif/basis/covariate/GEI.yaml --gpu_idx 0`
 * `goodtg --config_path GOOD_configs/GOODMotif/size/covariate/GEI.yaml --gpu_idx 0`
