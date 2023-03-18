@@ -22,6 +22,8 @@ How to run the code:
 
 1. Install the prerequisite packages:
 ```shell
+conda create -n LECI python=3.8
+conda activate LECI
 conda install pytorch==1.10.1 torchvision==0.11.2 torchaudio==0.10.1 cudatoolkit=11.3 -c pytorch -c conda-forge
 conda install pyg -c pyg
 conda install -c conda-forge rdkit==2020.09.5
