@@ -1,6 +1,6 @@
 # Anonymous repo for paper review
 
-**The method name in this repo is called GEI instead of LECI**.
+Code structure is following GOOD benchmark. **The method name in this repo is called GEI instead of LECI**.
 
 The main method codes are in `GOOD/networks/models/GEIGNN.py` and `GOOD/ood_algorithms/algorithms/GEI.py`.
 
@@ -15,13 +15,9 @@ they are corresponding to the techniques mentioned in the submitted paper.
 Applying environment discriminator directly on $A_C$. (**graph-specific**)
 * ...
 
-For more information, please refer to the code. 
+For more information, please refer to the code.
 
-We also provide an example anonymous log `./Motif-base.log` for your reference, in case that
-code cannot be run because of the environment configuration. (Note that we remove all the folder paths and time frames in it 
-to make it totally anonymous.)
-
-How to run the code:
+How to run the code (if possible):
 
 1. Install the prerequisite packages:
 ```shell
