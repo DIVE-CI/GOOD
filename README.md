@@ -40,5 +40,8 @@ conda install -y -c conda-forge rdkit==2020.09.5
 * `goodtg --config_path GOOD_configs/GOODSST2/length/covariate/GEI.yaml --gpu_idx 0`
 * `goodtg --config_path GOOD_configs/GOODTwitter/length/covariate/GEI.yaml --gpu_idx 0`
 
+We also provide an example anonymous log `./Motif-base.log` for your reference, in case that
+code cannot be run because of the environment configuration. (Note that we remove all the folder paths and time frames in it 
+to make it totally anonymous.)
 
 [1] Good: A graph out-of-distribution benchmark. arXiv preprint arXiv:2206.08452.
