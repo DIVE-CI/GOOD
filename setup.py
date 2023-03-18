@@ -27,17 +27,17 @@ install_requires = [
 ]
 
 setuptools.setup(
-    name="graph-ood",
-    version="1.0.1",
-    author="Shurui Gui, Xiner Li",
-    author_email="shurui.gui@tamu.edu",
-    description="GOOD: A Graph Out-of-Distribution Benchmark",
+    name="LECI",
+    version="0.0.1",
+    author="xxx",
+    author_email="xxx",
+    description="xxx",
     long_description=long_description,
     long_description_content_type="text/markdown",
     license='GPLv3',
-    url="https://github.com/divelab/GOOD",
+    url="xxx",
     project_urls={
-        "Bug Tracker": "https://github.com/divelab/GOOD/issues",
+        "Bug Tracker": "xxx",
     },
     classifiers=[
         "Programming Language :: Python :: 3.8",
