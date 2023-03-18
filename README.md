@@ -1,6 +1,5 @@
 # Anonymous repo for paper review
 
-This paper follows the GOOD benchmark [1] structure.
 **The method name in this repo is called GEI instead of LECI**.
 
 The main method codes are in `GOOD/networks/models/GEIGNN.py` and `GOOD/ood_algorithms/algorithms/GEI.py`.
@@ -17,6 +16,10 @@ Applying environment discriminator directly on $A_C$. (**graph-specific**)
 * ...
 
 For more information, please refer to the code. 
+
+We also provide an example anonymous log `./Motif-base.log` for your reference, in case that
+code cannot be run because of the environment configuration. (Note that we remove all the folder paths and time frames in it 
+to make it totally anonymous.)
 
 How to run the code:
 
@@ -39,9 +42,3 @@ conda install -y -c conda-forge rdkit==2020.09.5
 * `goodtg --config_path GOOD_configs/LBAPcore/assay/covariate/GEI.yaml --gpu_idx 0`
 * `goodtg --config_path GOOD_configs/GOODSST2/length/covariate/GEI.yaml --gpu_idx 0`
 * `goodtg --config_path GOOD_configs/GOODTwitter/length/covariate/GEI.yaml --gpu_idx 0`
-
-We also provide an example anonymous log `./Motif-base.log` for your reference, in case that
-code cannot be run because of the environment configuration. (Note that we remove all the folder paths and time frames in it 
-to make it totally anonymous.)
-
-[1] Good: A graph out-of-distribution benchmark. arXiv preprint arXiv:2206.08452.

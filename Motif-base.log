@@ -1318,7 +1318,7 @@ INFO: Test ACCURACY: 0.7647
 Test Loss: 0.6818
 WARNING: utils.py - line 52 : Directory does not exists. Have built it automatically.
 
- : Saved a new best In-Domain checkpoint.
+
  : Saved a new best checkpoint.
 INFO: Epoch 101:
 INFO: Evaluating...
@@ -1333,7 +1333,7 @@ INFO: Val ACCURACY: 0.8660
 Val Loss: 0.5299
 INFO: Test ACCURACY: 0.8393
 Test Loss: 0.5456
- : Saved a new best In-Domain checkpoint.
+
  : Saved a new best checkpoint.
 INFO: Epoch 102:
 INFO: Evaluating...
@@ -1403,7 +1403,7 @@ INFO: Val ACCURACY: 0.8677
 Val Loss: 0.4935
 INFO: Test ACCURACY: 0.7813
 Test Loss: 0.5516
- : Saved a new best In-Domain checkpoint.
+
 INFO: Epoch 107:
 INFO: Evaluating...
 INFO: Approximated ML: 0.7746|LA: 1.0457|EA: 1.0945
@@ -1495,7 +1495,7 @@ INFO: Val ACCURACY: 0.8683
 Val Loss: 0.5244
 INFO: Test ACCURACY: 0.5247
 Test Loss: 0.8922
- : Saved a new best In-Domain checkpoint.
+
 INFO: Epoch 114:
 INFO: Evaluating...
 INFO: Approximated ML: 0.6383|LA: 1.0659|EA: 1.0956
@@ -1509,7 +1509,7 @@ INFO: Val ACCURACY: 0.8683
 Val Loss: 0.4928
 INFO: Test ACCURACY: 0.7830
 Test Loss: 0.5548
- : Saved a new best In-Domain checkpoint.
+
 INFO: Epoch 115:
 INFO: Evaluating...
 INFO: Approximated ML: 0.6331|LA: 1.0443|EA: 1.0964
@@ -1536,7 +1536,7 @@ INFO: Val ACCURACY: 0.8683
 Val Loss: 0.4565
 INFO: Test ACCURACY: 0.7547
 Test Loss: 0.6074
- : Saved a new best In-Domain checkpoint.
+
 INFO: Epoch 117:
 INFO: Evaluating...
 INFO: Approximated ML: 0.6433|LA: 1.0320|EA: 1.0952
@@ -1550,7 +1550,7 @@ INFO: Val ACCURACY: 0.8773
 Val Loss: 0.4619
 INFO: Test ACCURACY: 0.7780
 Test Loss: 0.5578
- : Saved a new best In-Domain checkpoint.
+
 INFO: Epoch 118:
 INFO: Evaluating...
 INFO: Approximated ML: 0.6514|LA: 1.0404|EA: 1.0942
@@ -2619,22 +2619,8 @@ Val Loss: 0.5038
 INFO: Test ACCURACY: 0.8950
 Test Loss: 0.4193
 INFO: Training end.
-INFO: Loading best In-Domain Checkpoint 117...
-INFO: Checkpoint 117: 
------------------------------------
-Train ACCURACY: 0.8893
-Train Loss: 0.4431
-ID Validation ACCURACY: 0.8887
-ID Validation Loss: 0.4564
-ID Test ACCURACY: 0.8837
-ID Test Loss: 0.4561
-OOD Validation ACCURACY: 0.8773
-OOD Validation Loss: 0.4619
-OOD Test ACCURACY: 0.7780
-OOD Test Loss: 0.5578
-
 INFO: Loading best Out-of-Domain Checkpoint 140...
-INFO: Checkpoint 140: 
+INFO: Checkpoint 140:
 -----------------------------------
 Train ACCURACY: 0.8022
 Train Loss: 0.6117
