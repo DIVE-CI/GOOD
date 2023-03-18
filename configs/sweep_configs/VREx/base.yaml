@@ -1,7 +1,0 @@
-includes:
-  - ../base.yaml
-ood_param:   # information constraint
-  - 1000
-  - 100
-  - 10
-  - 1

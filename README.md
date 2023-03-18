@@ -23,15 +23,15 @@ How to run the code:
 1. Install the prerequisite packages following the GOOD benchmark [1], but not the project itself.
 2. Install this project `pip install -e .`
 3. Run our method: 
-* `goodtg --config_path final_configs/GOODMotif/basis/covariate/GEI.yaml --gpu_idx 0`
-* `goodtg --config_path final_configs/GOODMotif/size/covariate/GEI.yaml --gpu_idx 0`
-* `goodtg --config_path final_configs/GOODMotif2/basis/covariate/GEI.yaml --gpu_idx 0`
-* `goodtg --config_path final_configs/GOODCMNIST/color/covariate/GEI.yaml --gpu_idx 0`
-* `goodtg --config_path final_configs/GOODHIV/scaffold/covariate/GEI.yaml --gpu_idx 0`
-* `goodtg --config_path final_configs/GOODHIV/size/covariate/GEI.yaml --gpu_idx 0`
-* `goodtg --config_path final_configs/LBAPcore/assay/covariate/GEI.yaml --gpu_idx 0`
-* `goodtg --config_path final_configs/GOODSST2/length/covariate/GEI.yaml --gpu_idx 0`
-* `goodtg --config_path final_configs/GOODTwitter/length/covariate/GEI.yaml --gpu_idx 0`
+* `goodtg --config_path GOOD_configs/GOODMotif/basis/covariate/GEI.yaml --gpu_idx 0`
+* `goodtg --config_path GOOD_configs/GOODMotif/size/covariate/GEI.yaml --gpu_idx 0`
+* `goodtg --config_path GOOD_configs/GOODMotif2/basis/covariate/GEI.yaml --gpu_idx 0`
+* `goodtg --config_path GOOD_configs/GOODCMNIST/color/covariate/GEI.yaml --gpu_idx 0`
+* `goodtg --config_path GOOD_configs/GOODHIV/scaffold/covariate/GEI.yaml --gpu_idx 0`
+* `goodtg --config_path GOOD_configs/GOODHIV/size/covariate/GEI.yaml --gpu_idx 0`
+* `goodtg --config_path GOOD_configs/LBAPcore/assay/covariate/GEI.yaml --gpu_idx 0`
+* `goodtg --config_path GOOD_configs/GOODSST2/length/covariate/GEI.yaml --gpu_idx 0`
+* `goodtg --config_path GOOD_configs/GOODTwitter/length/covariate/GEI.yaml --gpu_idx 0`
 
 
 [1] Good: A graph out-of-distribution benchmark. arXiv preprint arXiv:2206.08452.

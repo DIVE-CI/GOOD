@@ -32,20 +32,15 @@ setuptools.setup(
     author="xxx",
     author_email="xxx",
     description="xxx",
-    long_description=long_description,
     long_description_content_type="text/markdown",
     license='GPLv3',
-    url="xxx",
-    project_urls={
-        "Bug Tracker": "xxx",
-    },
     classifiers=[
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
         "Operating System :: OS Independent",
     ],
-    package_dir={"GOOD": "GOOD"},
+    package_dir={"LECI": "LECI"},
     install_requires=install_requires,
     entry_points = {
         'console_scripts': [
