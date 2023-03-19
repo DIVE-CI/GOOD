@@ -1,6 +1,6 @@
 # Anonymous repo for paper review
 
-Code structure is following GOOD benchmark. **The method name in this repo is called GEI instead of LECI**.
+**The method name in this repo is called GEI instead of LECI**.
 
 The main method codes are in `GOOD/networks/models/GEIGNN.py` and `GOOD/ood_algorithms/algorithms/GEI.py`.
 

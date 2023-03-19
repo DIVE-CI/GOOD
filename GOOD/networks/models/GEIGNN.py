@@ -1,6 +1,3 @@
-r"""
-Interpretable and Generalizable Graph Learning via Stochastic Attention Mechanism <https://arxiv.org/abs/2201.12987>`_.
-"""
 import munch
 import torch
 import torch.nn as nn
