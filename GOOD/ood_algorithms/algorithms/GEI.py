@@ -1,6 +1,3 @@
-"""
-Implementation of the GSAT algorithm from `"Interpretable and Generalizable Graph Learning via Stochastic Attention Mechanism" <https://arxiv.org/abs/2201.12987>`_ paper
-"""
 from typing import Tuple
 
 import torch
@@ -17,13 +14,6 @@ from collections import OrderedDict
 
 @register.ood_alg_register
 class GEI(BaseOODAlg):
-    r"""
-    Implementation of the GSAT algorithm from `"Interpretable and Generalizable Graph Learning via Stochastic Attention
-    Mechanism" <https://arxiv.org/abs/2201.12987>`_ paper
-
-        Args:
-            config (Union[CommonArgs, Munch]): munchified dictionary of args (:obj:`config.device`, :obj:`config.dataset.num_envs`, :obj:`config.ood.ood_param`)
-    """
 
     def __init__(self, config: Union[CommonArgs, Munch]):
         super(GEI, self).__init__(config)
