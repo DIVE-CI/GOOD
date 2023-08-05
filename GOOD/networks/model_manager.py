@@ -49,17 +49,26 @@ def config_model(model: torch.nn.Module, mode: str, config: Union[CommonArgs, Mu
 
     # load checkpoint
     if mode == 'train' and config.train.tr_ctn:
-        if config.train.ctn_epoch != 0:
-            ckpt = torch.load(os.path.join(config.ckpt_dir, f'{config.train.ctn_epoch}.ckpt'), map_location=config.device)
+        if config.pre_ckpt_path is not None:
+            print(f'#IN#Loading pre-trained checkpoint from {config.pre_ckpt_path}...')
+            ckpt = torch.load(config.pre_ckpt_path, map_location='cpu')
+            model.load_state_dict(ckpt['state_dict'], strict=False)  # , strict=False
+            # best_ckpt = torch.load(self.config.pre_ckpt_path)
+            config.train.ctn_epoch = 0
+            print(f'#IN#Continue training from Epoch 0...')
         else:
-            ckpt = torch.load(os.path.join(config.ckpt_dir, f'last.ckpt'), map_location=config.device)
-        model.load_state_dict(ckpt['state_dict'])
-        best_ckpt = torch.load(os.path.join(config.ckpt_dir, f'best.ckpt'), map_location=config.device)
-        config.metric.best_stat['score'] = best_ckpt['val_score']
-        config.metric.best_stat['loss'] = best_ckpt['val_loss']
-        config.train.ctn_epoch = ckpt['epoch'] + 1
-        config.other_saved = ckpt.get('others')
-        print(f'#IN#Continue training from Epoch {ckpt["epoch"]}...')
+            if config.train.ctn_epoch != 0:
+                ckpt = torch.load(os.path.join(config.ckpt_dir, f'{config.train.ctn_epoch}.ckpt'),
+                                  map_location=config.device)
+            else:
+                ckpt = torch.load(os.path.join(config.ckpt_dir, f'last.ckpt'), map_location=config.device)
+            model.load_state_dict(ckpt['state_dict'])
+            best_ckpt = torch.load(os.path.join(config.ckpt_dir, f'best.ckpt'), map_location=config.device)
+            config.metric.best_stat['score'] = best_ckpt['val_score']
+            config.metric.best_stat['loss'] = best_ckpt['val_loss']
+            config.train.ctn_epoch = ckpt['epoch'] + 1
+            config.other_saved = ckpt.get('others')
+            print(f'#IN#Continue training from Epoch {ckpt["epoch"]}...')
 
     if mode == 'test':
         try:

@@ -1,0 +1,14 @@
+includes:
+  - base.yaml
+model:
+  model_name: LiSA_vGIN
+ood:
+  ood_alg: multigib
+  ood_param: 3    # generators
+  extra_param:
+    - 1    # joint
+train:
+  max_epoch: 200
+  lr: 1e-3
+
+

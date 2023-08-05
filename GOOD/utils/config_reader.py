@@ -212,6 +212,8 @@ def process_configs(config: Union[CommonArgs, Munch]):
         for i, param in enumerate(config.ood.extra_param):
             ood_dirname += f'_{param}'
 
+    if config.pre_ckpt_path is not None:
+        config.save_tag = config.pre_ckpt_path.split('/')[-1]
     # --- Log setting ---
     log_dir_root = opj(STORAGE_DIR, 'log', 'round' + str(config.exp_round))
     log_dirs = opj(log_dir_root, dataset_dirname, model_dirname, train_dirname, ood_dirname)

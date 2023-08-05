@@ -5,6 +5,7 @@ log_file: default
 gpu_idx: 0
 ckpt_root: null
 ckpt_dir: null
+pre_ckpt_path: null
 save_tag: null
 other_saved: null
 pytest: False

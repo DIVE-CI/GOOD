@@ -233,13 +233,21 @@ class Pipeline:
 
         # load checkpoint
         if mode == 'train' and self.config.train.tr_ctn:
-            ckpt = torch.load(os.path.join(self.config.ckpt_dir, f'last.ckpt'))
-            self.model.load_state_dict(ckpt['state_dict'])
-            best_ckpt = torch.load(os.path.join(self.config.ckpt_dir, f'best.ckpt'))
-            self.config.metric.best_stat['score'] = best_ckpt['val_score']
-            self.config.metric.best_stat['loss'] = best_ckpt['val_loss']
-            self.config.train.ctn_epoch = ckpt['epoch'] + 1
-            print(f'#IN#Continue training from Epoch {ckpt["epoch"]}...')
+            if self.config.pre_ckpt_path is not None:
+                print(f'#IN#Loading pre-trained checkpoint from {self.config.pre_ckpt_path}...')
+                ckpt = torch.load(self.config.pre_ckpt_path)
+                self.model.load_state_dict(ckpt)  #, strict=False
+                # best_ckpt = torch.load(self.config.pre_ckpt_path)
+                self.config.train.ctn_epoch = 0
+                print(f'#IN#Continue training from Epoch 0...')
+            else:
+                ckpt = torch.load(os.path.join(self.config.ckpt_dir, f'last.ckpt'))
+                self.model.load_state_dict(ckpt['state_dict'])
+                best_ckpt = torch.load(os.path.join(self.config.ckpt_dir, f'best.ckpt'))
+                self.config.metric.best_stat['score'] = best_ckpt['val_score']
+                self.config.metric.best_stat['loss'] = best_ckpt['val_loss']
+                self.config.train.ctn_epoch = ckpt['epoch'] + 1
+                print(f'#IN#Continue training from Epoch {ckpt["epoch"]}...')
 
         if mode == 'test':
             try:

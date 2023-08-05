@@ -145,6 +145,8 @@ def evaluate(model: torch.nn.Module,
     mask_all = []
     pred_all = []
     target_all = []
+    pred_all2 = []
+    target_all2 = []
     pbar = tqdm(loader[split], desc=f'Eval {split.capitalize()}', total=len(loader[split]), **pbar_setting)
     for data in pbar:
         # if index % 3 == 0:
@@ -172,6 +174,10 @@ def evaluate(model: torch.nn.Module,
         pred, target = eval_data_preprocess(targets, raw_preds, mask, config)
         pred_all.append(pred)
         target_all.append(target)
+        if split == 'test' and config.ood.ood_alg == 'Momu':
+            pred2, target2 = eval_data_preprocess(targets, model_output[1], mask, config)
+            pred_all2.append(pred2)
+            target_all2.append(target2)
 
     # ------- Loss calculate -------
     loss_all = torch.cat(loss_all)
@@ -180,9 +186,16 @@ def evaluate(model: torch.nn.Module,
 
     # --------------- Metric calculation including ROC_AUC, Accuracy, AP.  --------------------
     stat['score'] = eval_score(pred_all, target_all, config)
+    if split == 'test' and config.ood.ood_alg == 'Momu':
+        stat['textscore'] = eval_score(pred_all2, target_all2, config)
 
-    print(f'#IN#\n{split.capitalize()} {config.metric.score_name}: {stat["score"]:.4f}\n'
+    if split == 'test' and config.ood.ood_alg == 'Momu':
+        print(f'#IN#\n{split.capitalize()} {config.metric.score_name}: {stat["score"]:.4f}\n'
+          f'\n{split.capitalize()} text {config.metric.score_name}: {stat["textscore"]:.4f}\n'
           f'{split.capitalize()} Loss: {stat["loss"]:.4f}')
+    else:
+        print(f'#IN#\n{split.capitalize()} {config.metric.score_name}: {stat["score"]:.4f}\n'
+              f'{split.capitalize()} Loss: {stat["loss"]:.4f}')
 
     model.train()
 
