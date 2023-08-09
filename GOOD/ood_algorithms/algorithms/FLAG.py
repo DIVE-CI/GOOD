@@ -72,3 +72,4 @@ class FLAG(BaseOODAlg):
 
         loss.backward()
         self.allow_reset = True
+        self.optimizer.step()

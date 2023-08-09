@@ -74,15 +74,12 @@ class multigib(BaseOODAlg):
         self.model: torch.nn.Module = model
         # self.optimizer = torch.optim.Adam(self.model.parameters(), lr=config.train.lr, weight_decay=config.train.weight_decay)
         # self.scheduler = torch.optim.lr_scheduler.MultiStepLR(self.optimizer, milestones=config.train.mile_stones, gamma=0.1)
-
         self.model.main_model.reset_parameters()
         self.optimizer_model = torch.optim.Adam(self.model.main_model.parameters(), lr=config.train.lr, weight_decay=config.train.weight_decay)
-
         generators_params = []
         for generator in self.model.generators:
             generator.reset_parameters()
             generators_params.append(generator.parameters())
-
         # initialize optimizer
         self.optimizer_generator = torch.optim.AdamW(chain.from_iterable(generators_params), lr=config.train.lr)
 
@@ -132,30 +129,31 @@ class multigib(BaseOODAlg):
             loss_array = []
             sqrt_loss_array = []
             kld_array = []
-            out_og, out_embs = config.train_helper.model.main_model(data)
-            loss_og = F.nll_loss(out_og, data.y.view(-1))
+            out_og, out_embs = self.model.main_model(data)
+            loss_og = config.metric.loss_func(out_og, targets, reduction='none') * mask
+            # loss_og = F.nll_loss(out_og, data.y.view(-1).long())
             loss_array.append(loss_og.view(-1))
 
             for k in range(0, num_generators):
-                generator = config.train_helper.model.generators[k]
+                generator = self.model.generators[k]
                 if joint:
-                    kld_loss, node_mask, mask = generator(out_embs, data.edge_index, data.batch)
+                    kld_loss, node_mask, edge_mask = generator(out_embs, data.edge_index, data.batch)
                 else:
-                    kld_loss, mask = generator(out_embs, data.edge_index)
+                    kld_loss, edge_mask = generator(out_embs, data.edge_index)
                 kld_array.append(kld_loss.view(-1))
-                set_masks(mask, config.train_helper.model.main_model)
+                set_masks(edge_mask, self.model.main_model)
                 if joint:
-                    out_local, _ = config.train_helper.model.main_model(data, mask=node_mask)
-                    clear_masks(config.train_helper.model.main_model)
-                    loss_local = F.nll_loss(out_local, data.y.view(-1))
+                    out_local, _ = self.model.main_model(data, mask=node_mask)
+                    clear_masks(self.model.main_model)
+                    loss_local = config.metric.loss_func(out_local, targets, reduction='none') * mask
                     loss_array.append(loss_local.view(-1))
                     sqrt_loss_array.append(torch.sqrt(loss_local).view(-1))
                 else:
-                    out_local, _ = config.train_helper.model.main_model(data)
-                    loss_local = F.nll_loss(out_local, data.y.view(-1))
+                    out_local, _ = self.model.main_model(data)
+                    loss_local = config.metric.loss_func(out_local, targets, reduction='none') * mask
                     loss_array.append(loss_local.view(-1))
                     sqrt_loss_array.append(torch.sqrt(loss_local).view(-1))
-                    clear_masks(config.train_helper.model.main_model)
+                    clear_masks(self.model.main_model)
 
 
             Loss = torch.cat(loss_array, dim=0)
@@ -171,26 +169,26 @@ class multigib(BaseOODAlg):
             self.optimizer_generator.step()
 
         loss_array = []
-        out_og, out_embs = config.train_helper.model.main_model(data)
-        loss_og = F.nll_loss(out_og, data.y.view(-1))
+        out_og, out_embs = self.model.main_model(data)
+        loss_og = config.metric.loss_func(out_og, targets, reduction='none') * mask
         loss_array.append(loss_og.view(-1))
 
         for k in range(0, num_generators):
-            generator = config.train_helper.model.generators[k]
+            generator = self.model.generators[k]
             if joint:
                 kld_loss, node_mask, edge_mask = generator(out_embs, data.edge_index, data.batch)
-                set_masks(edge_mask, config.train_helper.model.main_model)
-                out_local, _ = config.train_helper.model.main_model(data, node_mask)
-                clear_masks(config.train_helper.model.main_model)
-                loss_local = F.nll_loss(out_local, data.y.view(-1))
+                set_masks(edge_mask, self.model.main_model)
+                out_local, _ = self.model.main_model(data, node_mask)
+                clear_masks(self.model.main_model)
+                loss_local = config.metric.loss_func(out_local, targets, reduction='none') * mask
                 loss_array.append(loss_local.view(-1))
             else:
-                kld_loss, mask = generator(out_embs, data.edge_index)
-                set_masks(mask, config.train_helper.model.main_model)
-                out_local, _ = config.train_helper.model.main_model(data)
-                loss_local = F.nll_loss(out_local, data.y.view(-1))
+                kld_loss, edge_mask = generator(out_embs, data.edge_index)
+                set_masks(edge_mask, self.model.main_model)
+                out_local, _ = self.model.main_model(data)
+                loss_local = config.metric.loss_func(out_local, targets, reduction='none') * mask
                 loss_array.append(loss_local.view(-1))
-                clear_masks(config.train_helper.model.main_model)
+                clear_masks(self.model.main_model)
 
         Loss = torch.cat(loss_array, dim=0)
         Var, Mean = torch.var_mean(Loss)

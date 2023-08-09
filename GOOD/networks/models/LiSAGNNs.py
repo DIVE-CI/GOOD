@@ -5,6 +5,7 @@ from torch import Tensor
 from GOOD import register
 from GOOD.utils.config_reader import Union, CommonArgs, Munch
 from .BaseGNN import GNNBasic
+from .MolEncoders import AtomEncoder, BondEncoder
 from .Classifiers import Classifier
 from .GINs import GINFeatExtractor
 from .GINvirtualnode import vGINFeatExtractor
@@ -41,10 +42,10 @@ class LiSA_vGIN(GNNBasic):
         # self.graph_repr = None
         self.config = config
         self.joint = int(config.ood.extra_param[0])
-        if config.dataset.dataset_type == 'mol':
-            self.main_model = MultiGCN(config.dataset.feat_dims, config.dataset.num_classes, config.model.model_layer, config.model.dim_hidden, self.joint).to(config.device)
-        else:
-            self.main_model = MultiGCN(config.dataset.dim_node, config.dataset.num_classes, config.model.model_layer, config.model.dim_hidden, self.joint).to(config.device)
+        # if config.dataset.num_classes == 1:
+        #     self.main_model = MultiGCN(config.dataset.dim_node, config.dataset.num_classes + 1, config.model.model_layer, config.model.dim_hidden, self.joint, config).to(config.device)
+        # else:
+        self.main_model = MultiGCN(config.dataset.dim_node, config.dataset.num_classes, config.model.model_layer, config.model.dim_hidden, self.joint, config).to(config.device)
         self.generators = []
         for i in range(int(config.ood.ood_param)):
             if self.joint:
@@ -80,10 +81,22 @@ class LiSA_vGIN(GNNBasic):
 
 
 class MultiGCN(torch.nn.Module):
-    def __init__(self, num_features, num_classes, num_layers, hidden, joint):
+    def __init__(self, num_features, num_classes, num_layers, hidden, joint, config: Union[CommonArgs, Munch]):
         super(MultiGCN, self).__init__()
 
-        self.conv1 = GINConv(Sequential(
+        self.ismol = False
+        if config.dataset.dataset_type == 'mol':
+            self.ismol = True
+            self.atom_encoder = AtomEncoder(config.model.dim_hidden, config)
+            self.conv1 = GINConv(Sequential(
+                Linear(hidden, hidden),
+                ReLU(),
+                Linear(hidden, hidden),
+                ReLU(),
+                BN(hidden),
+            ), train_eps=False)
+        else:
+            self.conv1 = GINConv(Sequential(
                 Linear(num_features, hidden),
                 ReLU(),
                 Linear(hidden, hidden),
@@ -115,7 +128,8 @@ class MultiGCN(torch.nn.Module):
 
         x, edge_index, batch = data.x, data.edge_index, data.batch
 
-
+        if self.ismol:
+            x = self.atom_encoder(x)
         x = self.conv1(x, edge_index)
         for conv in self.convs:
             x = conv(x, edge_index)
@@ -128,7 +142,8 @@ class MultiGCN(torch.nn.Module):
         x = F.dropout(x, p=0.5, training=self.training)
         x = self.lin2(x)
         out = torch.clamp(x, -10, 10)
-        return F.log_softmax(out, dim=-1), embeds
+        # return F.log_softmax(out, dim=-1), embeds
+        return out, embeds
 
     def __repr__(self):
         return self.__class__.__name__

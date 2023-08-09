@@ -1,6 +1,6 @@
 r"""Training pipeline: training/evaluation structure, batch training.
 """
-
+import time
 from typing import Dict
 
 import numpy as np
@@ -33,22 +33,24 @@ def train_batch(model: torch.nn.Module, data: Batch, ood_algorithm: BaseOODAlg, 
     """
     data = data.to(config.device)
 
+    if ood_algorithm.optimizer is not None:
+        ood_algorithm.optimizer.zero_grad()
+
     mask, targets = nan2zero_get_mask(data, 'train', config)
     node_norm = data.get('node_norm') if config.model.model_level == 'node' else None
     data, targets, mask, node_norm = ood_algorithm.input_preprocess(data, targets, mask, node_norm, model.training,
                                                                     config)
     edge_weight = data.get('edge_norm') if config.model.model_level == 'node' else None
 
-    config.train_helper.optimizer.zero_grad()
-
-    model_output = model(data=data, edge_weight=edge_weight, ood_algorithm=ood_algorithm)
+    # config.train_helper.optimizer.zero_grad()
+    model_output = model(data=data, edge_weight=edge_weight, ood_algorithm=ood_algorithm, targets=targets, mask=mask)
     raw_pred = ood_algorithm.output_postprocess(model_output)
 
     loss = ood_algorithm.loss_calculate(raw_pred, targets, mask, node_norm, config)
     loss = ood_algorithm.loss_postprocess(loss, data, mask, config)
     ood_algorithm.backward(loss, data, targets, mask)
 
-    config.train_helper.optimizer.step()
+    # config.train_helper.optimizer.step()
 
     return {'loss': loss.detach()}
 
@@ -71,8 +73,10 @@ def train(model: torch.nn.Module, loader: Union[DataLoader, Dict[str, DataLoader
 
     # Load training utils
     print('#D#Load training utils')
+    ood_algorithm.set_up(model, config)
     config.train_helper.set_up(model, config)
 
+    tik = time.time()
     # train the model
     for epoch in range(config.train.ctn_epoch, config.train.max_epoch):
         config.train.epoch = epoch
@@ -129,6 +133,9 @@ def train(model: torch.nn.Module, loader: Union[DataLoader, Dict[str, DataLoader
         config.train_helper.save_epoch(epoch, epoch_train_stat, id_val_stat, id_test_stat, val_stat, test_stat, config)
 
         # --- scheduler step ---
-        config.train_helper.scheduler.step()
+        # config.train_helper.scheduler.step()
+        if ood_algorithm.scheduler is not None:
+            ood_algorithm.scheduler.step()
 
     print('#IN#Training end.')
+    print('#IM#Total training time: {:.4f}s'.format(time.time() - tik))

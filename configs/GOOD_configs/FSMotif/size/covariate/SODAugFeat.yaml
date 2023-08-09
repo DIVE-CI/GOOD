@@ -1,0 +1,31 @@
+includes:
+  - base.yaml
+model:
+  model_name: GIN
+  global_pool: max
+  generative_model_name: SODAugNN
+  dim_ffn: 600
+ood:
+  ood_alg: SODAugFeat
+  ood_param: 0.5  # pairL_per
+  ood_alg_gen: SODAug_pre
+  extra_param:
+    - 1e-5     # kl
+    - 1e-2     # br_num
+    - 0.2     # attr
+    - 10     # max_k
+    - 0.1     # pl_loss
+    - 10     # Vrex
+    - 1e-3     # main lr
+    - 60     # pre epoch
+    - 1      # no frag
+    - 0      # scaffold/basis
+    - 1.    # percentage of data aug
+train:
+  max_epoch: 200
+  lr: 1e-4  # pre lr
+  mile_stones: [150]
+dataset:
+  dataloader_name: PairDataLoader
+
+

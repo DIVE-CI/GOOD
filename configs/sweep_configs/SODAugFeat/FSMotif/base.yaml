@@ -1,0 +1,33 @@
+includes:
+  - ../base.yaml
+  - ../../GOODMotif.yaml
+extra_param:
+  -
+    - 1e-5     # kl
+  -
+    - 1e-2     # br_num
+  -
+    - 0.2     # attr
+  -
+    - 10     # max_k
+  -
+    - 0.1     # pl_loss
+  -
+    - 10     # Vrex
+    - 5
+    - 50
+    - 0
+  -
+    - 1e-3     # main lr
+  -
+    - 60     # pre epoch
+  -
+    - 0      # no frag
+    - 1
+  -
+    - 0      # scaffold/basis reorg
+    - 1
+  -
+    - 0.8    # percentage of data aug
+    - 1.
+    - 0.6

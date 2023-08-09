@@ -74,6 +74,36 @@ class BaseOODAlg(ABC):
         """
         return data, targets, mask, node_norm
 
+    def input_generation(self,
+                         gen_model: torch.nn.Module,
+                         data: Batch,
+                         targets: Tensor,
+                         mask: Tensor,
+                         node_norm: Tensor,
+                         training: bool,
+                         config: Union[CommonArgs, Munch],
+                         **kwargs
+                         ) -> Tuple[Batch, Tensor, Tensor, Tensor]:
+        r"""
+        Set input data format and preparations
+
+        Args:
+            data (Batch): input data
+            targets (Tensor): input labels
+            mask (Tensor): NAN masks for data formats
+            node_norm (Tensor): node weights for normalization (for node prediction only)
+            training (bool): whether the task is training
+            config (Union[CommonArgs, Munch]): munchified dictionary of args
+
+        Returns:
+            - data (Batch) - Processed input data.
+            - targets (Tensor) - Processed input labels.
+            - mask (Tensor) - Processed NAN masks for data formats.
+            - node_norm (Tensor) - Processed node weights for normalization.
+
+        """
+        return data, targets, mask, node_norm
+
     def output_postprocess(self, model_output: Tensor, **kwargs) -> Tensor:
         r"""
         Process the raw output of model

@@ -1,6 +1,6 @@
 r"""Training pipeline: training/evaluation structure, batch training.
 """
-
+import time
 from typing import Dict
 
 import numpy as np
@@ -74,6 +74,7 @@ def train_generation(model: torch.nn.Module, model_main: torch.nn.Module, loader
     # Load training utils
     print('#D#Load training utils')
     config.train_helper.set_up(model, config)
+    tik = time.time()
 
     # train the model
     for epoch in range(config.train.ctn_epoch, int(config.ood.extra_param[7])):  #
@@ -149,6 +150,7 @@ def train_generation(model: torch.nn.Module, model_main: torch.nn.Module, loader
     with torch.cuda.device(config.device):
         torch.cuda.empty_cache()
     print('#IN#Generative model Training end.')
+    print('#IM#Total generative training time: {:.4f}s'.format(time.time() - tik))
     gen_ckpt = torch.load(os.path.join(config.ckpt_dir, f'best_gen.ckpt'), map_location=config.device)
     model.load_state_dict(gen_ckpt['state_dict'])
 
@@ -214,6 +216,7 @@ def train(gen_model: torch.nn.Module, model: torch.nn.Module, loader: Union[Data
     # Load training utils
     print('#D#Load training utils')
     config.train_helper.set_up(model, config)
+    tik = time.time()
 
     config.metric.best_stat['score'] = None
     config.metric.id_best_stat['score'] = None
@@ -286,6 +289,7 @@ def train(gen_model: torch.nn.Module, model: torch.nn.Module, loader: Union[Data
         # --- scheduler step ---
         config.train_helper.scheduler.step()
 
+    print('#IM#Total training time: {:.4f}s'.format(time.time() - tik))
     print('#IN#Training end.')
 
 
