@@ -1,0 +1,3489 @@
+INFO: -----------------------------------
+    Task: train
+Sun Aug  6 02:16:34 2023
+INFO: Load Dataset FSMotif
+INFO: Loading model...
+INFO: Epoch 0:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.8652/1.4006
+INFO: Eval_train 
+Eval_train Loss: 2.0593
+INFO: Id_val 
+Id_val Loss: 2.1419
+INFO: Id_test 
+Id_test Loss: 2.1504
+INFO: Val 
+Val Loss: 36604810887168.0000
+INFO: Test 
+Test Loss: nan
+WARNING: utils.py - line 52 : Directory does not exists. Have built it automatically.
+/data/xinerli/GOOD_dev/storage/checkpoints/round2/FSMotif_size_covariate/GIN_3l_maxpool_0.5dp/0.0001lr_0.0wd/SODAugFeat_0.5_1e-05_0.01_0.2_10_0.1_10_0.001_60_0_0_0.8
+IMPORTANT: 08/06/2023 02:17:32 AM : Saved a new best In-Domain checkpoint.
+IMPORTANT: 08/06/2023 02:17:32 AM : Saved a new best checkpoint.
+INFO: Epoch 1:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7793/1.2241
+INFO: Eval_train 
+Eval_train Loss: 1.9002
+INFO: Id_val 
+Id_val Loss: 2.0430
+INFO: Id_test 
+Id_test Loss: 1.9713
+INFO: Val 
+Val Loss: 121267831177216.0000
+INFO: Test 
+Test Loss: nan
+IMPORTANT: 08/06/2023 02:17:49 AM : Saved a new best In-Domain checkpoint.
+INFO: Epoch 2:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7413/1.2124
+INFO: Eval_train 
+Eval_train Loss: 1.8044
+INFO: Id_val 
+Id_val Loss: 1.9067
+INFO: Id_test 
+Id_test Loss: 1.8824
+INFO: Val 
+Val Loss: 44711.2227
+INFO: Test 
+Test Loss: nan
+IMPORTANT: 08/06/2023 02:18:05 AM : Saved a new best In-Domain checkpoint.
+IMPORTANT: 08/06/2023 02:18:05 AM : Saved a new best checkpoint.
+INFO: Epoch 3:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7207/1.1825
+INFO: Eval_train 
+Eval_train Loss: 1.7880
+INFO: Id_val 
+Id_val Loss: 1.8183
+INFO: Id_test 
+Id_test Loss: 1.7956
+INFO: Val 
+Val Loss: 23468.9355
+INFO: Test 
+Test Loss: nan
+IMPORTANT: 08/06/2023 02:18:22 AM : Saved a new best In-Domain checkpoint.
+IMPORTANT: 08/06/2023 02:18:23 AM : Saved a new best checkpoint.
+INFO: Epoch 4:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7086/1.1690
+INFO: Eval_train 
+Eval_train Loss: 1.7730
+INFO: Id_val 
+Id_val Loss: 1.8211
+INFO: Id_test 
+Id_test Loss: 1.7966
+INFO: Val 
+Val Loss: 136403.6250
+INFO: Test 
+Test Loss: nan
+INFO: Epoch 5:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7046/1.1354
+INFO: Eval_train 
+Eval_train Loss: 1.8001
+INFO: Id_val 
+Id_val Loss: 1.8700
+INFO: Id_test 
+Id_test Loss: 1.8177
+INFO: Val 
+Val Loss: 1505.8135
+INFO: Test 
+Test Loss: nan
+IMPORTANT: 08/06/2023 02:18:55 AM : Saved a new best checkpoint.
+INFO: Epoch 6:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7021/1.1145
+INFO: Eval_train 
+Eval_train Loss: 1.7957
+INFO: Id_val 
+Id_val Loss: 1.8616
+INFO: Id_test 
+Id_test Loss: 1.8562
+INFO: Val 
+Val Loss: 3038.7737
+INFO: Test 
+Test Loss: nan
+INFO: Epoch 7:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7012/1.1190
+INFO: Eval_train 
+Eval_train Loss: 1.7984
+INFO: Id_val 
+Id_val Loss: 1.8397
+INFO: Id_test 
+Id_test Loss: 1.7620
+INFO: Val 
+Val Loss: 65273.2266
+INFO: Test 
+Test Loss: nan
+INFO: Epoch 8:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6998/1.0749
+INFO: Eval_train 
+Eval_train Loss: 1.7452
+INFO: Id_val 
+Id_val Loss: 1.7954
+INFO: Id_test 
+Id_test Loss: 1.7924
+INFO: Val 
+Val Loss: 561.8837
+INFO: Test 
+Test Loss: inf
+IMPORTANT: 08/06/2023 02:19:44 AM : Saved a new best In-Domain checkpoint.
+IMPORTANT: 08/06/2023 02:19:44 AM : Saved a new best checkpoint.
+INFO: Epoch 9:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7005/1.0521
+INFO: Eval_train 
+Eval_train Loss: 1.7222
+INFO: Id_val 
+Id_val Loss: 1.7722
+INFO: Id_test 
+Id_test Loss: 1.7729
+INFO: Val 
+Val Loss: 114203.4844
+INFO: Test 
+Test Loss: nan
+IMPORTANT: 08/06/2023 02:20:01 AM : Saved a new best In-Domain checkpoint.
+INFO: Epoch 10:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6990/1.0553
+INFO: Eval_train 
+Eval_train Loss: 1.7378
+INFO: Id_val 
+Id_val Loss: 1.7627
+INFO: Id_test 
+Id_test Loss: 1.7729
+INFO: Val 
+Val Loss: 23045.5977
+INFO: Test 
+Test Loss: inf
+IMPORTANT: 08/06/2023 02:20:17 AM : Saved a new best In-Domain checkpoint.
+INFO: Epoch 11:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7012/1.0188
+INFO: Eval_train 
+Eval_train Loss: 1.7316
+INFO: Id_val 
+Id_val Loss: 1.7753
+INFO: Id_test 
+Id_test Loss: 1.7587
+INFO: Val 
+Val Loss: 677.3096
+INFO: Test 
+Test Loss: inf
+INFO: Epoch 12:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6977/0.9984
+INFO: Eval_train 
+Eval_train Loss: 1.7259
+INFO: Id_val 
+Id_val Loss: 1.7609
+INFO: Id_test 
+Id_test Loss: 1.7670
+INFO: Val 
+Val Loss: 81.1610
+INFO: Test 
+Test Loss: inf
+IMPORTANT: 08/06/2023 02:20:50 AM : Saved a new best In-Domain checkpoint.
+IMPORTANT: 08/06/2023 02:20:50 AM : Saved a new best checkpoint.
+INFO: Epoch 13:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6954/0.9852
+INFO: Eval_train 
+Eval_train Loss: 1.7036
+INFO: Id_val 
+Id_val Loss: 1.7512
+INFO: Id_test 
+Id_test Loss: 1.7645
+INFO: Val 
+Val Loss: 207148630016.0000
+INFO: Test 
+Test Loss: nan
+IMPORTANT: 08/06/2023 02:21:07 AM : Saved a new best In-Domain checkpoint.
+INFO: Epoch 14:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6943/0.9924
+INFO: Eval_train 
+Eval_train Loss: 1.7003
+INFO: Id_val 
+Id_val Loss: 1.7316
+INFO: Id_test 
+Id_test Loss: 1.7489
+INFO: Val 
+Val Loss: 1277.9656
+INFO: Test 
+Test Loss: nan
+IMPORTANT: 08/06/2023 02:21:24 AM : Saved a new best In-Domain checkpoint.
+INFO: Epoch 15:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6956/0.9322
+INFO: Eval_train 
+Eval_train Loss: 1.7313
+INFO: Id_val 
+Id_val Loss: 1.7317
+INFO: Id_test 
+Id_test Loss: 1.7390
+INFO: Val 
+Val Loss: 257.1689
+INFO: Test 
+Test Loss: nan
+INFO: Epoch 16:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6968/0.9577
+INFO: Eval_train 
+Eval_train Loss: 1.6957
+INFO: Id_val 
+Id_val Loss: 1.7497
+INFO: Id_test 
+Id_test Loss: 1.7453
+INFO: Val 
+Val Loss: 120.8553
+INFO: Test 
+Test Loss: inf
+INFO: Epoch 17:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6972/0.9718
+INFO: Eval_train 
+Eval_train Loss: 1.6770
+INFO: Id_val 
+Id_val Loss: 1.7209
+INFO: Id_test 
+Id_test Loss: 1.7078
+INFO: Val 
+Val Loss: 1025.8058
+INFO: Test 
+Test Loss: nan
+IMPORTANT: 08/06/2023 02:22:13 AM : Saved a new best In-Domain checkpoint.
+INFO: Epoch 18:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6922/0.9100
+INFO: Eval_train 
+Eval_train Loss: 1.7002
+INFO: Id_val 
+Id_val Loss: 1.7246
+INFO: Id_test 
+Id_test Loss: 1.7888
+INFO: Val 
+Val Loss: 137.6421
+INFO: Test 
+Test Loss: inf
+INFO: Epoch 19:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6943/0.8819
+INFO: Eval_train 
+Eval_train Loss: 1.6724
+INFO: Id_val 
+Id_val Loss: 1.7140
+INFO: Id_test 
+Id_test Loss: 1.7072
+INFO: Val 
+Val Loss: 964.1810
+INFO: Test 
+Test Loss: nan
+IMPORTANT: 08/06/2023 02:22:46 AM : Saved a new best In-Domain checkpoint.
+INFO: Epoch 20:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6958/0.8601
+INFO: Eval_train 
+Eval_train Loss: 1.6362
+INFO: Id_val 
+Id_val Loss: 1.6885
+INFO: Id_test 
+Id_test Loss: 1.6793
+INFO: Val 
+Val Loss: 186.0019
+INFO: Test 
+Test Loss: inf
+IMPORTANT: 08/06/2023 02:23:03 AM : Saved a new best In-Domain checkpoint.
+INFO: Epoch 21:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6946/0.8583
+INFO: Eval_train 
+Eval_train Loss: 1.6282
+INFO: Id_val 
+Id_val Loss: 1.6639
+INFO: Id_test 
+Id_test Loss: 1.6894
+INFO: Val 
+Val Loss: 622.0560
+INFO: Test 
+Test Loss: inf
+IMPORTANT: 08/06/2023 02:23:20 AM : Saved a new best In-Domain checkpoint.
+INFO: Epoch 22:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6937/0.8355
+INFO: Eval_train 
+Eval_train Loss: 1.6565
+INFO: Id_val 
+Id_val Loss: 1.6974
+INFO: Id_test 
+Id_test Loss: 1.7191
+INFO: Val 
+Val Loss: 210.2300
+INFO: Test 
+Test Loss: inf
+INFO: Epoch 23:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6918/0.8114
+INFO: Eval_train 
+Eval_train Loss: 1.6155
+INFO: Id_val 
+Id_val Loss: 1.6518
+INFO: Id_test 
+Id_test Loss: 1.7008
+INFO: Val 
+Val Loss: 97532.2578
+INFO: Test 
+Test Loss: nan
+IMPORTANT: 08/06/2023 02:23:53 AM : Saved a new best In-Domain checkpoint.
+INFO: Epoch 24:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6954/0.8140
+INFO: Eval_train 
+Eval_train Loss: 1.6437
+INFO: Id_val 
+Id_val Loss: 1.7068
+INFO: Id_test 
+Id_test Loss: 1.7411
+INFO: Val 
+Val Loss: 5693457825792.0000
+INFO: Test 
+Test Loss: nan
+INFO: Epoch 25:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6930/0.7516
+INFO: Eval_train 
+Eval_train Loss: 1.5939
+INFO: Id_val 
+Id_val Loss: 1.6457
+INFO: Id_test 
+Id_test Loss: 1.6447
+INFO: Val 
+Val Loss: 1239.9395
+INFO: Test 
+Test Loss: inf
+IMPORTANT: 08/06/2023 02:24:25 AM : Saved a new best In-Domain checkpoint.
+INFO: Epoch 26:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6952/0.7459
+INFO: Eval_train 
+Eval_train Loss: 1.5581
+INFO: Id_val 
+Id_val Loss: 1.5745
+INFO: Id_test 
+Id_test Loss: 1.6497
+INFO: Val 
+Val Loss: 18022.9824
+INFO: Test 
+Test Loss: inf
+IMPORTANT: 08/06/2023 02:24:42 AM : Saved a new best In-Domain checkpoint.
+INFO: Epoch 27:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6904/0.6656
+INFO: Eval_train 
+Eval_train Loss: 1.5061
+INFO: Id_val 
+Id_val Loss: 1.5394
+INFO: Id_test 
+Id_test Loss: 1.5441
+INFO: Val 
+Val Loss: 2549.5337
+INFO: Test 
+Test Loss: inf
+IMPORTANT: 08/06/2023 02:24:59 AM : Saved a new best In-Domain checkpoint.
+INFO: Epoch 28:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6911/0.6341
+INFO: Eval_train 
+Eval_train Loss: 1.4936
+INFO: Id_val 
+Id_val Loss: 1.5327
+INFO: Id_test 
+Id_test Loss: 1.5669
+INFO: Val 
+Val Loss: 1491.8043
+INFO: Test 
+Test Loss: inf
+IMPORTANT: 08/06/2023 02:25:15 AM : Saved a new best In-Domain checkpoint.
+INFO: Epoch 29:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6943/0.6378
+INFO: Eval_train 
+Eval_train Loss: 1.5079
+INFO: Id_val 
+Id_val Loss: 1.5164
+INFO: Id_test 
+Id_test Loss: 1.5948
+INFO: Val 
+Val Loss: 2194.0771
+INFO: Test 
+Test Loss: inf
+IMPORTANT: 08/06/2023 02:25:32 AM : Saved a new best In-Domain checkpoint.
+INFO: Epoch 30:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6961/0.6547
+INFO: Eval_train 
+Eval_train Loss: 1.4890
+INFO: Id_val 
+Id_val Loss: 1.5062
+INFO: Id_test 
+Id_test Loss: 1.5523
+INFO: Val 
+Val Loss: 891.8489
+INFO: Test 
+Test Loss: inf
+IMPORTANT: 08/06/2023 02:25:49 AM : Saved a new best In-Domain checkpoint.
+INFO: Epoch 31:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6941/0.5643
+INFO: Eval_train 
+Eval_train Loss: 1.4786
+INFO: Id_val 
+Id_val Loss: 1.4843
+INFO: Id_test 
+Id_test Loss: 1.5152
+INFO: Val 
+Val Loss: 1351.9270
+INFO: Test 
+Test Loss: inf
+IMPORTANT: 08/06/2023 02:26:05 AM : Saved a new best In-Domain checkpoint.
+INFO: Epoch 32:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6939/0.5723
+INFO: Eval_train 
+Eval_train Loss: 1.4669
+INFO: Id_val 
+Id_val Loss: 1.4803
+INFO: Id_test 
+Id_test Loss: 1.5473
+INFO: Val 
+Val Loss: 8.8201
+INFO: Test 
+Test Loss: inf
+IMPORTANT: 08/06/2023 02:26:21 AM : Saved a new best In-Domain checkpoint.
+IMPORTANT: 08/06/2023 02:26:21 AM : Saved a new best checkpoint.
+INFO: Epoch 33:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6926/0.6069
+INFO: Eval_train 
+Eval_train Loss: 1.4536
+INFO: Id_val 
+Id_val Loss: 1.4478
+INFO: Id_test 
+Id_test Loss: 1.5168
+INFO: Val 
+Val Loss: 7338.3633
+INFO: Test 
+Test Loss: inf
+IMPORTANT: 08/06/2023 02:26:38 AM : Saved a new best In-Domain checkpoint.
+INFO: Epoch 34:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6915/0.5863
+INFO: Eval_train 
+Eval_train Loss: 1.4653
+INFO: Id_val 
+Id_val Loss: 1.4517
+INFO: Id_test 
+Id_test Loss: 1.5283
+INFO: Val 
+Val Loss: 31884.9121
+INFO: Test 
+Test Loss: inf
+INFO: Epoch 35:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6940/0.5485
+INFO: Eval_train 
+Eval_train Loss: 1.4374
+INFO: Id_val 
+Id_val Loss: 1.4354
+INFO: Id_test 
+Id_test Loss: 1.5082
+INFO: Val 
+Val Loss: 299.3878
+INFO: Test 
+Test Loss: inf
+IMPORTANT: 08/06/2023 02:27:10 AM : Saved a new best In-Domain checkpoint.
+INFO: Epoch 36:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6908/0.5104
+INFO: Eval_train 
+Eval_train Loss: 1.4151
+INFO: Id_val 
+Id_val Loss: 1.4257
+INFO: Id_test 
+Id_test Loss: 1.4485
+INFO: Val 
+Val Loss: 64.1340
+INFO: Test 
+Test Loss: inf
+IMPORTANT: 08/06/2023 02:27:27 AM : Saved a new best In-Domain checkpoint.
+INFO: Epoch 37:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6897/0.5153
+INFO: Eval_train 
+Eval_train Loss: 1.4244
+INFO: Id_val 
+Id_val Loss: 1.4326
+INFO: Id_test 
+Id_test Loss: 1.4628
+INFO: Val 
+Val Loss: 357.5304
+INFO: Test 
+Test Loss: inf
+INFO: Epoch 38:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6913/0.4947
+INFO: Eval_train 
+Eval_train Loss: 1.3767
+INFO: Id_val 
+Id_val Loss: 1.3645
+INFO: Id_test 
+Id_test Loss: 1.3931
+INFO: Val 
+Val Loss: 48014.5117
+INFO: Test 
+Test Loss: inf
+IMPORTANT: 08/06/2023 02:27:59 AM : Saved a new best In-Domain checkpoint.
+INFO: Epoch 39:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6902/0.5309
+INFO: Eval_train 
+Eval_train Loss: 1.4295
+INFO: Id_val 
+Id_val Loss: 1.4515
+INFO: Id_test 
+Id_test Loss: 1.4800
+INFO: Val 
+Val Loss: 32931.3047
+INFO: Test 
+Test Loss: inf
+INFO: Epoch 40:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6896/0.5088
+INFO: Eval_train 
+Eval_train Loss: 1.3747
+INFO: Id_val 
+Id_val Loss: 1.3909
+INFO: Id_test 
+Id_test Loss: 1.4171
+INFO: Val 
+Val Loss: 129.7016
+INFO: Test 
+Test Loss: inf
+INFO: Epoch 41:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6909/0.5041
+INFO: Eval_train 
+Eval_train Loss: 1.3811
+INFO: Id_val 
+Id_val Loss: 1.3827
+INFO: Id_test 
+Id_test Loss: 1.4282
+INFO: Val 
+Val Loss: 145.0937
+INFO: Test 
+Test Loss: inf
+INFO: Epoch 42:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6898/0.4765
+INFO: Eval_train 
+Eval_train Loss: 1.3939
+INFO: Id_val 
+Id_val Loss: 1.4015
+INFO: Id_test 
+Id_test Loss: 1.4266
+INFO: Val 
+Val Loss: 7722.0327
+INFO: Test 
+Test Loss: inf
+INFO: Epoch 43:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6907/0.4612
+INFO: Eval_train 
+Eval_train Loss: 1.3900
+INFO: Id_val 
+Id_val Loss: 1.4046
+INFO: Id_test 
+Id_test Loss: 1.4269
+INFO: Val 
+Val Loss: 1384374.7500
+INFO: Test 
+Test Loss: inf
+INFO: Epoch 44:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6912/0.5392
+INFO: Eval_train 
+Eval_train Loss: 1.4076
+INFO: Id_val 
+Id_val Loss: 1.4031
+INFO: Id_test 
+Id_test Loss: 1.4272
+INFO: Val 
+Val Loss: 55430.4727
+INFO: Test 
+Test Loss: inf
+INFO: Epoch 45:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6897/0.4866
+INFO: Eval_train 
+Eval_train Loss: 1.3833
+INFO: Id_val 
+Id_val Loss: 1.3798
+INFO: Id_test 
+Id_test Loss: 1.4241
+INFO: Val 
+Val Loss: 34873.3203
+INFO: Test 
+Test Loss: inf
+INFO: Epoch 46:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6916/0.4581
+INFO: Eval_train 
+Eval_train Loss: 1.4135
+INFO: Id_val 
+Id_val Loss: 1.4265
+INFO: Id_test 
+Id_test Loss: 1.4699
+INFO: Val 
+Val Loss: 73532.6250
+INFO: Test 
+Test Loss: inf
+INFO: Epoch 47:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6898/0.4661
+INFO: Eval_train 
+Eval_train Loss: 1.3639
+INFO: Id_val 
+Id_val Loss: 1.3512
+INFO: Id_test 
+Id_test Loss: 1.3752
+INFO: Val 
+Val Loss: 12728852.0000
+INFO: Test 
+Test Loss: inf
+IMPORTANT: 08/06/2023 02:30:24 AM : Saved a new best In-Domain checkpoint.
+INFO: Epoch 48:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6906/0.4943
+INFO: Eval_train 
+Eval_train Loss: 1.3613
+INFO: Id_val 
+Id_val Loss: 1.3714
+INFO: Id_test 
+Id_test Loss: 1.3826
+INFO: Val 
+Val Loss: 6485559.5000
+INFO: Test 
+Test Loss: inf
+INFO: Epoch 49:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6893/0.4849
+INFO: Eval_train 
+Eval_train Loss: 1.3806
+INFO: Id_val 
+Id_val Loss: 1.4069
+INFO: Id_test 
+Id_test Loss: 1.4230
+INFO: Val 
+Val Loss: 6580824.5000
+INFO: Test 
+Test Loss: inf
+INFO: Epoch 50:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6898/0.4400
+INFO: Eval_train 
+Eval_train Loss: 1.3384
+INFO: Id_val 
+Id_val Loss: 1.3376
+INFO: Id_test 
+Id_test Loss: 1.3520
+INFO: Val 
+Val Loss: 3995045.0000
+INFO: Test 
+Test Loss: inf
+IMPORTANT: 08/06/2023 02:31:13 AM : Saved a new best In-Domain checkpoint.
+INFO: Epoch 51:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6910/0.5011
+INFO: Eval_train 
+Eval_train Loss: 1.3718
+INFO: Id_val 
+Id_val Loss: 1.3982
+INFO: Id_test 
+Id_test Loss: 1.4272
+INFO: Val 
+Val Loss: 42997788.0000
+INFO: Test 
+Test Loss: inf
+INFO: Epoch 52:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6904/0.4262
+INFO: Eval_train 
+Eval_train Loss: 1.3714
+INFO: Id_val 
+Id_val Loss: 1.3778
+INFO: Id_test 
+Id_test Loss: 1.3960
+INFO: Val 
+Val Loss: 46504640.0000
+INFO: Test 
+Test Loss: inf
+INFO: Epoch 53:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6914/0.4255
+INFO: Eval_train 
+Eval_train Loss: 1.3392
+INFO: Id_val 
+Id_val Loss: 1.3506
+INFO: Id_test 
+Id_test Loss: 1.3889
+INFO: Val 
+Val Loss: 8421856.0000
+INFO: Test 
+Test Loss: inf
+INFO: Epoch 54:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6905/0.4562
+INFO: Eval_train 
+Eval_train Loss: 1.3756
+INFO: Id_val 
+Id_val Loss: 1.3727
+INFO: Id_test 
+Id_test Loss: 1.3924
+INFO: Val 
+Val Loss: 13734136.0000
+INFO: Test 
+Test Loss: inf
+INFO: Epoch 55:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6900/0.4420
+INFO: Eval_train 
+Eval_train Loss: 61982.8867
+INFO: Id_val 
+Id_val Loss: 5799167.0000
+INFO: Id_test 
+Id_test Loss: 4465062.5000
+INFO: Val 
+Val Loss: 151458360044841598976.0000
+INFO: Test 
+Test Loss: nan
+INFO: Epoch 56:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6931/0.4744
+INFO: Eval_train 
+Eval_train Loss: 1.3784
+INFO: Id_val 
+Id_val Loss: 1.3717
+INFO: Id_test 
+Id_test Loss: 1.3642
+INFO: Val 
+Val Loss: 4.4520
+INFO: Test 
+Test Loss: inf
+IMPORTANT: 08/06/2023 02:32:50 AM : Saved a new best checkpoint.
+INFO: Epoch 57:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6914/0.4257
+INFO: Eval_train 
+Eval_train Loss: 1.3660
+INFO: Id_val 
+Id_val Loss: 1.3472
+INFO: Id_test 
+Id_test Loss: 1.3713
+INFO: Val 
+Val Loss: 2.1396
+INFO: Test 
+Test Loss: inf
+IMPORTANT: 08/06/2023 02:33:06 AM : Saved a new best checkpoint.
+INFO: Epoch 58:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6923/0.4233
+INFO: Eval_train 
+Eval_train Loss: 1.3732
+INFO: Id_val 
+Id_val Loss: 1.3470
+INFO: Id_test 
+Id_test Loss: 1.3688
+INFO: Val 
+Val Loss: 2.0656
+INFO: Test 
+Test Loss: 349491364702154823565312.0000
+IMPORTANT: 08/06/2023 02:33:23 AM : Saved a new best checkpoint.
+INFO: Epoch 59:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6912/0.4379
+INFO: Eval_train 
+Eval_train Loss: 1.3645
+INFO: Id_val 
+Id_val Loss: 1.3532
+INFO: Id_test 
+Id_test Loss: 1.3898
+INFO: Val 
+Val Loss: 2.0641
+INFO: Test 
+Test Loss: inf
+IMPORTANT: 08/06/2023 02:33:39 AM : Saved a new best checkpoint.
+INFO: Generative model Training end.
+IMPORTANT: 08/06/2023 02:33:40 AM : Total generative training time: 993.5282s
+INFO: Epoch 0:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 1.2554/1.1456
+INFO: Eval_train ACCURACY: 0.3483
+Eval_train Loss: 1.0988
+INFO: Id_val ACCURACY: 0.3500
+Id_val Loss: 1.0983
+INFO: Id_test ACCURACY: 0.3400
+Id_test Loss: 1.0983
+INFO: Val ACCURACY: 0.3300
+Val Loss: 1.1013
+INFO: Test ACCURACY: 0.3633
+Test Loss: 1.1533
+IMPORTANT: 08/06/2023 02:33:56 AM : Saved a new best In-Domain checkpoint.
+IMPORTANT: 08/06/2023 02:33:56 AM : Saved a new best checkpoint.
+INFO: Epoch 1:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 1.1719/0.2196
+INFO: Eval_train ACCURACY: 0.3306
+Eval_train Loss: 1.0969
+INFO: Id_val ACCURACY: 0.2833
+Id_val Loss: 1.1055
+INFO: Id_test ACCURACY: 0.3400
+Id_test Loss: 1.0996
+INFO: Val ACCURACY: 0.3167
+Val Loss: 1.1017
+INFO: Test ACCURACY: 0.3533
+Test Loss: 1.0963
+INFO: Epoch 2:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 1.1603/0.2825
+INFO: Eval_train ACCURACY: 0.3361
+Eval_train Loss: 1.1003
+INFO: Id_val ACCURACY: 0.3500
+Id_val Loss: 1.1028
+INFO: Id_test ACCURACY: 0.3167
+Id_test Loss: 1.1070
+INFO: Val ACCURACY: 0.3667
+Val Loss: 1.1005
+INFO: Test ACCURACY: 0.3033
+Test Loss: 1.3777
+IMPORTANT: 08/06/2023 02:34:29 AM : Saved a new best checkpoint.
+INFO: Epoch 3:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 1.1660/0.3041
+INFO: Eval_train ACCURACY: 0.3572
+Eval_train Loss: 1.0971
+INFO: Id_val ACCURACY: 0.3033
+Id_val Loss: 1.1076
+INFO: Id_test ACCURACY: 0.3433
+Id_test Loss: 1.1046
+INFO: Val ACCURACY: 0.3800
+Val Loss: 1.0975
+INFO: Test ACCURACY: 0.3333
+Test Loss: 1.1018
+IMPORTANT: 08/06/2023 02:34:45 AM : Saved a new best checkpoint.
+INFO: Epoch 4:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 1.1134/0.0817
+INFO: Eval_train ACCURACY: 0.3939
+Eval_train Loss: 1.0745
+INFO: Id_val ACCURACY: 0.3267
+Id_val Loss: 1.0879
+INFO: Id_test ACCURACY: 0.3733
+Id_test Loss: 1.0779
+INFO: Val ACCURACY: 0.3267
+Val Loss: 1.0900
+INFO: Test ACCURACY: 0.3033
+Test Loss: 1.1436
+INFO: Epoch 5:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 1.0941/0.0724
+INFO: Eval_train ACCURACY: 0.4022
+Eval_train Loss: 1.0791
+INFO: Id_val ACCURACY: 0.3533
+Id_val Loss: 1.0894
+INFO: Id_test ACCURACY: 0.3700
+Id_test Loss: 1.0883
+INFO: Val ACCURACY: 0.3500
+Val Loss: 1.1079
+INFO: Test ACCURACY: 0.3033
+Test Loss: 1.6149
+IMPORTANT: 08/06/2023 02:35:17 AM : Saved a new best In-Domain checkpoint.
+INFO: Epoch 6:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 1.0864/0.0926
+INFO: Eval_train ACCURACY: 0.4311
+Eval_train Loss: 1.0540
+INFO: Id_val ACCURACY: 0.4600
+Id_val Loss: 1.0590
+INFO: Id_test ACCURACY: 0.4200
+Id_test Loss: 1.0568
+INFO: Val ACCURACY: 0.4500
+Val Loss: 1.0679
+INFO: Test ACCURACY: 0.3167
+Test Loss: 1.1663
+IMPORTANT: 08/06/2023 02:35:33 AM : Saved a new best In-Domain checkpoint.
+IMPORTANT: 08/06/2023 02:35:33 AM : Saved a new best checkpoint.
+INFO: Epoch 7:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 1.0508/0.1250
+INFO: Eval_train ACCURACY: 0.4617
+Eval_train Loss: 1.0536
+INFO: Id_val ACCURACY: 0.4233
+Id_val Loss: 1.0640
+INFO: Id_test ACCURACY: 0.4067
+Id_test Loss: 1.0654
+INFO: Val ACCURACY: 0.3900
+Val Loss: 1.0789
+INFO: Test ACCURACY: 0.4267
+Test Loss: 1.0913
+INFO: Epoch 8:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 1.0486/0.1036
+INFO: Eval_train ACCURACY: 0.6078
+Eval_train Loss: 1.0004
+INFO: Id_val ACCURACY: 0.6167
+Id_val Loss: 1.0069
+INFO: Id_test ACCURACY: 0.5667
+Id_test Loss: 1.0070
+INFO: Val ACCURACY: 0.5300
+Val Loss: 1.0362
+INFO: Test ACCURACY: 0.3967
+Test Loss: 1.0968
+IMPORTANT: 08/06/2023 02:36:04 AM : Saved a new best In-Domain checkpoint.
+IMPORTANT: 08/06/2023 02:36:04 AM : Saved a new best checkpoint.
+INFO: Epoch 9:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 1.0373/0.1567
+INFO: Eval_train ACCURACY: 0.5467
+Eval_train Loss: 0.9687
+INFO: Id_val ACCURACY: 0.5800
+Id_val Loss: 0.9574
+INFO: Id_test ACCURACY: 0.5000
+Id_test Loss: 0.9786
+INFO: Val ACCURACY: 0.5967
+Val Loss: 0.9682
+INFO: Test ACCURACY: 0.2967
+Test Loss: 1.2035
+IMPORTANT: 08/06/2023 02:36:21 AM : Saved a new best checkpoint.
+INFO: Epoch 10:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 1.0169/0.1808
+INFO: Eval_train ACCURACY: 0.6300
+Eval_train Loss: 0.9265
+INFO: Id_val ACCURACY: 0.6333
+Id_val Loss: 0.9305
+INFO: Id_test ACCURACY: 0.6200
+Id_test Loss: 0.9372
+INFO: Val ACCURACY: 0.6600
+Val Loss: 0.9420
+INFO: Test ACCURACY: 0.2900
+Test Loss: 1.1768
+IMPORTANT: 08/06/2023 02:36:37 AM : Saved a new best In-Domain checkpoint.
+IMPORTANT: 08/06/2023 02:36:37 AM : Saved a new best checkpoint.
+INFO: Epoch 11:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.9906/0.1877
+INFO: Eval_train ACCURACY: 0.7006
+Eval_train Loss: 0.9008
+INFO: Id_val ACCURACY: 0.6933
+Id_val Loss: 0.8992
+INFO: Id_test ACCURACY: 0.6867
+Id_test Loss: 0.8935
+INFO: Val ACCURACY: 0.6467
+Val Loss: 0.9019
+INFO: Test ACCURACY: 0.2900
+Test Loss: 1.2409
+IMPORTANT: 08/06/2023 02:36:53 AM : Saved a new best In-Domain checkpoint.
+INFO: Epoch 12:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.9798/0.2509
+INFO: Eval_train ACCURACY: 0.6806
+Eval_train Loss: 0.8572
+INFO: Id_val ACCURACY: 0.6900
+Id_val Loss: 0.8552
+INFO: Id_test ACCURACY: 0.6600
+Id_test Loss: 0.8666
+INFO: Val ACCURACY: 0.5533
+Val Loss: 0.9127
+INFO: Test ACCURACY: 0.3467
+Test Loss: 1.1778
+INFO: Epoch 13:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.9917/0.2595
+INFO: Eval_train ACCURACY: 0.6317
+Eval_train Loss: 0.9103
+INFO: Id_val ACCURACY: 0.6200
+Id_val Loss: 0.9194
+INFO: Id_test ACCURACY: 0.5833
+Id_test Loss: 0.9193
+INFO: Val ACCURACY: 0.5633
+Val Loss: 0.9499
+INFO: Test ACCURACY: 0.3100
+Test Loss: 1.1617
+INFO: Epoch 14:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.9503/0.2879
+INFO: Eval_train ACCURACY: 0.7006
+Eval_train Loss: 0.8387
+INFO: Id_val ACCURACY: 0.7067
+Id_val Loss: 0.8467
+INFO: Id_test ACCURACY: 0.6733
+Id_test Loss: 0.8652
+INFO: Val ACCURACY: 0.6533
+Val Loss: 0.8960
+INFO: Test ACCURACY: 0.3867
+Test Loss: 1.0952
+IMPORTANT: 08/06/2023 02:37:42 AM : Saved a new best In-Domain checkpoint.
+INFO: Epoch 15:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.9469/0.3514
+INFO: Eval_train ACCURACY: 0.7178
+Eval_train Loss: 0.8238
+INFO: Id_val ACCURACY: 0.7300
+Id_val Loss: 0.8207
+INFO: Id_test ACCURACY: 0.7067
+Id_test Loss: 0.8248
+INFO: Val ACCURACY: 0.4400
+Val Loss: 1.0249
+INFO: Test ACCURACY: 0.2967
+Test Loss: 1.3964
+IMPORTANT: 08/06/2023 02:37:58 AM : Saved a new best In-Domain checkpoint.
+INFO: Epoch 16:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.9465/0.3517
+INFO: Eval_train ACCURACY: 0.7639
+Eval_train Loss: 0.8299
+INFO: Id_val ACCURACY: 0.7867
+Id_val Loss: 0.8272
+INFO: Id_test ACCURACY: 0.7767
+Id_test Loss: 0.8277
+INFO: Val ACCURACY: 0.6933
+Val Loss: 0.9015
+INFO: Test ACCURACY: 0.3333
+Test Loss: 1.1244
+IMPORTANT: 08/06/2023 02:38:14 AM : Saved a new best In-Domain checkpoint.
+IMPORTANT: 08/06/2023 02:38:14 AM : Saved a new best checkpoint.
+INFO: Epoch 17:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.9334/0.3989
+INFO: Eval_train ACCURACY: 0.7206
+Eval_train Loss: 0.7842
+INFO: Id_val ACCURACY: 0.7200
+Id_val Loss: 0.7883
+INFO: Id_test ACCURACY: 0.7167
+Id_test Loss: 0.7847
+INFO: Val ACCURACY: 0.6433
+Val Loss: 0.8672
+INFO: Test ACCURACY: 0.3033
+Test Loss: 1.1711
+INFO: Epoch 18:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.9239/0.3363
+INFO: Eval_train ACCURACY: 0.7339
+Eval_train Loss: 0.8019
+INFO: Id_val ACCURACY: 0.7467
+Id_val Loss: 0.8055
+INFO: Id_test ACCURACY: 0.7200
+Id_test Loss: 0.8033
+INFO: Val ACCURACY: 0.6833
+Val Loss: 0.8671
+INFO: Test ACCURACY: 0.3867
+Test Loss: 1.1001
+INFO: Epoch 19:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.9148/0.3804
+INFO: Eval_train ACCURACY: 0.6989
+Eval_train Loss: 0.8074
+INFO: Id_val ACCURACY: 0.6800
+Id_val Loss: 0.8189
+INFO: Id_test ACCURACY: 0.6767
+Id_test Loss: 0.8161
+INFO: Val ACCURACY: 0.6467
+Val Loss: 0.9008
+INFO: Test ACCURACY: 0.3267
+Test Loss: 1.2205
+INFO: Epoch 20:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.9162/0.3896
+INFO: Eval_train ACCURACY: 0.7478
+Eval_train Loss: 0.7903
+INFO: Id_val ACCURACY: 0.7567
+Id_val Loss: 0.8039
+INFO: Id_test ACCURACY: 0.7167
+Id_test Loss: 0.8023
+INFO: Val ACCURACY: 0.6933
+Val Loss: 0.8877
+INFO: Test ACCURACY: 0.3733
+Test Loss: 1.1571
+INFO: Epoch 21:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.9204/0.4205
+INFO: Eval_train ACCURACY: 0.6656
+Eval_train Loss: 0.8202
+INFO: Id_val ACCURACY: 0.6533
+Id_val Loss: 0.8362
+INFO: Id_test ACCURACY: 0.6300
+Id_test Loss: 0.8324
+INFO: Val ACCURACY: 0.6367
+Val Loss: 0.8710
+INFO: Test ACCURACY: 0.3233
+Test Loss: 1.1192
+INFO: Epoch 22:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.8956/0.3911
+INFO: Eval_train ACCURACY: 0.7467
+Eval_train Loss: 0.7648
+INFO: Id_val ACCURACY: 0.7700
+Id_val Loss: 0.7645
+INFO: Id_test ACCURACY: 0.7133
+Id_test Loss: 0.7648
+INFO: Val ACCURACY: 0.6100
+Val Loss: 0.8785
+INFO: Test ACCURACY: 0.3167
+Test Loss: 1.2139
+INFO: Epoch 23:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.9167/0.4497
+INFO: Eval_train ACCURACY: 0.6778
+Eval_train Loss: 0.8135
+INFO: Id_val ACCURACY: 0.6833
+Id_val Loss: 0.8193
+INFO: Id_test ACCURACY: 0.6533
+Id_test Loss: 0.8219
+INFO: Val ACCURACY: 0.7133
+Val Loss: 0.8042
+INFO: Test ACCURACY: 0.4033
+Test Loss: 1.1328
+IMPORTANT: 08/06/2023 02:40:08 AM : Saved a new best checkpoint.
+INFO: Epoch 24:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.8938/0.4545
+INFO: Eval_train ACCURACY: 0.7517
+Eval_train Loss: 0.7516
+INFO: Id_val ACCURACY: 0.7467
+Id_val Loss: 0.7653
+INFO: Id_test ACCURACY: 0.7267
+Id_test Loss: 0.7671
+INFO: Val ACCURACY: 0.6867
+Val Loss: 0.8658
+INFO: Test ACCURACY: 0.3367
+Test Loss: 1.1551
+INFO: Epoch 25:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.8851/0.5627
+INFO: Eval_train ACCURACY: 0.7383
+Eval_train Loss: 0.7746
+INFO: Id_val ACCURACY: 0.7400
+Id_val Loss: 0.7782
+INFO: Id_test ACCURACY: 0.7133
+Id_test Loss: 0.7763
+INFO: Val ACCURACY: 0.6500
+Val Loss: 0.8593
+INFO: Test ACCURACY: 0.3500
+Test Loss: 1.3555
+INFO: Epoch 26:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.8871/0.4258
+INFO: Eval_train ACCURACY: 0.7872
+Eval_train Loss: 0.7290
+INFO: Id_val ACCURACY: 0.8233
+Id_val Loss: 0.7335
+INFO: Id_test ACCURACY: 0.7633
+Id_test Loss: 0.7258
+INFO: Val ACCURACY: 0.7133
+Val Loss: 0.8136
+INFO: Test ACCURACY: 0.4000
+Test Loss: 1.2066
+IMPORTANT: 08/06/2023 02:40:55 AM : Saved a new best In-Domain checkpoint.
+INFO: Epoch 27:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.8671/0.4912
+INFO: Eval_train ACCURACY: 0.7661
+Eval_train Loss: 0.7311
+INFO: Id_val ACCURACY: 0.7800
+Id_val Loss: 0.7292
+INFO: Id_test ACCURACY: 0.7467
+Id_test Loss: 0.7369
+INFO: Val ACCURACY: 0.7633
+Val Loss: 0.7974
+INFO: Test ACCURACY: 0.4000
+Test Loss: 1.1098
+IMPORTANT: 08/06/2023 02:41:11 AM : Saved a new best checkpoint.
+INFO: Epoch 28:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.8573/0.5114
+INFO: Eval_train ACCURACY: 0.7467
+Eval_train Loss: 0.7222
+INFO: Id_val ACCURACY: 0.7367
+Id_val Loss: 0.7321
+INFO: Id_test ACCURACY: 0.7300
+Id_test Loss: 0.7345
+INFO: Val ACCURACY: 0.6967
+Val Loss: 0.8244
+INFO: Test ACCURACY: 0.3600
+Test Loss: 1.1777
+INFO: Epoch 29:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.8696/0.5300
+INFO: Eval_train ACCURACY: 0.7700
+Eval_train Loss: 0.7156
+INFO: Id_val ACCURACY: 0.7933
+Id_val Loss: 0.7192
+INFO: Id_test ACCURACY: 0.7500
+Id_test Loss: 0.7229
+INFO: Val ACCURACY: 0.7633
+Val Loss: 0.7926
+INFO: Test ACCURACY: 0.3667
+Test Loss: 1.1446
+INFO: Epoch 30:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.8525/0.4254
+INFO: Eval_train ACCURACY: 0.8128
+Eval_train Loss: 0.6970
+INFO: Id_val ACCURACY: 0.8467
+Id_val Loss: 0.7004
+INFO: Id_test ACCURACY: 0.8100
+Id_test Loss: 0.6955
+INFO: Val ACCURACY: 0.7833
+Val Loss: 0.7649
+INFO: Test ACCURACY: 0.4533
+Test Loss: 1.2076
+IMPORTANT: 08/06/2023 02:41:59 AM : Saved a new best In-Domain checkpoint.
+IMPORTANT: 08/06/2023 02:41:59 AM : Saved a new best checkpoint.
+INFO: Epoch 31:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.8635/0.4712
+INFO: Eval_train ACCURACY: 0.8067
+Eval_train Loss: 0.7116
+INFO: Id_val ACCURACY: 0.8400
+Id_val Loss: 0.7081
+INFO: Id_test ACCURACY: 0.8200
+Id_test Loss: 0.7059
+INFO: Val ACCURACY: 0.7300
+Val Loss: 0.7937
+INFO: Test ACCURACY: 0.3667
+Test Loss: 1.1381
+INFO: Epoch 32:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.8689/0.5269
+INFO: Eval_train ACCURACY: 0.7628
+Eval_train Loss: 0.7261
+INFO: Id_val ACCURACY: 0.7700
+Id_val Loss: 0.7365
+INFO: Id_test ACCURACY: 0.7567
+Id_test Loss: 0.7316
+INFO: Val ACCURACY: 0.7433
+Val Loss: 0.8131
+INFO: Test ACCURACY: 0.3733
+Test Loss: 1.1049
+INFO: Epoch 33:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.8403/0.5534
+INFO: Eval_train ACCURACY: 0.7172
+Eval_train Loss: 0.7322
+INFO: Id_val ACCURACY: 0.7400
+Id_val Loss: 0.7322
+INFO: Id_test ACCURACY: 0.7067
+Id_test Loss: 0.7406
+INFO: Val ACCURACY: 0.6933
+Val Loss: 0.8140
+INFO: Test ACCURACY: 0.5400
+Test Loss: 0.9289
+INFO: Epoch 34:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.8564/0.7213
+INFO: Eval_train ACCURACY: 0.8017
+Eval_train Loss: 0.6990
+INFO: Id_val ACCURACY: 0.8233
+Id_val Loss: 0.7009
+INFO: Id_test ACCURACY: 0.7833
+Id_test Loss: 0.7053
+INFO: Val ACCURACY: 0.7233
+Val Loss: 0.8085
+INFO: Test ACCURACY: 0.3433
+Test Loss: 1.1274
+INFO: Epoch 35:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.8572/0.5088
+INFO: Eval_train ACCURACY: 0.7606
+Eval_train Loss: 0.6967
+INFO: Id_val ACCURACY: 0.7833
+Id_val Loss: 0.7064
+INFO: Id_test ACCURACY: 0.7400
+Id_test Loss: 0.6992
+INFO: Val ACCURACY: 0.7033
+Val Loss: 0.8179
+INFO: Test ACCURACY: 0.3833
+Test Loss: 1.2006
+INFO: Epoch 36:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.8602/0.5596
+INFO: Eval_train ACCURACY: 0.7744
+Eval_train Loss: 0.6945
+INFO: Id_val ACCURACY: 0.7967
+Id_val Loss: 0.6996
+INFO: Id_test ACCURACY: 0.7400
+Id_test Loss: 0.7023
+INFO: Val ACCURACY: 0.7400
+Val Loss: 0.8492
+INFO: Test ACCURACY: 0.4667
+Test Loss: 1.0152
+INFO: Epoch 37:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.8488/0.6458
+INFO: Eval_train ACCURACY: 0.7911
+Eval_train Loss: 0.7132
+INFO: Id_val ACCURACY: 0.7967
+Id_val Loss: 0.7216
+INFO: Id_test ACCURACY: 0.7500
+Id_test Loss: 0.7137
+INFO: Val ACCURACY: 0.7833
+Val Loss: 0.7660
+INFO: Test ACCURACY: 0.4933
+Test Loss: 1.0395
+INFO: Epoch 38:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.8471/0.5291
+INFO: Eval_train ACCURACY: 0.8133
+Eval_train Loss: 0.7024
+INFO: Id_val ACCURACY: 0.8267
+Id_val Loss: 0.7115
+INFO: Id_test ACCURACY: 0.8033
+Id_test Loss: 0.6987
+INFO: Val ACCURACY: 0.7833
+Val Loss: 0.7930
+INFO: Test ACCURACY: 0.3967
+Test Loss: 1.0266
+INFO: Epoch 39:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.8108/0.5338
+INFO: Eval_train ACCURACY: 0.8078
+Eval_train Loss: 0.6678
+INFO: Id_val ACCURACY: 0.8433
+Id_val Loss: 0.6737
+INFO: Id_test ACCURACY: 0.7967
+Id_test Loss: 0.6630
+INFO: Val ACCURACY: 0.7733
+Val Loss: 0.7855
+INFO: Test ACCURACY: 0.3833
+Test Loss: 1.1072
+INFO: Epoch 40:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.8287/0.5653
+INFO: Eval_train ACCURACY: 0.7800
+Eval_train Loss: 0.6898
+INFO: Id_val ACCURACY: 0.8033
+Id_val Loss: 0.6949
+INFO: Id_test ACCURACY: 0.7633
+Id_test Loss: 0.6948
+INFO: Val ACCURACY: 0.7800
+Val Loss: 0.7830
+INFO: Test ACCURACY: 0.4500
+Test Loss: 1.0032
+INFO: Epoch 41:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.8100/0.6357
+INFO: Eval_train ACCURACY: 0.7794
+Eval_train Loss: 0.6730
+INFO: Id_val ACCURACY: 0.7800
+Id_val Loss: 0.6942
+INFO: Id_test ACCURACY: 0.7733
+Id_test Loss: 0.6725
+INFO: Val ACCURACY: 0.7100
+Val Loss: 0.8081
+INFO: Test ACCURACY: 0.4233
+Test Loss: 1.0181
+INFO: Epoch 42:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.8298/0.6344
+INFO: Eval_train ACCURACY: 0.7639
+Eval_train Loss: 0.7549
+INFO: Id_val ACCURACY: 0.7600
+Id_val Loss: 0.7663
+INFO: Id_test ACCURACY: 0.7500
+Id_test Loss: 0.7591
+INFO: Val ACCURACY: 0.7633
+Val Loss: 0.8023
+INFO: Test ACCURACY: 0.7467
+Test Loss: 0.8521
+INFO: Epoch 43:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.8097/0.5759
+INFO: Eval_train ACCURACY: 0.7422
+Eval_train Loss: 0.6950
+INFO: Id_val ACCURACY: 0.7867
+Id_val Loss: 0.7003
+INFO: Id_test ACCURACY: 0.7367
+Id_test Loss: 0.7079
+INFO: Val ACCURACY: 0.7167
+Val Loss: 0.7784
+INFO: Test ACCURACY: 0.4333
+Test Loss: 1.0639
+INFO: Epoch 44:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.8159/0.6216
+INFO: Eval_train ACCURACY: 0.8128
+Eval_train Loss: 0.6662
+INFO: Id_val ACCURACY: 0.8167
+Id_val Loss: 0.6596
+INFO: Id_test ACCURACY: 0.8300
+Id_test Loss: 0.6490
+INFO: Val ACCURACY: 0.6900
+Val Loss: 0.7799
+INFO: Test ACCURACY: 0.4533
+Test Loss: 1.8337
+INFO: Epoch 45:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.8107/0.6100
+INFO: Eval_train ACCURACY: 0.7822
+Eval_train Loss: 0.7191
+INFO: Id_val ACCURACY: 0.7667
+Id_val Loss: 0.7264
+INFO: Id_test ACCURACY: 0.7633
+Id_test Loss: 0.7222
+INFO: Val ACCURACY: 0.7600
+Val Loss: 0.7681
+INFO: Test ACCURACY: 0.6567
+Test Loss: 0.8826
+INFO: Epoch 46:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.8285/0.7208
+INFO: Eval_train ACCURACY: 0.7489
+Eval_train Loss: 0.7252
+INFO: Id_val ACCURACY: 0.7800
+Id_val Loss: 0.7255
+INFO: Id_test ACCURACY: 0.7567
+Id_test Loss: 0.7274
+INFO: Val ACCURACY: 0.7300
+Val Loss: 0.7875
+INFO: Test ACCURACY: 0.5733
+Test Loss: 0.9566
+INFO: Epoch 47:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7955/0.6103
+INFO: Eval_train ACCURACY: 0.7294
+Eval_train Loss: 0.6909
+INFO: Id_val ACCURACY: 0.7533
+Id_val Loss: 0.6976
+INFO: Id_test ACCURACY: 0.7500
+Id_test Loss: 0.6968
+INFO: Val ACCURACY: 0.7067
+Val Loss: 0.7674
+INFO: Test ACCURACY: 0.3700
+Test Loss: 1.1683
+INFO: Epoch 48:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.8244/0.7448
+INFO: Eval_train ACCURACY: 0.7672
+Eval_train Loss: 0.6912
+INFO: Id_val ACCURACY: 0.7933
+Id_val Loss: 0.7016
+INFO: Id_test ACCURACY: 0.7633
+Id_test Loss: 0.6918
+INFO: Val ACCURACY: 0.7500
+Val Loss: 0.7729
+INFO: Test ACCURACY: 0.4400
+Test Loss: 1.0066
+INFO: Epoch 49:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.8110/0.6767
+INFO: Eval_train ACCURACY: 0.7889
+Eval_train Loss: 0.6750
+INFO: Id_val ACCURACY: 0.8033
+Id_val Loss: 0.6753
+INFO: Id_test ACCURACY: 0.7700
+Id_test Loss: 0.6704
+INFO: Val ACCURACY: 0.7333
+Val Loss: 0.7698
+INFO: Test ACCURACY: 0.3733
+Test Loss: 1.3091
+INFO: Epoch 50:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.8373/0.6354
+INFO: Eval_train ACCURACY: 0.7850
+Eval_train Loss: 0.6756
+INFO: Id_val ACCURACY: 0.7867
+Id_val Loss: 0.6705
+INFO: Id_test ACCURACY: 0.7667
+Id_test Loss: 0.6690
+INFO: Val ACCURACY: 0.7367
+Val Loss: 0.7797
+INFO: Test ACCURACY: 0.3567
+Test Loss: 1.3189
+INFO: Epoch 51:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.8210/0.7174
+INFO: Eval_train ACCURACY: 0.7639
+Eval_train Loss: 0.6895
+INFO: Id_val ACCURACY: 0.7733
+Id_val Loss: 0.7001
+INFO: Id_test ACCURACY: 0.7700
+Id_test Loss: 0.6909
+INFO: Val ACCURACY: 0.7200
+Val Loss: 0.8067
+INFO: Test ACCURACY: 0.4233
+Test Loss: 1.0936
+INFO: Epoch 52:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7914/0.6484
+INFO: Eval_train ACCURACY: 0.7911
+Eval_train Loss: 0.6795
+INFO: Id_val ACCURACY: 0.8033
+Id_val Loss: 0.6867
+INFO: Id_test ACCURACY: 0.7733
+Id_test Loss: 0.6767
+INFO: Val ACCURACY: 0.7700
+Val Loss: 0.7627
+INFO: Test ACCURACY: 0.5000
+Test Loss: 1.0251
+INFO: Epoch 53:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7948/0.6430
+INFO: Eval_train ACCURACY: 0.7722
+Eval_train Loss: 0.7107
+INFO: Id_val ACCURACY: 0.7733
+Id_val Loss: 0.7211
+INFO: Id_test ACCURACY: 0.7667
+Id_test Loss: 0.7149
+INFO: Val ACCURACY: 0.7433
+Val Loss: 0.8054
+INFO: Test ACCURACY: 0.5533
+Test Loss: 0.9816
+INFO: Epoch 54:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7887/0.6815
+INFO: Eval_train ACCURACY: 0.8317
+Eval_train Loss: 0.6840
+INFO: Id_val ACCURACY: 0.8333
+Id_val Loss: 0.6839
+INFO: Id_test ACCURACY: 0.8233
+Id_test Loss: 0.6744
+INFO: Val ACCURACY: 0.7633
+Val Loss: 0.7837
+INFO: Test ACCURACY: 0.5733
+Test Loss: 0.9574
+INFO: Epoch 55:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7785/0.6616
+INFO: Eval_train ACCURACY: 0.8211
+Eval_train Loss: 0.6298
+INFO: Id_val ACCURACY: 0.8533
+Id_val Loss: 0.6296
+INFO: Id_test ACCURACY: 0.8267
+Id_test Loss: 0.6237
+INFO: Val ACCURACY: 0.7733
+Val Loss: 0.7361
+INFO: Test ACCURACY: 0.4967
+Test Loss: 1.0300
+IMPORTANT: 08/06/2023 02:48:42 AM : Saved a new best In-Domain checkpoint.
+INFO: Epoch 56:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7986/0.7903
+INFO: Eval_train ACCURACY: 0.8133
+Eval_train Loss: 0.6591
+INFO: Id_val ACCURACY: 0.8367
+Id_val Loss: 0.6599
+INFO: Id_test ACCURACY: 0.8067
+Id_test Loss: 0.6408
+INFO: Val ACCURACY: 0.7000
+Val Loss: 0.7870
+INFO: Test ACCURACY: 0.4533
+Test Loss: 1.0276
+INFO: Epoch 57:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7930/0.7199
+INFO: Eval_train ACCURACY: 0.8161
+Eval_train Loss: 0.6433
+INFO: Id_val ACCURACY: 0.8233
+Id_val Loss: 0.6351
+INFO: Id_test ACCURACY: 0.8367
+Id_test Loss: 0.6235
+INFO: Val ACCURACY: 0.7600
+Val Loss: 0.7230
+INFO: Test ACCURACY: 0.4867
+Test Loss: 1.0782
+INFO: Epoch 58:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7784/0.6272
+INFO: Eval_train ACCURACY: 0.8361
+Eval_train Loss: 0.6281
+INFO: Id_val ACCURACY: 0.8533
+Id_val Loss: 0.6230
+INFO: Id_test ACCURACY: 0.8433
+Id_test Loss: 0.6086
+INFO: Val ACCURACY: 0.7800
+Val Loss: 0.7289
+INFO: Test ACCURACY: 0.4533
+Test Loss: 1.0163
+INFO: Epoch 59:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7820/0.6960
+INFO: Eval_train ACCURACY: 0.8267
+Eval_train Loss: 0.6511
+INFO: Id_val ACCURACY: 0.8500
+Id_val Loss: 0.6612
+INFO: Id_test ACCURACY: 0.8200
+Id_test Loss: 0.6431
+INFO: Val ACCURACY: 0.8000
+Val Loss: 0.7603
+INFO: Test ACCURACY: 0.5467
+Test Loss: 0.9246
+IMPORTANT: 08/06/2023 02:49:46 AM : Saved a new best checkpoint.
+INFO: Epoch 60:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.8000/0.6366
+INFO: Eval_train ACCURACY: 0.8506
+Eval_train Loss: 0.6382
+INFO: Id_val ACCURACY: 0.8633
+Id_val Loss: 0.6539
+INFO: Id_test ACCURACY: 0.8433
+Id_test Loss: 0.6237
+INFO: Val ACCURACY: 0.7533
+Val Loss: 0.7546
+INFO: Test ACCURACY: 0.3400
+Test Loss: 1.1042
+IMPORTANT: 08/06/2023 02:50:02 AM : Saved a new best In-Domain checkpoint.
+INFO: Epoch 61:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7973/0.7096
+INFO: Eval_train ACCURACY: 0.7550
+Eval_train Loss: 0.6647
+INFO: Id_val ACCURACY: 0.7767
+Id_val Loss: 0.6674
+INFO: Id_test ACCURACY: 0.7667
+Id_test Loss: 0.6617
+INFO: Val ACCURACY: 0.7233
+Val Loss: 0.8035
+INFO: Test ACCURACY: 0.2933
+Test Loss: 1.3412
+INFO: Epoch 62:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7837/0.6895
+INFO: Eval_train ACCURACY: 0.8522
+Eval_train Loss: 0.6390
+INFO: Id_val ACCURACY: 0.8633
+Id_val Loss: 0.6456
+INFO: Id_test ACCURACY: 0.8500
+Id_test Loss: 0.6247
+INFO: Val ACCURACY: 0.6533
+Val Loss: 0.8082
+INFO: Test ACCURACY: 0.4067
+Test Loss: 1.3913
+INFO: Epoch 63:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7727/0.6492
+INFO: Eval_train ACCURACY: 0.8239
+Eval_train Loss: 0.6301
+INFO: Id_val ACCURACY: 0.8233
+Id_val Loss: 0.6291
+INFO: Id_test ACCURACY: 0.8467
+Id_test Loss: 0.6064
+INFO: Val ACCURACY: 0.7967
+Val Loss: 0.7214
+INFO: Test ACCURACY: 0.5633
+Test Loss: 0.9539
+INFO: Epoch 64:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.8018/0.6449
+INFO: Eval_train ACCURACY: 0.7944
+Eval_train Loss: 0.6423
+INFO: Id_val ACCURACY: 0.8233
+Id_val Loss: 0.6348
+INFO: Id_test ACCURACY: 0.7967
+Id_test Loss: 0.6349
+INFO: Val ACCURACY: 0.7167
+Val Loss: 0.7358
+INFO: Test ACCURACY: 0.3700
+Test Loss: 1.1325
+INFO: Epoch 65:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7890/0.6385
+INFO: Eval_train ACCURACY: 0.8272
+Eval_train Loss: 0.6221
+INFO: Id_val ACCURACY: 0.8567
+Id_val Loss: 0.6184
+INFO: Id_test ACCURACY: 0.8367
+Id_test Loss: 0.6081
+INFO: Val ACCURACY: 0.7767
+Val Loss: 0.7132
+INFO: Test ACCURACY: 0.3900
+Test Loss: 1.0858
+INFO: Epoch 66:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7717/0.6552
+INFO: Eval_train ACCURACY: 0.8072
+Eval_train Loss: 0.6355
+INFO: Id_val ACCURACY: 0.8367
+Id_val Loss: 0.6228
+INFO: Id_test ACCURACY: 0.8133
+Id_test Loss: 0.6138
+INFO: Val ACCURACY: 0.7867
+Val Loss: 0.7352
+INFO: Test ACCURACY: 0.3000
+Test Loss: 1.3783
+INFO: Epoch 67:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.8049/0.6573
+INFO: Eval_train ACCURACY: 0.8139
+Eval_train Loss: 0.6456
+INFO: Id_val ACCURACY: 0.8200
+Id_val Loss: 0.6579
+INFO: Id_test ACCURACY: 0.8067
+Id_test Loss: 0.6316
+INFO: Val ACCURACY: 0.7867
+Val Loss: 0.7477
+INFO: Test ACCURACY: 0.5167
+Test Loss: 1.0121
+INFO: Epoch 68:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7644/0.6647
+INFO: Eval_train ACCURACY: 0.8233
+Eval_train Loss: 0.6265
+INFO: Id_val ACCURACY: 0.8400
+Id_val Loss: 0.6185
+INFO: Id_test ACCURACY: 0.8333
+Id_test Loss: 0.6077
+INFO: Val ACCURACY: 0.7833
+Val Loss: 0.7114
+INFO: Test ACCURACY: 0.6967
+Test Loss: 0.9063
+INFO: Epoch 69:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7705/0.6576
+INFO: Eval_train ACCURACY: 0.7422
+Eval_train Loss: 0.6783
+INFO: Id_val ACCURACY: 0.7433
+Id_val Loss: 0.6711
+INFO: Id_test ACCURACY: 0.7433
+Id_test Loss: 0.6669
+INFO: Val ACCURACY: 0.7700
+Val Loss: 0.7702
+INFO: Test ACCURACY: 0.5200
+Test Loss: 0.9804
+INFO: Epoch 70:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7659/0.6526
+INFO: Eval_train ACCURACY: 0.8306
+Eval_train Loss: 0.6283
+INFO: Id_val ACCURACY: 0.8567
+Id_val Loss: 0.6304
+INFO: Id_test ACCURACY: 0.8267
+Id_test Loss: 0.6076
+INFO: Val ACCURACY: 0.7900
+Val Loss: 0.6930
+INFO: Test ACCURACY: 0.5633
+Test Loss: 0.9762
+INFO: Epoch 71:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7597/0.8012
+INFO: Eval_train ACCURACY: 0.7756
+Eval_train Loss: 0.6728
+INFO: Id_val ACCURACY: 0.8033
+Id_val Loss: 0.6759
+INFO: Id_test ACCURACY: 0.7733
+Id_test Loss: 0.6642
+INFO: Val ACCURACY: 0.7300
+Val Loss: 0.7731
+INFO: Test ACCURACY: 0.7300
+Test Loss: 0.8374
+INFO: Epoch 72:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7858/0.6410
+INFO: Eval_train ACCURACY: 0.8500
+Eval_train Loss: 0.6129
+INFO: Id_val ACCURACY: 0.8567
+Id_val Loss: 0.6081
+INFO: Id_test ACCURACY: 0.8600
+Id_test Loss: 0.6000
+INFO: Val ACCURACY: 0.7767
+Val Loss: 0.6935
+INFO: Test ACCURACY: 0.5067
+Test Loss: 1.0551
+INFO: Epoch 73:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7627/0.7273
+INFO: Eval_train ACCURACY: 0.8167
+Eval_train Loss: 0.6247
+INFO: Id_val ACCURACY: 0.8433
+Id_val Loss: 0.6194
+INFO: Id_test ACCURACY: 0.8200
+Id_test Loss: 0.6118
+INFO: Val ACCURACY: 0.7933
+Val Loss: 0.7121
+INFO: Test ACCURACY: 0.7367
+Test Loss: 0.8415
+INFO: Epoch 74:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7502/0.7582
+INFO: Eval_train ACCURACY: 0.7967
+Eval_train Loss: 0.6329
+INFO: Id_val ACCURACY: 0.8100
+Id_val Loss: 0.6469
+INFO: Id_test ACCURACY: 0.7800
+Id_test Loss: 0.6099
+INFO: Val ACCURACY: 0.7467
+Val Loss: 0.7179
+INFO: Test ACCURACY: 0.5867
+Test Loss: 0.9340
+INFO: Epoch 75:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7746/0.7481
+INFO: Eval_train ACCURACY: 0.8056
+Eval_train Loss: 0.6251
+INFO: Id_val ACCURACY: 0.8167
+Id_val Loss: 0.6303
+INFO: Id_test ACCURACY: 0.8133
+Id_test Loss: 0.6168
+INFO: Val ACCURACY: 0.7600
+Val Loss: 0.7030
+INFO: Test ACCURACY: 0.5633
+Test Loss: 0.9572
+INFO: Epoch 76:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7569/0.7602
+INFO: Eval_train ACCURACY: 0.8039
+Eval_train Loss: 0.6389
+INFO: Id_val ACCURACY: 0.8333
+Id_val Loss: 0.6561
+INFO: Id_test ACCURACY: 0.8167
+Id_test Loss: 0.6356
+INFO: Val ACCURACY: 0.7033
+Val Loss: 0.7255
+INFO: Test ACCURACY: 0.5867
+Test Loss: 0.9347
+INFO: Epoch 77:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7484/0.7342
+INFO: Eval_train ACCURACY: 0.8022
+Eval_train Loss: 0.6283
+INFO: Id_val ACCURACY: 0.8233
+Id_val Loss: 0.6198
+INFO: Id_test ACCURACY: 0.8233
+Id_test Loss: 0.6153
+INFO: Val ACCURACY: 0.7500
+Val Loss: 0.7097
+INFO: Test ACCURACY: 0.5567
+Test Loss: 0.8951
+INFO: Epoch 78:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7660/0.7076
+INFO: Eval_train ACCURACY: 0.8389
+Eval_train Loss: 0.6481
+INFO: Id_val ACCURACY: 0.8467
+Id_val Loss: 0.6598
+INFO: Id_test ACCURACY: 0.8267
+Id_test Loss: 0.6358
+INFO: Val ACCURACY: 0.7867
+Val Loss: 0.7426
+INFO: Test ACCURACY: 0.7000
+Test Loss: 0.8521
+INFO: Epoch 79:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7512/0.6528
+INFO: Eval_train ACCURACY: 0.8350
+Eval_train Loss: 0.6102
+INFO: Id_val ACCURACY: 0.8433
+Id_val Loss: 0.6064
+INFO: Id_test ACCURACY: 0.8367
+Id_test Loss: 0.5912
+INFO: Val ACCURACY: 0.7933
+Val Loss: 0.6999
+INFO: Test ACCURACY: 0.7533
+Test Loss: 0.8572
+INFO: Epoch 80:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7698/0.7251
+INFO: Eval_train ACCURACY: 0.8450
+Eval_train Loss: 0.6286
+INFO: Id_val ACCURACY: 0.8533
+Id_val Loss: 0.6253
+INFO: Id_test ACCURACY: 0.8467
+Id_test Loss: 0.6056
+INFO: Val ACCURACY: 0.7200
+Val Loss: 0.7663
+INFO: Test ACCURACY: 0.5800
+Test Loss: 0.9284
+INFO: Epoch 81:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7450/0.7219
+INFO: Eval_train ACCURACY: 0.8272
+Eval_train Loss: 0.6129
+INFO: Id_val ACCURACY: 0.8433
+Id_val Loss: 0.6186
+INFO: Id_test ACCURACY: 0.8300
+Id_test Loss: 0.5987
+INFO: Val ACCURACY: 0.8033
+Val Loss: 0.7110
+INFO: Test ACCURACY: 0.7233
+Test Loss: 0.8111
+IMPORTANT: 08/06/2023 02:55:40 AM : Saved a new best checkpoint.
+INFO: Epoch 82:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7673/0.6778
+INFO: Eval_train ACCURACY: 0.8172
+Eval_train Loss: 0.6328
+INFO: Id_val ACCURACY: 0.8300
+Id_val Loss: 0.6397
+INFO: Id_test ACCURACY: 0.8233
+Id_test Loss: 0.6173
+INFO: Val ACCURACY: 0.7500
+Val Loss: 0.7151
+INFO: Test ACCURACY: 0.5267
+Test Loss: 0.9425
+INFO: Epoch 83:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7604/0.7759
+INFO: Eval_train ACCURACY: 0.8261
+Eval_train Loss: 0.6153
+INFO: Id_val ACCURACY: 0.8367
+Id_val Loss: 0.6144
+INFO: Id_test ACCURACY: 0.8367
+Id_test Loss: 0.6038
+INFO: Val ACCURACY: 0.7833
+Val Loss: 0.6963
+INFO: Test ACCURACY: 0.5367
+Test Loss: 0.9846
+INFO: Epoch 84:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7543/0.7245
+INFO: Eval_train ACCURACY: 0.8033
+Eval_train Loss: 0.6220
+INFO: Id_val ACCURACY: 0.8100
+Id_val Loss: 0.6329
+INFO: Id_test ACCURACY: 0.8100
+Id_test Loss: 0.6080
+INFO: Val ACCURACY: 0.7867
+Val Loss: 0.7231
+INFO: Test ACCURACY: 0.4300
+Test Loss: 1.1093
+INFO: Epoch 85:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7607/0.5789
+INFO: Eval_train ACCURACY: 0.8517
+Eval_train Loss: 0.6058
+INFO: Id_val ACCURACY: 0.8533
+Id_val Loss: 0.6047
+INFO: Id_test ACCURACY: 0.8733
+Id_test Loss: 0.5810
+INFO: Val ACCURACY: 0.7900
+Val Loss: 0.6872
+INFO: Test ACCURACY: 0.6433
+Test Loss: 0.9180
+INFO: Epoch 86:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7562/0.7713
+INFO: Eval_train ACCURACY: 0.8022
+Eval_train Loss: 0.6318
+INFO: Id_val ACCURACY: 0.8167
+Id_val Loss: 0.6462
+INFO: Id_test ACCURACY: 0.8133
+Id_test Loss: 0.6158
+INFO: Val ACCURACY: 0.7867
+Val Loss: 0.6924
+INFO: Test ACCURACY: 0.5433
+Test Loss: 0.9154
+INFO: Epoch 87:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7513/0.7743
+INFO: Eval_train ACCURACY: 0.7967
+Eval_train Loss: 0.6800
+INFO: Id_val ACCURACY: 0.8167
+Id_val Loss: 0.6828
+INFO: Id_test ACCURACY: 0.8100
+Id_test Loss: 0.6625
+INFO: Val ACCURACY: 0.7333
+Val Loss: 0.7435
+INFO: Test ACCURACY: 0.7567
+Test Loss: 0.8228
+INFO: Epoch 88:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7589/0.8354
+INFO: Eval_train ACCURACY: 0.8039
+Eval_train Loss: 0.6489
+INFO: Id_val ACCURACY: 0.8133
+Id_val Loss: 0.6498
+INFO: Id_test ACCURACY: 0.8067
+Id_test Loss: 0.6260
+INFO: Val ACCURACY: 0.7933
+Val Loss: 0.7129
+INFO: Test ACCURACY: 0.5467
+Test Loss: 0.9589
+INFO: Epoch 89:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7325/0.7482
+INFO: Eval_train ACCURACY: 0.8528
+Eval_train Loss: 0.6013
+INFO: Id_val ACCURACY: 0.8533
+Id_val Loss: 0.6059
+INFO: Id_test ACCURACY: 0.8467
+Id_test Loss: 0.5798
+INFO: Val ACCURACY: 0.8033
+Val Loss: 0.6791
+INFO: Test ACCURACY: 0.7100
+Test Loss: 0.8046
+INFO: Epoch 90:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7500/0.6354
+INFO: Eval_train ACCURACY: 0.8200
+Eval_train Loss: 0.6653
+INFO: Id_val ACCURACY: 0.8400
+Id_val Loss: 0.6690
+INFO: Id_test ACCURACY: 0.8033
+Id_test Loss: 0.6544
+INFO: Val ACCURACY: 0.8033
+Val Loss: 0.7209
+INFO: Test ACCURACY: 0.7700
+Test Loss: 0.7909
+INFO: Epoch 91:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7377/0.7954
+INFO: Eval_train ACCURACY: 0.8606
+Eval_train Loss: 0.5855
+INFO: Id_val ACCURACY: 0.8667
+Id_val Loss: 0.5758
+INFO: Id_test ACCURACY: 0.8667
+Id_test Loss: 0.5639
+INFO: Val ACCURACY: 0.7800
+Val Loss: 0.6866
+INFO: Test ACCURACY: 0.6600
+Test Loss: 0.8842
+IMPORTANT: 08/06/2023 02:58:24 AM : Saved a new best In-Domain checkpoint.
+INFO: Epoch 92:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7376/0.7456
+INFO: Eval_train ACCURACY: 0.8411
+Eval_train Loss: 0.6015
+INFO: Id_val ACCURACY: 0.8500
+Id_val Loss: 0.5940
+INFO: Id_test ACCURACY: 0.8600
+Id_test Loss: 0.5713
+INFO: Val ACCURACY: 0.7500
+Val Loss: 0.6779
+INFO: Test ACCURACY: 0.7700
+Test Loss: 0.7853
+INFO: Epoch 93:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7482/0.6797
+INFO: Eval_train ACCURACY: 0.8294
+Eval_train Loss: 0.6301
+INFO: Id_val ACCURACY: 0.8500
+Id_val Loss: 0.6346
+INFO: Id_test ACCURACY: 0.8267
+Id_test Loss: 0.6145
+INFO: Val ACCURACY: 0.8000
+Val Loss: 0.7040
+INFO: Test ACCURACY: 0.7567
+Test Loss: 0.8544
+INFO: Epoch 94:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7521/0.7979
+INFO: Eval_train ACCURACY: 0.8389
+Eval_train Loss: 0.5981
+INFO: Id_val ACCURACY: 0.8667
+Id_val Loss: 0.5948
+INFO: Id_test ACCURACY: 0.8533
+Id_test Loss: 0.5814
+INFO: Val ACCURACY: 0.7733
+Val Loss: 0.6894
+INFO: Test ACCURACY: 0.5533
+Test Loss: 0.9488
+INFO: Epoch 95:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7483/0.7040
+INFO: Eval_train ACCURACY: 0.7956
+Eval_train Loss: 0.6311
+INFO: Id_val ACCURACY: 0.8200
+Id_val Loss: 0.6252
+INFO: Id_test ACCURACY: 0.8067
+Id_test Loss: 0.6159
+INFO: Val ACCURACY: 0.7567
+Val Loss: 0.7038
+INFO: Test ACCURACY: 0.5833
+Test Loss: 0.9634
+INFO: Epoch 96:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7684/0.7654
+INFO: Eval_train ACCURACY: 0.7967
+Eval_train Loss: 0.6350
+INFO: Id_val ACCURACY: 0.8200
+Id_val Loss: 0.6322
+INFO: Id_test ACCURACY: 0.8133
+Id_test Loss: 0.6185
+INFO: Val ACCURACY: 0.7533
+Val Loss: 0.7146
+INFO: Test ACCURACY: 0.6800
+Test Loss: 0.8570
+INFO: Epoch 97:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7194/0.6946
+INFO: Eval_train ACCURACY: 0.8206
+Eval_train Loss: 0.6136
+INFO: Id_val ACCURACY: 0.8333
+Id_val Loss: 0.6182
+INFO: Id_test ACCURACY: 0.8267
+Id_test Loss: 0.5896
+INFO: Val ACCURACY: 0.8067
+Val Loss: 0.6876
+INFO: Test ACCURACY: 0.7800
+Test Loss: 0.8166
+IMPORTANT: 08/06/2023 03:00:01 AM : Saved a new best checkpoint.
+INFO: Epoch 98:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7532/0.7232
+INFO: Eval_train ACCURACY: 0.7789
+Eval_train Loss: 0.6295
+INFO: Id_val ACCURACY: 0.7933
+Id_val Loss: 0.6353
+INFO: Id_test ACCURACY: 0.7833
+Id_test Loss: 0.6237
+INFO: Val ACCURACY: 0.7500
+Val Loss: 0.6981
+INFO: Test ACCURACY: 0.4667
+Test Loss: 1.0133
+INFO: Epoch 99:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7407/0.7580
+INFO: Eval_train ACCURACY: 0.8317
+Eval_train Loss: 0.6213
+INFO: Id_val ACCURACY: 0.8467
+Id_val Loss: 0.6327
+INFO: Id_test ACCURACY: 0.8233
+Id_test Loss: 0.6121
+INFO: Val ACCURACY: 0.7933
+Val Loss: 0.6816
+INFO: Test ACCURACY: 0.7533
+Test Loss: 0.7981
+INFO: Epoch 100:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7567/0.7151
+INFO: Eval_train ACCURACY: 0.8228
+Eval_train Loss: 0.6270
+INFO: Id_val ACCURACY: 0.8267
+Id_val Loss: 0.6469
+INFO: Id_test ACCURACY: 0.8267
+Id_test Loss: 0.6144
+INFO: Val ACCURACY: 0.7833
+Val Loss: 0.6985
+INFO: Test ACCURACY: 0.6433
+Test Loss: 0.9178
+INFO: Epoch 101:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7377/0.8103
+INFO: Eval_train ACCURACY: 0.8256
+Eval_train Loss: 0.6477
+INFO: Id_val ACCURACY: 0.8433
+Id_val Loss: 0.6522
+INFO: Id_test ACCURACY: 0.8133
+Id_test Loss: 0.6307
+INFO: Val ACCURACY: 0.7967
+Val Loss: 0.7174
+INFO: Test ACCURACY: 0.7100
+Test Loss: 0.8000
+INFO: Epoch 102:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7433/0.7462
+INFO: Eval_train ACCURACY: 0.8272
+Eval_train Loss: 0.6314
+INFO: Id_val ACCURACY: 0.8367
+Id_val Loss: 0.6439
+INFO: Id_test ACCURACY: 0.8167
+Id_test Loss: 0.6178
+INFO: Val ACCURACY: 0.7233
+Val Loss: 0.7355
+INFO: Test ACCURACY: 0.5333
+Test Loss: 0.9760
+INFO: Epoch 103:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7343/0.7747
+INFO: Eval_train ACCURACY: 0.8144
+Eval_train Loss: 0.6538
+INFO: Id_val ACCURACY: 0.8367
+Id_val Loss: 0.6525
+INFO: Id_test ACCURACY: 0.8200
+Id_test Loss: 0.6405
+INFO: Val ACCURACY: 0.7500
+Val Loss: 0.7314
+INFO: Test ACCURACY: 0.6433
+Test Loss: 0.9103
+INFO: Epoch 104:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7550/0.7933
+INFO: Eval_train ACCURACY: 0.8450
+Eval_train Loss: 0.5878
+INFO: Id_val ACCURACY: 0.8700
+Id_val Loss: 0.5740
+INFO: Id_test ACCURACY: 0.8467
+Id_test Loss: 0.5696
+INFO: Val ACCURACY: 0.8000
+Val Loss: 0.6819
+INFO: Test ACCURACY: 0.7400
+Test Loss: 0.8045
+IMPORTANT: 08/06/2023 03:01:56 AM : Saved a new best In-Domain checkpoint.
+INFO: Epoch 105:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7519/0.7238
+INFO: Eval_train ACCURACY: 0.8200
+Eval_train Loss: 0.6449
+INFO: Id_val ACCURACY: 0.8367
+Id_val Loss: 0.6528
+INFO: Id_test ACCURACY: 0.8267
+Id_test Loss: 0.6360
+INFO: Val ACCURACY: 0.7800
+Val Loss: 0.7275
+INFO: Test ACCURACY: 0.5467
+Test Loss: 0.9382
+INFO: Epoch 106:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7396/0.7821
+INFO: Eval_train ACCURACY: 0.8161
+Eval_train Loss: 0.6171
+INFO: Id_val ACCURACY: 0.8300
+Id_val Loss: 0.6261
+INFO: Id_test ACCURACY: 0.8300
+Id_test Loss: 0.6062
+INFO: Val ACCURACY: 0.7900
+Val Loss: 0.7059
+INFO: Test ACCURACY: 0.7300
+Test Loss: 0.8304
+INFO: Epoch 107:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7590/0.7437
+INFO: Eval_train ACCURACY: 0.8150
+Eval_train Loss: 0.6384
+INFO: Id_val ACCURACY: 0.8367
+Id_val Loss: 0.6529
+INFO: Id_test ACCURACY: 0.8100
+Id_test Loss: 0.6303
+INFO: Val ACCURACY: 0.7733
+Val Loss: 0.7130
+INFO: Test ACCURACY: 0.5700
+Test Loss: 0.9585
+INFO: Epoch 108:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7437/0.6911
+INFO: Eval_train ACCURACY: 0.8400
+Eval_train Loss: 0.5907
+INFO: Id_val ACCURACY: 0.8600
+Id_val Loss: 0.5952
+INFO: Id_test ACCURACY: 0.8333
+Id_test Loss: 0.5714
+INFO: Val ACCURACY: 0.7933
+Val Loss: 0.7039
+INFO: Test ACCURACY: 0.4633
+Test Loss: 1.0866
+INFO: Epoch 109:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7500/0.7705
+INFO: Eval_train ACCURACY: 0.8267
+Eval_train Loss: 0.6049
+INFO: Id_val ACCURACY: 0.8500
+Id_val Loss: 0.6095
+INFO: Id_test ACCURACY: 0.8267
+Id_test Loss: 0.5867
+INFO: Val ACCURACY: 0.7833
+Val Loss: 0.6784
+INFO: Test ACCURACY: 0.7567
+Test Loss: 0.7879
+INFO: Epoch 110:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7416/0.6628
+INFO: Eval_train ACCURACY: 0.8106
+Eval_train Loss: 0.6272
+INFO: Id_val ACCURACY: 0.8300
+Id_val Loss: 0.6254
+INFO: Id_test ACCURACY: 0.8167
+Id_test Loss: 0.6054
+INFO: Val ACCURACY: 0.7700
+Val Loss: 0.6907
+INFO: Test ACCURACY: 0.7667
+Test Loss: 0.8119
+INFO: Epoch 111:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7269/0.7324
+INFO: Eval_train ACCURACY: 0.8228
+Eval_train Loss: 0.6148
+INFO: Id_val ACCURACY: 0.8400
+Id_val Loss: 0.6153
+INFO: Id_test ACCURACY: 0.8100
+Id_test Loss: 0.5954
+INFO: Val ACCURACY: 0.8000
+Val Loss: 0.6839
+INFO: Test ACCURACY: 0.6000
+Test Loss: 0.9176
+INFO: Epoch 112:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7292/0.7784
+INFO: Eval_train ACCURACY: 0.8339
+Eval_train Loss: 0.6008
+INFO: Id_val ACCURACY: 0.8433
+Id_val Loss: 0.6095
+INFO: Id_test ACCURACY: 0.8267
+Id_test Loss: 0.5841
+INFO: Val ACCURACY: 0.8033
+Val Loss: 0.6748
+INFO: Test ACCURACY: 0.6133
+Test Loss: 0.9207
+INFO: Epoch 113:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7175/0.7572
+INFO: Eval_train ACCURACY: 0.8328
+Eval_train Loss: 0.5917
+INFO: Id_val ACCURACY: 0.8467
+Id_val Loss: 0.5839
+INFO: Id_test ACCURACY: 0.8367
+Id_test Loss: 0.5713
+INFO: Val ACCURACY: 0.7967
+Val Loss: 0.6820
+INFO: Test ACCURACY: 0.5867
+Test Loss: 0.8979
+INFO: Epoch 114:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7311/0.7310
+INFO: Eval_train ACCURACY: 0.8183
+Eval_train Loss: 0.5926
+INFO: Id_val ACCURACY: 0.8333
+Id_val Loss: 0.5901
+INFO: Id_test ACCURACY: 0.8233
+Id_test Loss: 0.5715
+INFO: Val ACCURACY: 0.7933
+Val Loss: 0.6821
+INFO: Test ACCURACY: 0.6467
+Test Loss: 0.9021
+INFO: Epoch 115:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7308/0.7665
+INFO: Eval_train ACCURACY: 0.8228
+Eval_train Loss: 0.6038
+INFO: Id_val ACCURACY: 0.8500
+Id_val Loss: 0.6035
+INFO: Id_test ACCURACY: 0.8233
+Id_test Loss: 0.5916
+INFO: Val ACCURACY: 0.8000
+Val Loss: 0.6742
+INFO: Test ACCURACY: 0.7400
+Test Loss: 0.8685
+INFO: Epoch 116:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7240/0.8194
+INFO: Eval_train ACCURACY: 0.8433
+Eval_train Loss: 0.5810
+INFO: Id_val ACCURACY: 0.8600
+Id_val Loss: 0.5769
+INFO: Id_test ACCURACY: 0.8433
+Id_test Loss: 0.5619
+INFO: Val ACCURACY: 0.8033
+Val Loss: 0.6742
+INFO: Test ACCURACY: 0.6600
+Test Loss: 0.9040
+INFO: Epoch 117:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7370/0.7002
+INFO: Eval_train ACCURACY: 0.8200
+Eval_train Loss: 0.5982
+INFO: Id_val ACCURACY: 0.8367
+Id_val Loss: 0.6014
+INFO: Id_test ACCURACY: 0.8267
+Id_test Loss: 0.5731
+INFO: Val ACCURACY: 0.7633
+Val Loss: 0.7128
+INFO: Test ACCURACY: 0.5633
+Test Loss: 1.0061
+INFO: Epoch 118:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7399/0.8371
+INFO: Eval_train ACCURACY: 0.8217
+Eval_train Loss: 0.6026
+INFO: Id_val ACCURACY: 0.8267
+Id_val Loss: 0.6044
+INFO: Id_test ACCURACY: 0.8167
+Id_test Loss: 0.5819
+INFO: Val ACCURACY: 0.7800
+Val Loss: 0.6837
+INFO: Test ACCURACY: 0.6800
+Test Loss: 0.8853
+INFO: Epoch 119:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7328/0.7573
+INFO: Eval_train ACCURACY: 0.8233
+Eval_train Loss: 0.6417
+INFO: Id_val ACCURACY: 0.8500
+Id_val Loss: 0.6451
+INFO: Id_test ACCURACY: 0.8200
+Id_test Loss: 0.6372
+INFO: Val ACCURACY: 0.7900
+Val Loss: 0.7096
+INFO: Test ACCURACY: 0.6467
+Test Loss: 0.9074
+INFO: Epoch 120:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7178/0.7053
+INFO: Eval_train ACCURACY: 0.8044
+Eval_train Loss: 0.6244
+INFO: Id_val ACCURACY: 0.8300
+Id_val Loss: 0.6290
+INFO: Id_test ACCURACY: 0.8167
+Id_test Loss: 0.6101
+INFO: Val ACCURACY: 0.7933
+Val Loss: 0.6910
+INFO: Test ACCURACY: 0.7067
+Test Loss: 0.8331
+INFO: Epoch 121:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7461/0.7924
+INFO: Eval_train ACCURACY: 0.8167
+Eval_train Loss: 0.6359
+INFO: Id_val ACCURACY: 0.8267
+Id_val Loss: 0.6324
+INFO: Id_test ACCURACY: 0.8200
+Id_test Loss: 0.6212
+INFO: Val ACCURACY: 0.7933
+Val Loss: 0.7102
+INFO: Test ACCURACY: 0.6533
+Test Loss: 0.8641
+INFO: Epoch 122:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7327/0.7555
+INFO: Eval_train ACCURACY: 0.8211
+Eval_train Loss: 0.5921
+INFO: Id_val ACCURACY: 0.8400
+Id_val Loss: 0.5873
+INFO: Id_test ACCURACY: 0.8233
+Id_test Loss: 0.5739
+INFO: Val ACCURACY: 0.8033
+Val Loss: 0.6871
+INFO: Test ACCURACY: 0.6533
+Test Loss: 0.8853
+INFO: Epoch 123:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7342/0.7635
+INFO: Eval_train ACCURACY: 0.8128
+Eval_train Loss: 0.6125
+INFO: Id_val ACCURACY: 0.8133
+Id_val Loss: 0.6126
+INFO: Id_test ACCURACY: 0.8400
+Id_test Loss: 0.5837
+INFO: Val ACCURACY: 0.7767
+Val Loss: 0.6788
+INFO: Test ACCURACY: 0.7100
+Test Loss: 0.8238
+INFO: Epoch 124:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7523/0.6644
+INFO: Eval_train ACCURACY: 0.8139
+Eval_train Loss: 0.6619
+INFO: Id_val ACCURACY: 0.8333
+Id_val Loss: 0.6633
+INFO: Id_test ACCURACY: 0.8267
+Id_test Loss: 0.6563
+INFO: Val ACCURACY: 0.7600
+Val Loss: 0.7442
+INFO: Test ACCURACY: 0.6200
+Test Loss: 0.8793
+INFO: Epoch 125:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7114/0.7277
+INFO: Eval_train ACCURACY: 0.8211
+Eval_train Loss: 0.6207
+INFO: Id_val ACCURACY: 0.8400
+Id_val Loss: 0.6188
+INFO: Id_test ACCURACY: 0.8200
+Id_test Loss: 0.6059
+INFO: Val ACCURACY: 0.7833
+Val Loss: 0.7146
+INFO: Test ACCURACY: 0.6933
+Test Loss: 0.8560
+INFO: Epoch 126:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7351/0.7563
+INFO: Eval_train ACCURACY: 0.8194
+Eval_train Loss: 0.6274
+INFO: Id_val ACCURACY: 0.8300
+Id_val Loss: 0.6277
+INFO: Id_test ACCURACY: 0.8233
+Id_test Loss: 0.6099
+INFO: Val ACCURACY: 0.7967
+Val Loss: 0.7170
+INFO: Test ACCURACY: 0.6000
+Test Loss: 0.9399
+INFO: Epoch 127:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7305/0.7824
+INFO: Eval_train ACCURACY: 0.8367
+Eval_train Loss: 0.5837
+INFO: Id_val ACCURACY: 0.8400
+Id_val Loss: 0.5888
+INFO: Id_test ACCURACY: 0.8333
+Id_test Loss: 0.5615
+INFO: Val ACCURACY: 0.7967
+Val Loss: 0.6742
+INFO: Test ACCURACY: 0.7300
+Test Loss: 0.8267
+INFO: Epoch 128:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7286/0.7313
+INFO: Eval_train ACCURACY: 0.8239
+Eval_train Loss: 0.6171
+INFO: Id_val ACCURACY: 0.8433
+Id_val Loss: 0.6134
+INFO: Id_test ACCURACY: 0.8200
+Id_test Loss: 0.5999
+INFO: Val ACCURACY: 0.7900
+Val Loss: 0.7031
+INFO: Test ACCURACY: 0.6800
+Test Loss: 0.8074
+INFO: Epoch 129:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7240/0.7523
+INFO: Eval_train ACCURACY: 0.8211
+Eval_train Loss: 0.6027
+INFO: Id_val ACCURACY: 0.8433
+Id_val Loss: 0.6087
+INFO: Id_test ACCURACY: 0.8267
+Id_test Loss: 0.5868
+INFO: Val ACCURACY: 0.7833
+Val Loss: 0.6840
+INFO: Test ACCURACY: 0.7700
+Test Loss: 0.8180
+INFO: Epoch 130:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6991/0.8121
+INFO: Eval_train ACCURACY: 0.8006
+Eval_train Loss: 0.6096
+INFO: Id_val ACCURACY: 0.8067
+Id_val Loss: 0.5967
+INFO: Id_test ACCURACY: 0.8000
+Id_test Loss: 0.5847
+INFO: Val ACCURACY: 0.7600
+Val Loss: 0.6837
+INFO: Test ACCURACY: 0.5800
+Test Loss: 0.9578
+INFO: Epoch 131:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7314/0.8022
+INFO: Eval_train ACCURACY: 0.8067
+Eval_train Loss: 0.6176
+INFO: Id_val ACCURACY: 0.8167
+Id_val Loss: 0.6114
+INFO: Id_test ACCURACY: 0.8167
+Id_test Loss: 0.5887
+INFO: Val ACCURACY: 0.7500
+Val Loss: 0.7029
+INFO: Test ACCURACY: 0.6933
+Test Loss: 0.8257
+INFO: Epoch 132:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7156/0.8295
+INFO: Eval_train ACCURACY: 0.8239
+Eval_train Loss: 0.6084
+INFO: Id_val ACCURACY: 0.8433
+Id_val Loss: 0.6159
+INFO: Id_test ACCURACY: 0.8300
+Id_test Loss: 0.5950
+INFO: Val ACCURACY: 0.7933
+Val Loss: 0.6941
+INFO: Test ACCURACY: 0.7333
+Test Loss: 0.7990
+INFO: Epoch 133:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7488/0.7653
+INFO: Eval_train ACCURACY: 0.8089
+Eval_train Loss: 0.6527
+INFO: Id_val ACCURACY: 0.8200
+Id_val Loss: 0.6686
+INFO: Id_test ACCURACY: 0.8267
+Id_test Loss: 0.6344
+INFO: Val ACCURACY: 0.7733
+Val Loss: 0.7244
+INFO: Test ACCURACY: 0.7167
+Test Loss: 0.8547
+INFO: Epoch 134:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7031/0.7138
+INFO: Eval_train ACCURACY: 0.8356
+Eval_train Loss: 0.6011
+INFO: Id_val ACCURACY: 0.8533
+Id_val Loss: 0.6088
+INFO: Id_test ACCURACY: 0.8367
+Id_test Loss: 0.5825
+INFO: Val ACCURACY: 0.8000
+Val Loss: 0.6804
+INFO: Test ACCURACY: 0.7833
+Test Loss: 0.7608
+INFO: Epoch 135:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7170/0.7804
+INFO: Eval_train ACCURACY: 0.8272
+Eval_train Loss: 0.6257
+INFO: Id_val ACCURACY: 0.8300
+Id_val Loss: 0.6416
+INFO: Id_test ACCURACY: 0.8267
+Id_test Loss: 0.6168
+INFO: Val ACCURACY: 0.7967
+Val Loss: 0.7070
+INFO: Test ACCURACY: 0.7400
+Test Loss: 0.8634
+INFO: Epoch 136:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7148/0.7500
+INFO: Eval_train ACCURACY: 0.8022
+Eval_train Loss: 0.6362
+INFO: Id_val ACCURACY: 0.8100
+Id_val Loss: 0.6261
+INFO: Id_test ACCURACY: 0.8100
+Id_test Loss: 0.6217
+INFO: Val ACCURACY: 0.7833
+Val Loss: 0.7108
+INFO: Test ACCURACY: 0.7300
+Test Loss: 0.8255
+INFO: Epoch 137:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7109/0.7574
+INFO: Eval_train ACCURACY: 0.8306
+Eval_train Loss: 0.6119
+INFO: Id_val ACCURACY: 0.8433
+Id_val Loss: 0.6203
+INFO: Id_test ACCURACY: 0.8300
+Id_test Loss: 0.5961
+INFO: Val ACCURACY: 0.7967
+Val Loss: 0.6839
+INFO: Test ACCURACY: 0.5667
+Test Loss: 0.9322
+INFO: Epoch 138:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7136/0.7389
+INFO: Eval_train ACCURACY: 0.8200
+Eval_train Loss: 0.6280
+INFO: Id_val ACCURACY: 0.8367
+Id_val Loss: 0.6416
+INFO: Id_test ACCURACY: 0.8300
+Id_test Loss: 0.6150
+INFO: Val ACCURACY: 0.7867
+Val Loss: 0.6899
+INFO: Test ACCURACY: 0.6667
+Test Loss: 0.8434
+INFO: Epoch 139:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7229/0.7857
+INFO: Eval_train ACCURACY: 0.8028
+Eval_train Loss: 0.6116
+INFO: Id_val ACCURACY: 0.8233
+Id_val Loss: 0.6056
+INFO: Id_test ACCURACY: 0.8100
+Id_test Loss: 0.5934
+INFO: Val ACCURACY: 0.7867
+Val Loss: 0.6956
+INFO: Test ACCURACY: 0.5900
+Test Loss: 0.9397
+INFO: Epoch 140:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7135/0.8111
+INFO: Eval_train ACCURACY: 0.7878
+Eval_train Loss: 0.6567
+INFO: Id_val ACCURACY: 0.7933
+Id_val Loss: 0.6573
+INFO: Id_test ACCURACY: 0.7867
+Id_test Loss: 0.6409
+INFO: Val ACCURACY: 0.7467
+Val Loss: 0.7314
+INFO: Test ACCURACY: 0.6767
+Test Loss: 0.8865
+INFO: Epoch 141:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7264/0.8456
+INFO: Eval_train ACCURACY: 0.8089
+Eval_train Loss: 0.6499
+INFO: Id_val ACCURACY: 0.8167
+Id_val Loss: 0.6498
+INFO: Id_test ACCURACY: 0.8100
+Id_test Loss: 0.6375
+INFO: Val ACCURACY: 0.7900
+Val Loss: 0.7044
+INFO: Test ACCURACY: 0.7033
+Test Loss: 0.8252
+INFO: Epoch 142:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7149/0.7513
+INFO: Eval_train ACCURACY: 0.8261
+Eval_train Loss: 0.6230
+INFO: Id_val ACCURACY: 0.8433
+Id_val Loss: 0.6293
+INFO: Id_test ACCURACY: 0.8267
+Id_test Loss: 0.6041
+INFO: Val ACCURACY: 0.7733
+Val Loss: 0.7018
+INFO: Test ACCURACY: 0.7467
+Test Loss: 0.8058
+INFO: Epoch 143:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7090/0.8391
+INFO: Eval_train ACCURACY: 0.8244
+Eval_train Loss: 0.6025
+INFO: Id_val ACCURACY: 0.8433
+Id_val Loss: 0.6071
+INFO: Id_test ACCURACY: 0.8267
+Id_test Loss: 0.5857
+INFO: Val ACCURACY: 0.7933
+Val Loss: 0.6844
+INFO: Test ACCURACY: 0.5333
+Test Loss: 1.0049
+INFO: Epoch 144:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7124/0.9263
+INFO: Eval_train ACCURACY: 0.8217
+Eval_train Loss: 0.6061
+INFO: Id_val ACCURACY: 0.8233
+Id_val Loss: 0.6040
+INFO: Id_test ACCURACY: 0.8267
+Id_test Loss: 0.5864
+INFO: Val ACCURACY: 0.7933
+Val Loss: 0.6970
+INFO: Test ACCURACY: 0.5533
+Test Loss: 0.9778
+INFO: Epoch 145:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6991/0.7692
+INFO: Eval_train ACCURACY: 0.8211
+Eval_train Loss: 0.6312
+INFO: Id_val ACCURACY: 0.8300
+Id_val Loss: 0.6307
+INFO: Id_test ACCURACY: 0.8167
+Id_test Loss: 0.6148
+INFO: Val ACCURACY: 0.8000
+Val Loss: 0.6984
+INFO: Test ACCURACY: 0.7200
+Test Loss: 0.8437
+INFO: Epoch 146:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7156/0.7050
+INFO: Eval_train ACCURACY: 0.8072
+Eval_train Loss: 0.6152
+INFO: Id_val ACCURACY: 0.8233
+Id_val Loss: 0.6230
+INFO: Id_test ACCURACY: 0.8167
+Id_test Loss: 0.5918
+INFO: Val ACCURACY: 0.7900
+Val Loss: 0.6945
+INFO: Test ACCURACY: 0.6967
+Test Loss: 0.8713
+INFO: Epoch 147:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7224/0.7885
+INFO: Eval_train ACCURACY: 0.8200
+Eval_train Loss: 0.6131
+INFO: Id_val ACCURACY: 0.8333
+Id_val Loss: 0.6220
+INFO: Id_test ACCURACY: 0.8167
+Id_test Loss: 0.5910
+INFO: Val ACCURACY: 0.7933
+Val Loss: 0.6837
+INFO: Test ACCURACY: 0.6233
+Test Loss: 0.9241
+INFO: Epoch 148:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7027/0.7659
+INFO: Eval_train ACCURACY: 0.8333
+Eval_train Loss: 0.5873
+INFO: Id_val ACCURACY: 0.8433
+Id_val Loss: 0.5951
+INFO: Id_test ACCURACY: 0.8233
+Id_test Loss: 0.5673
+INFO: Val ACCURACY: 0.7900
+Val Loss: 0.6611
+INFO: Test ACCURACY: 0.7167
+Test Loss: 0.7960
+INFO: Epoch 149:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7355/0.7965
+INFO: Eval_train ACCURACY: 0.8250
+Eval_train Loss: 0.6265
+INFO: Id_val ACCURACY: 0.8367
+Id_val Loss: 0.6474
+INFO: Id_test ACCURACY: 0.8267
+Id_test Loss: 0.6141
+INFO: Val ACCURACY: 0.7767
+Val Loss: 0.7126
+INFO: Test ACCURACY: 0.6600
+Test Loss: 0.8592
+INFO: Epoch 150:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6851/0.7275
+INFO: Eval_train ACCURACY: 0.8261
+Eval_train Loss: 0.6189
+INFO: Id_val ACCURACY: 0.8400
+Id_val Loss: 0.6303
+INFO: Id_test ACCURACY: 0.8167
+Id_test Loss: 0.6065
+INFO: Val ACCURACY: 0.7833
+Val Loss: 0.7088
+INFO: Test ACCURACY: 0.6567
+Test Loss: 0.8244
+INFO: Epoch 151:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6704/0.6353
+INFO: Eval_train ACCURACY: 0.8228
+Eval_train Loss: 0.6209
+INFO: Id_val ACCURACY: 0.8300
+Id_val Loss: 0.6336
+INFO: Id_test ACCURACY: 0.8167
+Id_test Loss: 0.6085
+INFO: Val ACCURACY: 0.7833
+Val Loss: 0.7159
+INFO: Test ACCURACY: 0.6833
+Test Loss: 0.8626
+INFO: Epoch 152:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6906/0.7006
+INFO: Eval_train ACCURACY: 0.8244
+Eval_train Loss: 0.6145
+INFO: Id_val ACCURACY: 0.8400
+Id_val Loss: 0.6263
+INFO: Id_test ACCURACY: 0.8200
+Id_test Loss: 0.6030
+INFO: Val ACCURACY: 0.7833
+Val Loss: 0.7017
+INFO: Test ACCURACY: 0.6867
+Test Loss: 0.8193
+INFO: Epoch 153:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6788/0.8001
+INFO: Eval_train ACCURACY: 0.8256
+Eval_train Loss: 0.6221
+INFO: Id_val ACCURACY: 0.8367
+Id_val Loss: 0.6368
+INFO: Id_test ACCURACY: 0.8200
+Id_test Loss: 0.6121
+INFO: Val ACCURACY: 0.7867
+Val Loss: 0.7054
+INFO: Test ACCURACY: 0.6667
+Test Loss: 0.8555
+INFO: Epoch 154:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7067/0.7317
+INFO: Eval_train ACCURACY: 0.8250
+Eval_train Loss: 0.6190
+INFO: Id_val ACCURACY: 0.8433
+Id_val Loss: 0.6352
+INFO: Id_test ACCURACY: 0.8233
+Id_test Loss: 0.6109
+INFO: Val ACCURACY: 0.7833
+Val Loss: 0.7080
+INFO: Test ACCURACY: 0.6667
+Test Loss: 0.8546
+INFO: Epoch 155:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6963/0.6727
+INFO: Eval_train ACCURACY: 0.8200
+Eval_train Loss: 0.6528
+INFO: Id_val ACCURACY: 0.8300
+Id_val Loss: 0.6638
+INFO: Id_test ACCURACY: 0.8167
+Id_test Loss: 0.6410
+INFO: Val ACCURACY: 0.7633
+Val Loss: 0.7257
+INFO: Test ACCURACY: 0.7000
+Test Loss: 0.8350
+INFO: Epoch 156:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6996/0.7347
+INFO: Eval_train ACCURACY: 0.8261
+Eval_train Loss: 0.6088
+INFO: Id_val ACCURACY: 0.8367
+Id_val Loss: 0.6191
+INFO: Id_test ACCURACY: 0.8167
+Id_test Loss: 0.5965
+INFO: Val ACCURACY: 0.7833
+Val Loss: 0.6994
+INFO: Test ACCURACY: 0.6800
+Test Loss: 0.8704
+INFO: Epoch 157:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6890/0.7409
+INFO: Eval_train ACCURACY: 0.8228
+Eval_train Loss: 0.6290
+INFO: Id_val ACCURACY: 0.8267
+Id_val Loss: 0.6421
+INFO: Id_test ACCURACY: 0.8200
+Id_test Loss: 0.6181
+INFO: Val ACCURACY: 0.7833
+Val Loss: 0.7027
+INFO: Test ACCURACY: 0.7067
+Test Loss: 0.8217
+INFO: Epoch 158:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6942/0.7572
+INFO: Eval_train ACCURACY: 0.8189
+Eval_train Loss: 0.6383
+INFO: Id_val ACCURACY: 0.8233
+Id_val Loss: 0.6452
+INFO: Id_test ACCURACY: 0.8133
+Id_test Loss: 0.6252
+INFO: Val ACCURACY: 0.7867
+Val Loss: 0.7208
+INFO: Test ACCURACY: 0.7033
+Test Loss: 0.8471
+INFO: Epoch 159:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7045/0.6990
+INFO: Eval_train ACCURACY: 0.8261
+Eval_train Loss: 0.6453
+INFO: Id_val ACCURACY: 0.8433
+Id_val Loss: 0.6578
+INFO: Id_test ACCURACY: 0.8267
+Id_test Loss: 0.6356
+INFO: Val ACCURACY: 0.7933
+Val Loss: 0.7223
+INFO: Test ACCURACY: 0.6800
+Test Loss: 0.8516
+INFO: Epoch 160:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6774/0.7427
+INFO: Eval_train ACCURACY: 0.8233
+Eval_train Loss: 0.6335
+INFO: Id_val ACCURACY: 0.8433
+Id_val Loss: 0.6408
+INFO: Id_test ACCURACY: 0.8200
+Id_test Loss: 0.6237
+INFO: Val ACCURACY: 0.7767
+Val Loss: 0.7223
+INFO: Test ACCURACY: 0.6567
+Test Loss: 0.8717
+INFO: Epoch 161:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6771/0.6814
+INFO: Eval_train ACCURACY: 0.8244
+Eval_train Loss: 0.6251
+INFO: Id_val ACCURACY: 0.8433
+Id_val Loss: 0.6319
+INFO: Id_test ACCURACY: 0.8200
+Id_test Loss: 0.6150
+INFO: Val ACCURACY: 0.7800
+Val Loss: 0.7116
+INFO: Test ACCURACY: 0.6967
+Test Loss: 0.8357
+INFO: Epoch 162:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6815/0.7868
+INFO: Eval_train ACCURACY: 0.8283
+Eval_train Loss: 0.6115
+INFO: Id_val ACCURACY: 0.8367
+Id_val Loss: 0.6180
+INFO: Id_test ACCURACY: 0.8167
+Id_test Loss: 0.5989
+INFO: Val ACCURACY: 0.7967
+Val Loss: 0.7020
+INFO: Test ACCURACY: 0.6900
+Test Loss: 0.8462
+INFO: Epoch 163:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6855/0.7892
+INFO: Eval_train ACCURACY: 0.8294
+Eval_train Loss: 0.6265
+INFO: Id_val ACCURACY: 0.8333
+Id_val Loss: 0.6396
+INFO: Id_test ACCURACY: 0.8200
+Id_test Loss: 0.6151
+INFO: Val ACCURACY: 0.7900
+Val Loss: 0.7036
+INFO: Test ACCURACY: 0.7233
+Test Loss: 0.8166
+INFO: Epoch 164:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6976/0.7044
+INFO: Eval_train ACCURACY: 0.8239
+Eval_train Loss: 0.6100
+INFO: Id_val ACCURACY: 0.8300
+Id_val Loss: 0.6170
+INFO: Id_test ACCURACY: 0.8200
+Id_test Loss: 0.5945
+INFO: Val ACCURACY: 0.7933
+Val Loss: 0.6895
+INFO: Test ACCURACY: 0.5667
+Test Loss: 0.9641
+INFO: Epoch 165:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6832/0.7573
+INFO: Eval_train ACCURACY: 0.8256
+Eval_train Loss: 0.6181
+INFO: Id_val ACCURACY: 0.8400
+Id_val Loss: 0.6281
+INFO: Id_test ACCURACY: 0.8200
+Id_test Loss: 0.6062
+INFO: Val ACCURACY: 0.7900
+Val Loss: 0.6966
+INFO: Test ACCURACY: 0.6900
+Test Loss: 0.8224
+INFO: Epoch 166:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6915/0.7068
+INFO: Eval_train ACCURACY: 0.8250
+Eval_train Loss: 0.6246
+INFO: Id_val ACCURACY: 0.8433
+Id_val Loss: 0.6350
+INFO: Id_test ACCURACY: 0.8233
+Id_test Loss: 0.6145
+INFO: Val ACCURACY: 0.7900
+Val Loss: 0.7040
+INFO: Test ACCURACY: 0.6900
+Test Loss: 0.8322
+INFO: Epoch 167:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6872/0.7436
+INFO: Eval_train ACCURACY: 0.8261
+Eval_train Loss: 0.6116
+INFO: Id_val ACCURACY: 0.8433
+Id_val Loss: 0.6265
+INFO: Id_test ACCURACY: 0.8267
+Id_test Loss: 0.6026
+INFO: Val ACCURACY: 0.7833
+Val Loss: 0.7116
+INFO: Test ACCURACY: 0.6700
+Test Loss: 0.8490
+INFO: Epoch 168:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6807/0.7480
+INFO: Eval_train ACCURACY: 0.8289
+Eval_train Loss: 0.6064
+INFO: Id_val ACCURACY: 0.8367
+Id_val Loss: 0.6234
+INFO: Id_test ACCURACY: 0.8267
+Id_test Loss: 0.5957
+INFO: Val ACCURACY: 0.7733
+Val Loss: 0.7032
+INFO: Test ACCURACY: 0.6767
+Test Loss: 0.8484
+INFO: Epoch 169:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6846/0.7338
+INFO: Eval_train ACCURACY: 0.8272
+Eval_train Loss: 0.6312
+INFO: Id_val ACCURACY: 0.8433
+Id_val Loss: 0.6461
+INFO: Id_test ACCURACY: 0.8267
+Id_test Loss: 0.6217
+INFO: Val ACCURACY: 0.7867
+Val Loss: 0.7132
+INFO: Test ACCURACY: 0.6900
+Test Loss: 0.8478
+INFO: Epoch 170:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6773/0.6874
+INFO: Eval_train ACCURACY: 0.8250
+Eval_train Loss: 0.6334
+INFO: Id_val ACCURACY: 0.8367
+Id_val Loss: 0.6423
+INFO: Id_test ACCURACY: 0.8200
+Id_test Loss: 0.6212
+INFO: Val ACCURACY: 0.7867
+Val Loss: 0.7098
+INFO: Test ACCURACY: 0.7067
+Test Loss: 0.8029
+INFO: Epoch 171:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6770/0.7981
+INFO: Eval_train ACCURACY: 0.8272
+Eval_train Loss: 0.6075
+INFO: Id_val ACCURACY: 0.8400
+Id_val Loss: 0.6173
+INFO: Id_test ACCURACY: 0.8267
+Id_test Loss: 0.5933
+INFO: Val ACCURACY: 0.7900
+Val Loss: 0.6881
+INFO: Test ACCURACY: 0.7233
+Test Loss: 0.8022
+INFO: Epoch 172:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6841/0.8432
+INFO: Eval_train ACCURACY: 0.8267
+Eval_train Loss: 0.6059
+INFO: Id_val ACCURACY: 0.8367
+Id_val Loss: 0.6182
+INFO: Id_test ACCURACY: 0.8267
+Id_test Loss: 0.5931
+INFO: Val ACCURACY: 0.7900
+Val Loss: 0.6909
+INFO: Test ACCURACY: 0.7133
+Test Loss: 0.8026
+INFO: Epoch 173:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6748/0.8028
+INFO: Eval_train ACCURACY: 0.8261
+Eval_train Loss: 0.6218
+INFO: Id_val ACCURACY: 0.8367
+Id_val Loss: 0.6317
+INFO: Id_test ACCURACY: 0.8233
+Id_test Loss: 0.6090
+INFO: Val ACCURACY: 0.7933
+Val Loss: 0.6982
+INFO: Test ACCURACY: 0.7033
+Test Loss: 0.8267
+INFO: Epoch 174:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6831/0.6928
+INFO: Eval_train ACCURACY: 0.8278
+Eval_train Loss: 0.6225
+INFO: Id_val ACCURACY: 0.8433
+Id_val Loss: 0.6341
+INFO: Id_test ACCURACY: 0.8300
+Id_test Loss: 0.6103
+INFO: Val ACCURACY: 0.7900
+Val Loss: 0.7014
+INFO: Test ACCURACY: 0.7200
+Test Loss: 0.8202
+INFO: Epoch 175:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6949/0.7490
+INFO: Eval_train ACCURACY: 0.8278
+Eval_train Loss: 0.6420
+INFO: Id_val ACCURACY: 0.8433
+Id_val Loss: 0.6552
+INFO: Id_test ACCURACY: 0.8267
+Id_test Loss: 0.6310
+INFO: Val ACCURACY: 0.7933
+Val Loss: 0.7038
+INFO: Test ACCURACY: 0.7000
+Test Loss: 0.8475
+INFO: Epoch 176:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6630/0.6983
+INFO: Eval_train ACCURACY: 0.8261
+Eval_train Loss: 0.6160
+INFO: Id_val ACCURACY: 0.8367
+Id_val Loss: 0.6246
+INFO: Id_test ACCURACY: 0.8267
+Id_test Loss: 0.6028
+INFO: Val ACCURACY: 0.8000
+Val Loss: 0.6949
+INFO: Test ACCURACY: 0.7233
+Test Loss: 0.8059
+INFO: Epoch 177:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6777/0.8472
+INFO: Eval_train ACCURACY: 0.8339
+Eval_train Loss: 0.5946
+INFO: Id_val ACCURACY: 0.8400
+Id_val Loss: 0.6072
+INFO: Id_test ACCURACY: 0.8333
+Id_test Loss: 0.5776
+INFO: Val ACCURACY: 0.7967
+Val Loss: 0.6809
+INFO: Test ACCURACY: 0.7000
+Test Loss: 0.8337
+INFO: Epoch 178:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6732/0.8921
+INFO: Eval_train ACCURACY: 0.8289
+Eval_train Loss: 0.6222
+INFO: Id_val ACCURACY: 0.8400
+Id_val Loss: 0.6341
+INFO: Id_test ACCURACY: 0.8300
+Id_test Loss: 0.6101
+INFO: Val ACCURACY: 0.7933
+Val Loss: 0.6997
+INFO: Test ACCURACY: 0.7000
+Test Loss: 0.8264
+INFO: Epoch 179:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6885/0.7624
+INFO: Eval_train ACCURACY: 0.8256
+Eval_train Loss: 0.6170
+INFO: Id_val ACCURACY: 0.8367
+Id_val Loss: 0.6246
+INFO: Id_test ACCURACY: 0.8233
+Id_test Loss: 0.6025
+INFO: Val ACCURACY: 0.8000
+Val Loss: 0.6996
+INFO: Test ACCURACY: 0.6833
+Test Loss: 0.8439
+INFO: Epoch 180:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6714/0.8575
+INFO: Eval_train ACCURACY: 0.8256
+Eval_train Loss: 0.6102
+INFO: Id_val ACCURACY: 0.8367
+Id_val Loss: 0.6191
+INFO: Id_test ACCURACY: 0.8300
+Id_test Loss: 0.5978
+INFO: Val ACCURACY: 0.7900
+Val Loss: 0.6978
+INFO: Test ACCURACY: 0.7167
+Test Loss: 0.8252
+INFO: Epoch 181:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.7058/0.7471
+INFO: Eval_train ACCURACY: 0.8294
+Eval_train Loss: 0.6182
+INFO: Id_val ACCURACY: 0.8433
+Id_val Loss: 0.6336
+INFO: Id_test ACCURACY: 0.8267
+Id_test Loss: 0.6082
+INFO: Val ACCURACY: 0.7900
+Val Loss: 0.7100
+INFO: Test ACCURACY: 0.7167
+Test Loss: 0.8212
+INFO: Epoch 182:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6808/0.7708
+INFO: Eval_train ACCURACY: 0.8261
+Eval_train Loss: 0.6306
+INFO: Id_val ACCURACY: 0.8367
+Id_val Loss: 0.6433
+INFO: Id_test ACCURACY: 0.8233
+Id_test Loss: 0.6203
+INFO: Val ACCURACY: 0.7933
+Val Loss: 0.7127
+INFO: Test ACCURACY: 0.7000
+Test Loss: 0.8441
+INFO: Epoch 183:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6644/0.7453
+INFO: Eval_train ACCURACY: 0.8222
+Eval_train Loss: 0.6568
+INFO: Id_val ACCURACY: 0.8433
+Id_val Loss: 0.6710
+INFO: Id_test ACCURACY: 0.8200
+Id_test Loss: 0.6484
+INFO: Val ACCURACY: 0.7967
+Val Loss: 0.7265
+INFO: Test ACCURACY: 0.6967
+Test Loss: 0.8278
+INFO: Epoch 184:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6835/0.7818
+INFO: Eval_train ACCURACY: 0.8289
+Eval_train Loss: 0.6096
+INFO: Id_val ACCURACY: 0.8433
+Id_val Loss: 0.6245
+INFO: Id_test ACCURACY: 0.8267
+Id_test Loss: 0.5998
+INFO: Val ACCURACY: 0.7900
+Val Loss: 0.7044
+INFO: Test ACCURACY: 0.6600
+Test Loss: 0.9052
+INFO: Epoch 185:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6802/0.7422
+INFO: Eval_train ACCURACY: 0.8283
+Eval_train Loss: 0.6023
+INFO: Id_val ACCURACY: 0.8400
+Id_val Loss: 0.6180
+INFO: Id_test ACCURACY: 0.8233
+Id_test Loss: 0.5901
+INFO: Val ACCURACY: 0.7900
+Val Loss: 0.6881
+INFO: Test ACCURACY: 0.7100
+Test Loss: 0.8091
+INFO: Epoch 186:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6833/0.7412
+INFO: Eval_train ACCURACY: 0.8294
+Eval_train Loss: 0.5936
+INFO: Id_val ACCURACY: 0.8400
+Id_val Loss: 0.6038
+INFO: Id_test ACCURACY: 0.8233
+Id_test Loss: 0.5788
+INFO: Val ACCURACY: 0.7933
+Val Loss: 0.6796
+INFO: Test ACCURACY: 0.6933
+Test Loss: 0.8070
+INFO: Epoch 187:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6734/0.7220
+INFO: Eval_train ACCURACY: 0.8294
+Eval_train Loss: 0.6070
+INFO: Id_val ACCURACY: 0.8433
+Id_val Loss: 0.6210
+INFO: Id_test ACCURACY: 0.8267
+Id_test Loss: 0.5975
+INFO: Val ACCURACY: 0.7967
+Val Loss: 0.6997
+INFO: Test ACCURACY: 0.6933
+Test Loss: 0.8354
+INFO: Epoch 188:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6942/0.7827
+INFO: Eval_train ACCURACY: 0.8194
+Eval_train Loss: 0.6453
+INFO: Id_val ACCURACY: 0.8300
+Id_val Loss: 0.6549
+INFO: Id_test ACCURACY: 0.8167
+Id_test Loss: 0.6356
+INFO: Val ACCURACY: 0.7900
+Val Loss: 0.7214
+INFO: Test ACCURACY: 0.7100
+Test Loss: 0.8261
+INFO: Epoch 189:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6890/0.7761
+INFO: Eval_train ACCURACY: 0.8272
+Eval_train Loss: 0.6281
+INFO: Id_val ACCURACY: 0.8433
+Id_val Loss: 0.6463
+INFO: Id_test ACCURACY: 0.8267
+Id_test Loss: 0.6223
+INFO: Val ACCURACY: 0.7800
+Val Loss: 0.7145
+INFO: Test ACCURACY: 0.7100
+Test Loss: 0.8523
+INFO: Epoch 190:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6732/0.7002
+INFO: Eval_train ACCURACY: 0.8333
+Eval_train Loss: 0.6103
+INFO: Id_val ACCURACY: 0.8467
+Id_val Loss: 0.6292
+INFO: Id_test ACCURACY: 0.8300
+Id_test Loss: 0.6020
+INFO: Val ACCURACY: 0.7967
+Val Loss: 0.6994
+INFO: Test ACCURACY: 0.7000
+Test Loss: 0.8149
+INFO: Epoch 191:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6634/0.7624
+INFO: Eval_train ACCURACY: 0.8306
+Eval_train Loss: 0.6189
+INFO: Id_val ACCURACY: 0.8400
+Id_val Loss: 0.6341
+INFO: Id_test ACCURACY: 0.8300
+Id_test Loss: 0.6081
+INFO: Val ACCURACY: 0.7933
+Val Loss: 0.7011
+INFO: Test ACCURACY: 0.6867
+Test Loss: 0.8151
+INFO: Epoch 192:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6699/0.7687
+INFO: Eval_train ACCURACY: 0.8283
+Eval_train Loss: 0.6194
+INFO: Id_val ACCURACY: 0.8467
+Id_val Loss: 0.6372
+INFO: Id_test ACCURACY: 0.8300
+Id_test Loss: 0.6127
+INFO: Val ACCURACY: 0.7967
+Val Loss: 0.7005
+INFO: Test ACCURACY: 0.6967
+Test Loss: 0.8295
+INFO: Epoch 193:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6850/0.7883
+INFO: Eval_train ACCURACY: 0.8300
+Eval_train Loss: 0.5990
+INFO: Id_val ACCURACY: 0.8400
+Id_val Loss: 0.6108
+INFO: Id_test ACCURACY: 0.8233
+Id_test Loss: 0.5871
+INFO: Val ACCURACY: 0.7933
+Val Loss: 0.6845
+INFO: Test ACCURACY: 0.7200
+Test Loss: 0.7983
+INFO: Epoch 194:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6905/0.7239
+INFO: Eval_train ACCURACY: 0.8217
+Eval_train Loss: 0.6543
+INFO: Id_val ACCURACY: 0.8267
+Id_val Loss: 0.6664
+INFO: Id_test ACCURACY: 0.8200
+Id_test Loss: 0.6433
+INFO: Val ACCURACY: 0.7967
+Val Loss: 0.7229
+INFO: Test ACCURACY: 0.7167
+Test Loss: 0.8323
+INFO: Epoch 195:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6840/0.7864
+INFO: Eval_train ACCURACY: 0.8306
+Eval_train Loss: 0.6127
+INFO: Id_val ACCURACY: 0.8367
+Id_val Loss: 0.6267
+INFO: Id_test ACCURACY: 0.8267
+Id_test Loss: 0.6003
+INFO: Val ACCURACY: 0.7933
+Val Loss: 0.6977
+INFO: Test ACCURACY: 0.7133
+Test Loss: 0.8278
+INFO: Epoch 196:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6626/0.7487
+INFO: Eval_train ACCURACY: 0.8289
+Eval_train Loss: 0.6034
+INFO: Id_val ACCURACY: 0.8367
+Id_val Loss: 0.6202
+INFO: Id_test ACCURACY: 0.8267
+Id_test Loss: 0.5938
+INFO: Val ACCURACY: 0.7900
+Val Loss: 0.6913
+INFO: Test ACCURACY: 0.7167
+Test Loss: 0.8308
+INFO: Epoch 197:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6712/0.7570
+INFO: Eval_train ACCURACY: 0.8317
+Eval_train Loss: 0.6157
+INFO: Id_val ACCURACY: 0.8467
+Id_val Loss: 0.6409
+INFO: Id_test ACCURACY: 0.8333
+Id_test Loss: 0.6090
+INFO: Val ACCURACY: 0.7833
+Val Loss: 0.7038
+INFO: Test ACCURACY: 0.6967
+Test Loss: 0.8411
+INFO: Epoch 198:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6939/0.7461
+INFO: Eval_train ACCURACY: 0.8178
+Eval_train Loss: 0.6737
+INFO: Id_val ACCURACY: 0.8367
+Id_val Loss: 0.6871
+INFO: Id_test ACCURACY: 0.8100
+Id_test Loss: 0.6668
+INFO: Val ACCURACY: 0.7733
+Val Loss: 0.7558
+INFO: Test ACCURACY: 0.7200
+Test Loss: 0.8580
+INFO: Epoch 199:
+INFO: Evaluating...
+INFO: Approximated average M/S Loss 0.6730/0.7432
+INFO: Eval_train ACCURACY: 0.8244
+Eval_train Loss: 0.6279
+INFO: Id_val ACCURACY: 0.8433
+Id_val Loss: 0.6432
+INFO: Id_test ACCURACY: 0.8267
+Id_test Loss: 0.6201
+INFO: Val ACCURACY: 0.7767
+Val Loss: 0.7138
+INFO: Test ACCURACY: 0.7167
+Test Loss: 0.8522
+IMPORTANT: 08/06/2023 03:26:05 AM : Total training time: 3145.1678s
+INFO: Training end.
+INFO: Loading best In-Domain Checkpoint 104...
+INFO: Checkpoint 104: 
+-----------------------------------
+Train ACCURACY: 0.8450
+Train Loss: 0.5878
+ID Validation ACCURACY: 0.8700
+ID Validation Loss: 0.5740
+ID Test ACCURACY: 0.8467
+ID Test Loss: 0.5696
+OOD Validation ACCURACY: 0.8000
+OOD Validation Loss: 0.6819
+OOD Test ACCURACY: 0.7400
+OOD Test Loss: 0.8045
+
+INFO: Loading best Out-of-Domain Checkpoint 97...
+INFO: Checkpoint 97: 
+-----------------------------------
+Train ACCURACY: 0.8206
+Train Loss: 0.6136
+ID Validation ACCURACY: 0.8333
+ID Validation Loss: 0.6182
+ID Test ACCURACY: 0.8267
+ID Test Loss: 0.5896
+OOD Validation ACCURACY: 0.8067
+OOD Validation Loss: 0.6876
+OOD Test ACCURACY: 0.7800
+OOD Test Loss: 0.8166
+
+INFO: ChartInfo 0.8467 0.7400 0.8267 0.7800 0.8067

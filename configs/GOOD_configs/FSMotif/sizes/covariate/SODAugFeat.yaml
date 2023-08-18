@@ -16,11 +16,11 @@ ood:
     - 10     # max_k
     - 0.1     # pl_loss
     - 10     # Vrex
-    - 1e-3     # main lr
+    - 0.001     # main lr
     - 60     # pre epoch
-    - 1      # no frag
+    - 0      # no frag
     - 0      # scaffold/basis
-    - 1.    # percentage of data aug
+    - 0.8    # percentage of data aug
 train:
   max_epoch: 200
   lr: 1e-4  # pre lr
