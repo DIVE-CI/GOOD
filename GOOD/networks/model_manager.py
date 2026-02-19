@@ -47,9 +47,9 @@ def config_model(model: torch.nn.Module, mode: str, config: Union[CommonArgs, Mu
 
     # load checkpoint
     if mode == 'train' and config.train.tr_ctn:
-        ckpt = torch.load(os.path.join(config.ckpt_dir, f'last.ckpt'))
+        ckpt = torch.load(os.path.join(config.ckpt_dir, f'last.ckpt'), weights_only=False)
         model.load_state_dict(ckpt['state_dict'])
-        best_ckpt = torch.load(os.path.join(config.ckpt_dir, f'best.ckpt'))
+        best_ckpt = torch.load(os.path.join(config.ckpt_dir, f'best.ckpt'), weights_only=False)
         config.metric.best_stat['score'] = best_ckpt['val_score']
         config.metric.best_stat['loss'] = best_ckpt['val_loss']
         config.train.ctn_epoch = ckpt['epoch'] + 1
@@ -57,12 +57,12 @@ def config_model(model: torch.nn.Module, mode: str, config: Union[CommonArgs, Mu
 
     if mode == 'test':
         try:
-            ckpt = torch.load(config.test_ckpt, map_location=config.device)
+            ckpt = torch.load(config.test_ckpt, map_location=config.device, weights_only=False)
         except FileNotFoundError:
             print(f'#E#Checkpoint not found at {os.path.abspath(config.test_ckpt)}')
             exit(1)
         if os.path.exists(config.id_test_ckpt):
-            id_ckpt = torch.load(config.id_test_ckpt, map_location=config.device)
+            id_ckpt = torch.load(config.id_test_ckpt, map_location=config.device, weights_only=False)
             # model.load_state_dict(id_ckpt['state_dict'])
             print(f'#IN#Loading best In-Domain Checkpoint {id_ckpt["epoch"]}...')
             print(f'#IN#Checkpoint {id_ckpt["epoch"]}: \n-----------------------------------\n'

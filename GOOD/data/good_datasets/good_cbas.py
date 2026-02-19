@@ -73,7 +73,7 @@ class GOODCBAS(InMemoryDataset):
         else:
             subset_pt = 0
 
-        self.data, self.slices = torch.load(self.processed_paths[subset_pt])
+        self.data, self.slices = torch.load(self.processed_paths[subset_pt], weights_only=False)
 
     @property
     def raw_dir(self):
