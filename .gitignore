@@ -2,4 +2,5 @@
 storage
 docs/build
 /docs/source/_autosummary/
-**/__pycace__/
+**/__pycache__/
+*.egg-info/
